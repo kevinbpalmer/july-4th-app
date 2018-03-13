@@ -1,0 +1,27 @@
+{
+  "name": "harvest-4th",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "express-sanitize-escape": "^1.1.0",
+    "mysql": "^2.15.0",
+    "nodemon": "^1.17.1",
+    "path": "^0.12.7"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "frontend/*"
+    ],
+    "delay": "500"
+  }
+}
