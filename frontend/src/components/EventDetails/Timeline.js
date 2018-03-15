@@ -1,30 +1,17 @@
 import React from 'react'
 import FaClockO from 'react-icons/lib/fa/clock-o'
 
+// component(s)
+import SingleTimelineItem from './SingleTimelineItem'
+
 const Timeline = () => {
   return (
     <div className='timeline-container'>
-
-      <div className='times-container'>
-        <p>11:45AM</p>
-        <p>12:00PM</p>
-        <p>12:30PM</p>
-        <p>1:00PM</p>
-      </div>
-
       <div className='separator'></div>
-
-      <div className='event-name'>
-        <p>Parade Line-Up</p>
-        <p>Parade Begins</p>
-        <p>
-          Inflatable Obstacle Course <br />
-          Shaved Ice Truck <br />
-          Kid Activities
-        </p>
-        <p>Another Event</p>
-      </div>
-
+      <SingleTimelineItem time='11:45AM' name='Parade Line-Up' />
+      <SingleTimelineItem time='12:00PM' name='Parade Begins' />
+      <SingleTimelineItem time='12:30PM' name='Inflatable Obstacle Course <br /> Shaved Ice Truck' />
+      <SingleTimelineItem time='1:00PM' name='Other Activities' />
     </div>
   )
 }
