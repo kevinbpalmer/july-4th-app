@@ -13,8 +13,8 @@ const Routes = () => {
       <Header />
       <Switch>
         <Route exact path='/' component={Home} />
-        <Route exact path='/rsvp' component={Home} />
-        
+
+        <Route path='/rsvp' render={() => ( <h1>rsvp</h1> )} />
         <Route path='/event-details' render={() => ( <h1>event-details</h1> )} />
         <Route path='/cornhole' render={() => ( <h1>cornhole</h1> )} />
         <Route path='/volunteer' render={() => ( <h1>volunteer</h1> )} />

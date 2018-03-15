@@ -1,16 +1,65 @@
-.nav-main
+@import 'styles/_variables'
+
+.nav-main.navbar-light
   position: fixed
   top: 0
   left: 0
   width: 100%
-  ul
+  background: rgba(0,0,0, .1)
+  .navbar-brand
+    color: #fff
+    &:hover
+      text-decoration: none
+  .navbar-toggler
+    border: none
+    span.navbar-toggler-icon
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, .9)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E")
+  ul.navbar-nav
     text-align: right
-    margin: 1rem 2rem
-    li
+    @media(max-width: $sm)
+      margin: 0
+      margin-top: 1rem
+    li.nav-item
       display: inline-block
       margin: 0 1rem
+      @media(max-width: $sm)
+        margin-bottom: .75rem
+        &:last-child
+          margin-bottom: 0
       a
-        color: #fff
         text-decoration: none
         text-transform: uppercase
         letter-spacing: .1em
+        color: #fff
+        &:hover
+          color: #fff
+    .dropdown.nav-item
+      a.dropdown-toggle.nav-link
+        padding: 0
+      .dropdown-menu
+        padding: 0
+      .dropdown-menu.show
+        background: rgba(0,0,0, .1)
+        border: none
+        text-align: left
+        margin: 0
+        padding: 0
+        @media(max-width: $sm)
+          background: transparent
+          text-align: right
+        a.dropdown-toggle.nav-link
+          padding: 0
+        button
+          padding: 0
+          padding-bottom: .75rem
+          &:first-child
+            padding-top: .75rem
+          &:last-child
+            padding-bottom: 0
+          &:hover
+            background: transparent
+    .dropdown.show.nav-item
+      .dropdown-toggle
+        &:after
+          border-top: 0
+          border-bottom: .3em solid
