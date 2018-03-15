@@ -5,10 +5,8 @@ import {
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
@@ -40,6 +38,9 @@ import {
               </NavItem>
               <NavItem>
                 <Link to='/rsvp'>RSVP</Link>
+              </NavItem>
+              <NavItem>
+                <a>Donate</a>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>

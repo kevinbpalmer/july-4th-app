@@ -1,0 +1,36 @@
+@import 'styles/_variables'
+
+#details
+  background: $blue-dark
+  min-height: 250px
+  padding: 4rem 0
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  color: rgba(255,255,255, .8)
+
+  .timeline-container
+    display: flex
+    flex-wrap: nowrap
+    justify-content: space-between
+    max-width: 100%
+    width: 500px
+    position: relative
+    overflow: hidden
+    p
+      margin: 0
+      margin-bottom: 1rem
+    .clock-icon
+      font-size: 1rem
+    .times-container
+      margin-left: 20%  
+    .separator
+      position: absolute
+      top: -1rem
+      left: 48%
+      height: 100%
+      width: 1px
+      background: #fff
+    .event-name
+      align-self: flex-end

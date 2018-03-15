@@ -1,34 +1,38 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
+import smoothScroll from 'smoothscroll'
 
 // components
 import Hero from 'components/Hero'
+import EventDetails from 'components/EventDetails'
 
 // style(s)
 import './styles.sass'
 
 class Home extends Component {
+  componentDidMount() {
+    const {hash} = this.props.location
+
+    if (hash === '#details') {
+      smoothScroll(document.querySelector('#details'))
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const {hash} = this.props.location
+
+    if (hash === '#details') {
+      smoothScroll(document.querySelector('#details'))
+    }
+  }
+
   render() {
     return (
       <section className='home_page_container'>
         <Hero />
+        <EventDetails />
       </section>
     )
   }
 }
 
-Home.propTypes = {
-  // proptypes go here
-}
-
-const mapStateToProps = (store) => ({
-
-});
-
-const mapDispatchToProps = {
-
-};
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home));
+export default Home
