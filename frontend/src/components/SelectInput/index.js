@@ -6,6 +6,18 @@ class SelectInput extends Component {
     touched: false
   }
 
+  renderClassName = () => {
+    const {errors, inputName} = this.props
+
+    if (typeof errors === 'object' && errors.hasOwnProperty(inputName)) {
+
+      return 'has-error input-wrapper'
+    }
+
+
+    return 'no-error input-wrapper'
+  }
+
   renderOptions = () => {
     const {options} = this.props
 
@@ -33,18 +45,31 @@ class SelectInput extends Component {
     updateForm(value, inputName)
   }
 
-  render() {
+  returnError = () => {
     const {inputName} = this.props
+    const errorMsg = this.props.errors[inputName][0]
+
+    return errorMsg
+  }
+
+  render() {
+    const {inputName, errors} = this.props
     const {touched} = this.state
 
     return (
-      <select
-        className={`form-control custom-select-input ${!touched ? 'greyed-out' : ''}`}
-        name='text'
-        onChange={e => this.handleChange(e.target.value, inputName)}
-        >
+      <div className={this.renderClassName()}>
+        <select
+          className={`form-control custom-select-input ${!touched ? 'greyed-out' : ''}`}
+          name='text'
+          onChange={e => this.handleChange(e.target.value, inputName)}>
           {this.renderOptions()}
         </select>
+        <span>
+          {typeof errors === 'object' &&
+          errors.hasOwnProperty(inputName) &&
+            this.returnError()}
+        </span>
+      </div>
       )
     }
   }

@@ -14,6 +14,8 @@ html
       margin: 0
       .form-row
         margin-bottom: 1rem
+    .input-wrapper
+      width: 100%
     .custom-select-input
       border: 0
       border-bottom: 1px solid rgba(88,88,88, .2)
@@ -25,6 +27,13 @@ html
       border-bottom: 1px solid rgba(88,88,88, .2)
       &::placeholder
         color: rgba(88,88,88, .5)
+    .has-error
+      .custom-input
+        border-color: $red
+      .custom-select-input
+        border-color: $red
+      span
+        color: $red
 
     // hero component styling
     .hero-title

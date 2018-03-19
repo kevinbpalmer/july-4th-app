@@ -12,7 +12,8 @@ const initialState = {
   lunchNumKids: '',
   attendingPotluck: false,
   potluckNumAdults: '',
-  potluckNumKids: ''
+  potluckNumKids: '',
+  errors: undefined
 }
 
 const rsvp = (state = initialState, action) => {
@@ -22,6 +23,13 @@ const rsvp = (state = initialState, action) => {
       return {
         ...state,
         [action.payload.inputName]: action.payload.value
+      }
+    }
+    case constants.UPDATE_RSVP_FORM_ERRORS: {
+
+      return {
+        ...state,
+        errors: action.payload
       }
     }
     default:

@@ -7,3 +7,8 @@ export const updateForm = (value, inputName) => ({
     inputName
   }
 })
+
+export const updateErrors = errors => ({
+  type: constants.UPDATE_RSVP_FORM_ERRORS,
+  payload: errors
+})

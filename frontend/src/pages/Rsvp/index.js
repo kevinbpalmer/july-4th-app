@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import Validator from 'validatorjs'
 
 // components
 import TextInput from 'components/TextInput'
@@ -8,7 +9,10 @@ import SelectInput from 'components/SelectInput'
 import Attending from 'components/Attending'
 
 // actions
-import {updateForm} from 'actions/rsvp'
+import {updateForm, updateErrors} from 'actions/rsvp'
+
+// validation rules
+import {rulesWithEmail, rulesWithPhone, customMessages} from './rules'
 
 // stylesheet(s)
 import './styles.sass'
@@ -23,11 +27,47 @@ const preferredCommOptions = [
 class Rsvp extends Component {
   handleSubmit = e => {
     e.preventDefault()
-    console.log('Submit')
-  }
+    const {
+      firstName,
+      lastName,
+      address,
+      preferredComm,
+      email,
+      phone,
+      attendingLunch,
+      lunchNumAdults,
+      lunchNumKids,
+      attendingPotluck,
+      potluckNumAdults,
+      potluckNumKids,
+      updateForm,
+      updateErrors
+    } = this.props
 
-  handleChange = (inputName, value) => {
-    console.log('SELECT INPUT: ', inputName, value)
+    const data = {
+      firstName,
+      lastName,
+      address,
+      preferredComm,
+      email,
+      phone,
+      attendingLunch,
+      lunchNumAdults,
+      lunchNumKids,
+      attendingPotluck,
+      potluckNumAdults,
+      potluckNumKids,
+    }
+
+    let validation = new Validator(data, preferredComm === 'email' ? rulesWithEmail : rulesWithPhone, customMessages)
+    if (validation.fails()) {
+      window.scrollTo(0, 0)
+      return updateErrors(validation.errors.errors)
+    }
+    else {
+      window.scrollTo(0, 0)
+      updateErrors(validation.errors.errors)
+    }
   }
 
   render() {
@@ -44,7 +84,9 @@ class Rsvp extends Component {
       attendingPotluck,
       potluckNumAdults,
       potluckNumKids,
-      updateForm} = this.props
+      updateForm,
+      errors
+    } = this.props
 
     return (
       <div className='rsvp-form-container container'>
@@ -56,6 +98,8 @@ class Rsvp extends Component {
                 value={firstName}
                 placeholder='First Name'
                 updateForm={updateForm}
+                errors={errors}
+
               />
             </div>
             <div className='col-12 form-row'>
@@ -64,6 +108,7 @@ class Rsvp extends Component {
                 value={lastName}
                 placeholder='Last Name'
                 updateForm={updateForm}
+                errors={errors}
               />
             </div>
             <div className='col-12 form-row'>
@@ -72,6 +117,7 @@ class Rsvp extends Component {
                 value={address}
                 placeholder='Address'
                 updateForm={updateForm}
+                errors={errors}
               />
             </div>
             <div className='col-12 form-row'>
@@ -80,6 +126,7 @@ class Rsvp extends Component {
                 value={preferredComm}
                 updateForm={updateForm}
                 options={preferredCommOptions}
+                errors={errors}
               />
             </div>
             {preferredComm === 'email' &&
@@ -89,6 +136,7 @@ class Rsvp extends Component {
                 value={email}
                 placeholder='Email Address'
                 updateForm={updateForm}
+                errors={errors}
               />
             </div>}
             {preferredComm === 'phone' &&
@@ -98,6 +146,7 @@ class Rsvp extends Component {
                 value={phone}
                 placeholder='Phone Number'
                 updateForm={updateForm}
+                errors={errors}
               />
             </div>}
             <div className='col-12 form-row'>
@@ -116,6 +165,7 @@ class Rsvp extends Component {
                   placeholder='Number of Adults for Lunch'
                   updateForm={updateForm}
                   number={true}
+                  errors={errors}
                 />
               </div>}
             {attendingLunch === true &&
@@ -126,6 +176,7 @@ class Rsvp extends Component {
                   placeholder='Number of Kids for Lunch'
                   updateForm={updateForm}
                   number={true}
+                  errors={errors}
                 />
               </div>}
               <div className='col-12 form-row'>
@@ -144,6 +195,7 @@ class Rsvp extends Component {
                 placeholder='Number of Adults for Potluck'
                 updateForm={updateForm}
                 number={true}
+                errors={errors}
               />
             </div>}
           {attendingPotluck === true &&
@@ -154,6 +206,7 @@ class Rsvp extends Component {
                 placeholder='Number of Kids for Potluck'
                 updateForm={updateForm}
                 number={true}
+                errors={errors}
               />
             </div>}
           </div>
@@ -184,11 +237,13 @@ const mapStateToProps = store => ({
   lunchNumKids: store.rsvp.lunchNumKids,
   attendingPotluck: store.rsvp.attendingPotluck,
   potluckNumAdults: store.rsvp.potluckNumAdults,
-  potluckNumKids: store.rsvp.potluckNumKids
+  potluckNumKids: store.rsvp.potluckNumKids,
+  errors: store.rsvp.errors
 })
 
 const mapDispatchToProps = {
-  updateForm
+  updateForm,
+  updateErrors
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Rsvp)
