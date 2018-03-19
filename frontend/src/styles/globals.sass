@@ -8,12 +8,25 @@ html
   body
     font-family: $font-family
     margin: 0
+
+    // form styling
     .form-group
       margin: 0
       .form-row
-        @media(max-width: $md)
-          margin-bottom: 1rem
+        margin-bottom: 1rem
+    .custom-select-input
+      border: 0
+      border-bottom: 1px solid rgba(88,88,88, .2)
+    .custom-select-input.greyed-out
+      color: rgba(88,88,88, .5)
+    .custom-input
+      border-radius: 0
+      border: 0
+      border-bottom: 1px solid rgba(88,88,88, .2)
+      &::placeholder
+        color: rgba(88,88,88, .5)
 
+    // hero component styling
     .hero-title
       color: #fff
       text-transform: uppercase

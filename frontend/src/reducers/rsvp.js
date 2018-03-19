@@ -5,13 +5,15 @@ const initialState = {
   lastName: '',
   address: '',
   preferredComm: '',
+  email: '',
+  phone: '',
   attendingLunch: false,
-  lunchNumAdults: 0,
-  lunchNumKids: 0,
+  lunchNumAdults: '',
+  lunchNumKids: '',
   attendingPotluck: false,
-  potluckNumAdults: 0,
-  potluckNumKids: 0
-};
+  potluckNumAdults: '',
+  potluckNumKids: ''
+}
 
 const rsvp = (state = initialState, action) => {
   switch (action.type) {
@@ -25,6 +27,6 @@ const rsvp = (state = initialState, action) => {
     default:
       return state;
   }
-};
+}
 
-export default rsvp;
+export default rsvp
