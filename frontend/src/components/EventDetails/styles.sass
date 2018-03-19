@@ -18,6 +18,8 @@
     width: 300px
     position: relative
     overflow: hidden
+    @media(max-width: $sm)
+      padding: 0 1rem
     p
       margin: 0
       margin-bottom: 1rem
@@ -30,6 +32,11 @@
         margin-right: auto
       .event-name
         margin-left: auto
+        max-width: 120px
+        text-align: right
+        span
+          margin-bottom: 1rem
+          display: block
     .separator
       position: absolute
       top: -1rem

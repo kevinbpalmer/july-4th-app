@@ -1,3 +1,5 @@
+@import 'styles/_variables'
+
 .hero-content-wrapper
   background: url('./images/home_bg.jpeg') center center no-repeat
   background-size: cover
@@ -8,12 +10,17 @@
   position: relative
   .hero-content-container
     text-align: center
+    margin-top: 4rem
   .scroll-for-details
     position: absolute
     bottom: 1rem
     display: flex
     flex-direction: column
     align-items: center
+    a
+      text-align: center
+      &:hover
+        text-decoration: none
     p
       margin: 0
       color: rgba(255,255,255, .7)
@@ -23,3 +30,11 @@
       color: rgba(255,255,255, .7)
       font-weight: bolder
       font-size: 1.5rem
+
+.childpage-hero
+  background: url('./images/child-hero.jpg') no-repeat
+  background-size: cover
+  background-attachment: fixed
+  max-height: 400px
+  .hero-title
+    color: $red

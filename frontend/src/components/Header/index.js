@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import {Link, withRouter} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import {
   Collapse,
   Navbar,
@@ -51,7 +50,7 @@ import {
                     <Link to='/volunteer'>Volunteer</Link>
                   </DropdownItem>
                   <DropdownItem>
-                    <Link to='Potluck'>Potluck</Link>
+                    <Link to='/potluck'>Potluck</Link>
                   </DropdownItem>
                   <DropdownItem>
                     <Link to='/cornhole'>Cornhole</Link>
@@ -65,8 +64,4 @@ import {
     }
   }
 
-  Header.propTypes = {
-    history: PropTypes.object
-  }
-
-  export default withRouter(Header)
+  export default Header

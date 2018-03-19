@@ -3,9 +3,12 @@ import { Switch, Route } from 'react-router-dom'
 
 // pages to render
 import Home from 'pages/Home'
+import Rsvp from 'pages/Rsvp'
 
 // components to render
 import Header from 'components/Header'
+import Footer from 'components/Footer'
+import Hero from 'components/Hero'
 
 class Routes extends Component {
   componentDidMount() {
@@ -20,16 +23,18 @@ class Routes extends Component {
     return (
       <main>
         <Header />
+        <Hero />
         <Switch>
           <Route exact path='/' component={Home} />
 
-          <Route path='/rsvp' render={() => ( <h1>rsvp</h1> )} />
+          <Route path='/rsvp' component={Rsvp} />
           <Route path='/cornhole' render={() => ( <h1>cornhole</h1> )} />
           <Route path='/volunteer' render={() => ( <h1>volunteer</h1> )} />
           <Route path='/potluck' render={() => ( <h1>potluck</h1> )} />
 
           <Route component={Home}/>
         </Switch>
+        <Footer />
       </main>
     )
   }

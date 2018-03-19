@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import smoothScroll from 'smoothscroll'
 
 // components
-import Hero from 'components/Hero'
 import EventDetails from 'components/EventDetails'
 
 // style(s)
@@ -28,7 +27,6 @@ class Home extends Component {
   render() {
     return (
       <section className='home_page_container'>
-        <Hero />
         <EventDetails />
       </section>
     )

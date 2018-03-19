@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 
 // style(s)
 import './styles.sass'
@@ -26,6 +26,25 @@ class Hero extends Component {
 
   render() {
     const {height} = this.state
+    const {location} = this.props
+
+    if (location.pathname !== '/') {
+      return (
+          <div
+            className='hero-content-wrapper childpage-hero'
+            style={{
+              minHeight: (height/4) + 'px'
+            }}>
+            <div className='hero-content-container'>
+              <h1 className='hero-title'>
+                {location.pathname.slice(1)}
+              </h1>
+          </div>
+        </div>
+      )
+    }
+
+
 
     return (
         <div
@@ -48,12 +67,14 @@ class Hero extends Component {
           </div>
         </div>
         <div className='scroll-for-details'>
-          <p>Scroll for details</p>
-          <div className='double-caret'><span>&or;</span></div>
+          <Link to='/#details'>
+            <p>Scroll for details</p>
+            <div className='double-caret'><span>&or;</span></div>
+          </Link>
         </div>
       </div>
     )
   }
 }
 
-export default Hero
+export default withRouter(Hero)
