@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 // pages to render
 import Home from 'pages/Home'
@@ -9,6 +10,12 @@ import Rsvp from 'pages/Rsvp'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
 import Hero from 'components/Hero'
+
+// modal must be global so we render it here
+import Donate from 'components/Donate'
+
+// actions
+import {openModal} from 'actions/globals'
 
 class Routes extends Component {
   componentDidMount() {
@@ -20,6 +27,8 @@ class Routes extends Component {
   }
 
   render() {
+    const {isModalOpen, openModal} = this.props
+
     return (
       <main>
         <Header />
@@ -35,6 +44,7 @@ class Routes extends Component {
           <Route component={Home}/>
         </Switch>
         <Footer />
+        <Donate isModalOpen={isModalOpen} hideModal={openModal} />
       </main>
     )
   }
@@ -44,4 +54,12 @@ Routes.propTypes = {
   // proptypes go here
 };
 
-export default Routes
+const mapStateToProps = store => ({
+  isModalOpen: store.globals.isModalOpen
+})
+
+const mapDispatchToProps = {
+  openModal
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Routes)
