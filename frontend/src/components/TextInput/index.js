@@ -5,7 +5,7 @@ class TextInput extends Component {
   renderClassName = () => {
     const {errors, inputName} = this.props
 
-    if (typeof errors === 'object' && errors.hasOwnProperty(inputName)) {
+    if (typeof errors === 'object' && errors.hasOwnProperty(inputName) && typeof errors[inputName] !== 'undefined') {
 
       return 'has-error input-wrapper'
     }
@@ -15,10 +15,12 @@ class TextInput extends Component {
   }
 
   returnError = () => {
-    const {inputName} = this.props
-    const errorMsg = this.props.errors[inputName][0]
+    const {inputName, errors} = this.props
+    if (errors[inputName]) {
+      const errorMsg = errors[inputName][0]
 
-    return errorMsg
+      return errorMsg
+    }
   }
 
    render() {

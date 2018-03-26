@@ -10,7 +10,26 @@
   position: relative
   .hero-content-container
     text-align: center
-    margin-top: 4rem
+    line-height: 0
+    .hero-title
+      font-family: 'Clicker Script', cursive
+      text-transform: inherit
+      letter-spacing: .1em
+      margin: 0
+      font-size: 3.5em
+    .hero-subtitle
+      font-family: 'Coming Soon', cursive
+      font-size: 1.5em
+      letter-spacing: .1em
+
+    .extravaganza
+      font-size: 1.5em
+      letter-spacing: .4em
+      &:before
+        border-bottom: transparent
+    .hero-button-container
+      button
+        font-weight: bold
   .scroll-for-details
     position: absolute
     bottom: 1rem
@@ -32,9 +51,11 @@
       font-size: 1.5rem
 
 .childpage-hero
-  background: url('./images/child-hero.jpg') no-repeat
+  background: url('./images/home_bg.jpeg') no-repeat top center
   background-size: cover
   background-attachment: fixed
   max-height: 400px
-  .hero-title
-    color: $red
+  .hero-content-container
+    .hero-title
+      font-family: 'Coming Soon', cursive
+      color: $red

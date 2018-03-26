@@ -30,15 +30,15 @@ class Hero extends Component {
 
     if (location.pathname !== '/') {
       return (
-          <div
-            className='hero-content-wrapper childpage-hero'
-            style={{
-              minHeight: (height/4) + 'px'
-            }}>
-            <div className='hero-content-container'>
-              <h1 className='hero-title'>
-                {location.pathname.slice(1)}
-              </h1>
+        <div
+          className='hero-content-wrapper childpage-hero'
+          style={{
+            minHeight: (height/4) + 'px'
+          }}>
+          <div className='hero-content-container'>
+            <h1 className='hero-title'>
+              {location.pathname.slice(1)}
+            </h1>
           </div>
         </div>
       )
@@ -47,34 +47,41 @@ class Hero extends Component {
 
 
     return (
-        <div
-          className='hero-content-wrapper'
-          style={{
-            minHeight: height + 'px'
-          }}>
-          <div className='hero-content-container'>
-            <h1 className='hero-title'>
-              Harvest Fourth of July Extravaganza
-            </h1>
-            <h5 className='hero-subtitle'>
-              Saturday, June 30th, 2018
-            </h5>
-            <div className='hero-button-container'>
-              <Link to='/rsvp'>
-              <button type='button' className='hero-btn mr-4 btn'>RSVP</button>
-            </Link>
-            <button type='button' className='hero-btn btn'>Donate</button>
-          </div>
-        </div>
-        <div className='scroll-for-details'>
-          <Link to='/#details'>
-            <p>Scroll for details</p>
-            <div className='double-caret'><span>&or;</span></div>
+      <div
+        className='hero-content-wrapper'
+        style={{
+          minHeight: height + 'px'
+        }}>
+        <div className='hero-content-container'>
+          <h1 className='hero-title'>
+            Harvest Fourth of July
+          </h1>
+          <br />
+          <h5 className='hero-subtitle extravaganza'>
+            Extravaganza
+          </h5>
+          <br />
+          <h5 className='hero-subtitle'>
+            Saturday, June 30th, 2018
+          </h5>
+          <div className='hero-button-container'>
+            <Link to='/rsvp'>
+            <button type='button' className='hero-btn mr-4 btn'>RSVP</button>
           </Link>
-        </div>
+          <Link to ='/donate'>
+          <button type='button' className='hero-btn btn'>Donate</button>
+        </Link>
       </div>
-    )
-  }
+    </div>
+    <div className='scroll-for-details'>
+      <Link to='/#details'>
+      <p>Scroll for details</p>
+      <div className='double-caret'><span>&or;</span></div>
+    </Link>
+  </div>
+</div>
+)
+}
 }
 
 export default withRouter(Hero)

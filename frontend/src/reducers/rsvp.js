@@ -25,8 +25,8 @@ const rsvp = (state = initialState, action) => {
         [action.payload.inputName]: action.payload.value
       }
     }
-    case constants.UPDATE_RSVP_FORM_ERRORS: {
 
+    case constants.UPDATE_RSVP_FORM_ERRORS: {
       return {
         ...state,
         errors: action.payload

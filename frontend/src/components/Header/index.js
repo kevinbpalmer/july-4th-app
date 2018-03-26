@@ -11,10 +11,6 @@ import {
   DropdownMenu,
   DropdownItem
 } from 'reactstrap'
-import {connect} from 'react-redux'
-
-// actions
-import {openModal} from 'actions/globals'
 
 // style(s)
 import './styles.sass'
@@ -31,8 +27,6 @@ class Header extends Component {
   }
 
   render() {
-    const {openModal} = this.props
-
     return (
       <Navbar color='faded' light expand='md' className='nav-main'>
         <Link className='navbar-brand' to='/'>Harvest 4th of July</Link>
@@ -46,7 +40,7 @@ class Header extends Component {
               <Link to='/rsvp'>RSVP</Link>
             </NavItem>
             <NavItem>
-              <a onClick={openModal}>Donate</a>
+              <Link to='/donate'>Donate</Link>
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
@@ -71,12 +65,4 @@ class Header extends Component {
   }
 }
 
-const mapStateToProps = store => ({
-
-})
-
-const mapDispatchToProps = {
-  openModal
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header)
+export default Header
