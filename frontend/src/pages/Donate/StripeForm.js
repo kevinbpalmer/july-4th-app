@@ -25,21 +25,18 @@ class StripeForm extends Component {
     errorMessage: undefined
   }
 
-  componentDidMount() {
-    const num = '75.25'
-    const int = parseFloat(num)
-    console.log('INT: ', int);
-  }
 
   handleSubmit = e => {
-    const {firstName, lastName, updateErrors, stripe} = this.props
+    const {firstName, lastName, updateErrors, amount, stripe} = this.props
     e.preventDefault()
 
-    let validation = new Validator({firstName, lastName}, rules, customMessages)
+    let validation = new Validator({firstName, lastName, amount}, rules, customMessages)
     if (validation.fails()) {
       updateErrors(validation.errors.errors)
     }
     else {
+      const strippedAmount =  parseFloat(amount.replace('.', ''))
+
       stripe
       .createToken({name: `${firstName} ${lastName}`})
       .then(({token}) => {
@@ -47,9 +44,12 @@ class StripeForm extends Component {
           loading: true
         })
         if (typeof token !== 'undefined') {
-          axios.post('/api/v1/payment', {stripeToken: token})
+          axios.post('/api/v1/payment', {
+            stripeToken: token,
+            amount: strippedAmount
+          })
           .then(res => {
-            console.log('SUCCESS: ', res)
+            console.log('SUCCESS: ', res.data)
 
             this.setState({
               loading: false,
@@ -91,6 +91,24 @@ class StripeForm extends Component {
       const mergedErrors = Object.assign({}, errors, { [inputName]: validation.errors.errors[inputName] })
       updateErrors(mergedErrors)
     }
+
+    if (inputName === 'amount') {
+      const newVal = value.replace('.', '')
+
+      if (newVal.length === 1) {
+        const valueWithDecimalsAdded = '.' + 0 + newVal.slice(-1)
+        return updateForm(valueWithDecimalsAdded, inputName)
+      }
+
+      if (newVal.substring(0, 1) === '0') {
+        const valueWithDecimalsAdded = newVal.slice(1, -2) + '.' + newVal.slice(-2)
+        return updateForm(valueWithDecimalsAdded, inputName)
+      }
+
+      const valueWithDecimalsAdded = newVal.slice(0, -2) + '.' + newVal.slice(-2)
+      return updateForm(valueWithDecimalsAdded, inputName)
+    }
+
     updateForm(value, inputName)
   }
 

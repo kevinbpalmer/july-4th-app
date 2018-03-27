@@ -1,6 +1,7 @@
 let rules = {
   firstName: 'required',
-  lastName: 'required'
+  lastName: 'required',
+  amount: 'required'
 }
 
 let customMessages = {
