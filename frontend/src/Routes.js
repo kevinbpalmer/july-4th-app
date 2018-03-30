@@ -5,6 +5,7 @@ import { Switch, Route } from 'react-router-dom'
 import Home from 'pages/Home'
 import Rsvp from 'pages/Rsvp'
 import Cornhole from 'pages/Cornhole'
+import Volunteers from 'pages/Volunteers'
 
 // components to render
 import Header from 'components/Header'
@@ -30,7 +31,7 @@ class Routes extends Component {
 
           <Route path='/rsvp' component={Rsvp} />
           <Route path='/cornhole' component={Cornhole} />
-          <Route path='/volunteer' render={() => ( <h1>volunteer</h1> )} />
+          <Route path='/volunteer' component={Volunteers}/>
           <Route path='/potluck' render={() => ( <h1>potluck</h1> )} />
 
 

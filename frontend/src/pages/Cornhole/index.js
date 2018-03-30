@@ -58,6 +58,7 @@ class Cornhole extends Component {
       window.scrollTo(0, 0)
       updateErrors(validation.errors.errors)
     }
+    console.log('props', this.props);
   }
 
   render(){
