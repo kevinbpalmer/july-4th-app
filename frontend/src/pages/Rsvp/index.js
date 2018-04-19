@@ -40,7 +40,6 @@ class Rsvp extends Component {
       attendingPotluck,
       potluckNumAdults,
       potluckNumKids,
-      updateForm,
       updateErrors
     } = this.props
 
@@ -89,7 +88,7 @@ class Rsvp extends Component {
     } = this.props
 
     return (
-      <div className='rsvp-form-container container'>
+      <div className='form-container container'>
         <form onSubmit={this.handleSubmit}>
           <div className='form-group row'>
             <div className='col-12 form-row'>
@@ -99,7 +98,6 @@ class Rsvp extends Component {
                 placeholder='First Name'
                 updateForm={updateForm}
                 errors={errors}
-
               />
             </div>
             <div className='col-12 form-row'>
