@@ -16,6 +16,7 @@ class Potluck extends Component {
   }
 
   addDish = () => {
+    const {updatePotluckDishes, errors, potluckDishes} = this.props
     const {dishesNum} = this.state
 
     dishesNum.push(SingleDish)
@@ -32,9 +33,9 @@ class Potluck extends Component {
           <SingleDish
             index={index}
             updatePotluckDishes={updatePotluckDishes}
+            removeDish={this.removeDish}
             potluckDishes={potluckDishes}
             errors={errors}
-            value="val"
           />
         </div>
       )
@@ -93,12 +94,14 @@ class Potluck extends Component {
               />
             </div>
             {this.renderDishes()}
-            <div onClick={this.addDish} className='col-12 form-row'>
-              Add Dish
+            <div  className='col-12 form-row'>
+              <button onClick={this.addDish} className='btn btn-default'>
+                + Add Dish
+              </button>
             </div>
           </div>
           <div className='form-group row'>
-            <div className='col-12 btn-row'>
+            <div className='col-auto btn-row'>
               <button className='btn btn-default btn-form' type='submit'>Submit</button>
             </div>
           </div>
