@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import Validator from 'validatorjs'
+import axios from 'axios'
 
 // components
 import TextInput from 'components/TextInput'
@@ -25,6 +26,13 @@ const preferredCommOptions = [
 ]
 
 class Rsvp extends Component {
+  state = {
+    loading: false,
+    success: false,
+    error: false,
+    errorMessage: undefined
+  }
+
   handleSubmit = e => {
     e.preventDefault()
     const {
@@ -55,7 +63,7 @@ class Rsvp extends Component {
       lunchNumKids,
       attendingPotluck,
       potluckNumAdults,
-      potluckNumKids,
+      potluckNumKids
     }
 
     let validation = new Validator(data, preferredComm === 'email' ? rulesWithEmail : rulesWithPhone, customMessages)
@@ -66,6 +74,13 @@ class Rsvp extends Component {
     else {
       window.scrollTo(0, 0)
       updateErrors(validation.errors.errors)
+      axios.post('/api/v1/rsvp', data)
+      .then(res => {
+        console.log('RSVPD SUCCESSFULLY! ', res)
+      })
+      .catch(err => {
+        console.error('RSVP FAIL! ', err)
+      })
     }
   }
 

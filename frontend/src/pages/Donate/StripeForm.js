@@ -83,7 +83,6 @@ class StripeForm extends Component {
 
   updateForm = (value, inputName) => {
     const {updateForm, errors, firstName, lastName, updateErrors} = this.props
-    let singleInputRule = rules[inputName]
     let validation = new Validator({firstName, lastName}, rules.inputName, customMessages)
 
     // if the there are validation errors then check to see if what the user is typing resolves them
@@ -94,6 +93,11 @@ class StripeForm extends Component {
 
     if (inputName === 'amount') {
       const newVal = value.replace('.', '')
+
+      var numOnly = new RegExp('^[0-9]+$');
+      if (numOnly.test(newVal) === false) {
+        return
+      }
 
       if (newVal.length === 1) {
         const valueWithDecimalsAdded = '.' + 0 + newVal.slice(-1)

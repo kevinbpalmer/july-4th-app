@@ -19,7 +19,6 @@ router.post('/', function(req, res, next) {
   }
 
   if (!req.body.amount) {
-    console.log('AYYYY');
     return res.status(400).json('No amount')
   }
 

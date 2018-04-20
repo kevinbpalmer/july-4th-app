@@ -10,13 +10,15 @@ import SingleDish from './SingleDish'
 // actions
 import {updateForm, updatePotluckDishes} from 'actions/potluck'
 
+// validation rules
+import {rules, customMessages} from './rules'
+
 class Potluck extends Component {
   state = {
     dishesNum: []
   }
 
   addDish = () => {
-    const {updatePotluckDishes, errors, potluckDishes} = this.props
     const {dishesNum} = this.state
 
     dishesNum.push(SingleDish)
@@ -46,8 +48,23 @@ class Potluck extends Component {
   }
 
   handleSubmit = (e) => {
+    const {
+      firstName,
+      lastName,
+      phone,
+      email,
+      potluckDishes
+    } = this.props
+    const data = {
+      firstName,
+      lastName,
+      phone,
+      email,
+      potluckDishes
+    }
     e.preventDefault()
     console.log('FIRE')
+    let validation = new Validator(data, rules, customMessages)
   }
 
   render() {
