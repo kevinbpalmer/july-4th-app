@@ -5,7 +5,7 @@ const router = express.Router()
 const stripe = require('stripe')(process.env.STRIPE_SECRET_TOKEN)
 
 // import data create method from the model
-const payment = require('../../models/payment')
+const payment = require('../models/payment')
 
 router.post('/', function(req, res, next) {
   // Token is created using Checkout or Elements!

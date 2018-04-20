@@ -15,6 +15,9 @@ import {updateForm, updateErrors} from 'actions/rsvp'
 // validation rules
 import {rulesWithEmail, rulesWithPhone, customMessages} from './rules'
 
+// loading spinner
+import loadingSpinner from 'styles/loading.svg'
+
 // stylesheet(s)
 import './styles.sass'
 
@@ -74,14 +77,38 @@ class Rsvp extends Component {
     else {
       window.scrollTo(0, 0)
       updateErrors(validation.errors.errors)
+
+      this.setState({loading: true})
+
       axios.post('/api/v1/rsvp', data)
       .then(res => {
         console.log('RSVPD SUCCESSFULLY! ', res)
+        this.setState({
+          loading: false,
+          success: true,
+          error: false,
+          errorMessage: undefined
+        })
       })
       .catch(err => {
         console.error('RSVP FAIL! ', err)
+        this.setState({
+          loading: false,
+          success: false,
+          error: true,
+          errorMessage: err
+        })
       })
     }
+  }
+
+  resetForm = () => {
+    this.setState({
+      loading: false,
+      success: false,
+      error: false,
+      errorMessage: undefined
+    })
   }
 
   render() {
@@ -101,6 +128,32 @@ class Rsvp extends Component {
       updateForm,
       errors
     } = this.props
+    const {loading, success} = this.state
+
+    if (loading) {
+      return (
+        <div className='loading-spinner-wrapper'>
+          <img
+            src={loadingSpinner}
+            alt='spinning loading icon'
+          />
+        </div>
+      )
+    }
+
+    if (success) {
+      return (
+        <div className='success-wrapper'>
+          <h2>Success!</h2>
+          <p>
+            We look forward to seeing you at the event!
+          </p>
+          <button className='btn btn-default btn-form' onClick={this.resetForm}>
+            RSVP Again?
+          </button>
+        </div>
+      )
+    }
 
     return (
       <div className='form-container container'>

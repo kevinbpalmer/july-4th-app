@@ -2,20 +2,22 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import Validator from 'validatorjs'
+import axios from 'axios'
 
 // components
 import TextInput from 'components/TextInput'
 import SingleDish from './SingleDish'
 
 // actions
-import {updateForm, updatePotluckDishes} from 'actions/potluck'
+import {updateForm, updatePotluckDishes, updateErrors} from 'actions/potluck'
 
 // validation rules
 import {rules, customMessages} from './rules'
 
 class Potluck extends Component {
   state = {
-    dishesNum: []
+    dishesNum: [],
+    errMessage: undefined
   }
 
   addDish = () => {
@@ -53,8 +55,10 @@ class Potluck extends Component {
       lastName,
       phone,
       email,
-      potluckDishes
+      potluckDishes,
+      updateErrors
     } = this.props
+
     const data = {
       firstName,
       lastName,
@@ -62,17 +66,38 @@ class Potluck extends Component {
       email,
       potluckDishes
     }
+
     e.preventDefault()
-    console.log('FIRE')
     let validation = new Validator(data, rules, customMessages)
+    if (validation.fails() || potluckDishes.length < 1) {
+      window.scrollTo(0, 0)
+      this.setState({
+        errorMessage: 'Please add at least one dish'
+      })
+      return updateErrors(validation.errors.errors)
+    }
+    else {
+      this.setState({errorMessage: undefined})
+      // axios
+      // .post('/api/v1/potluck', data)
+    }
   }
 
   render() {
     const {firstName, lastName, phone, email, updateForm, errors} = this.props
+    const {errorMessage} = this.state
 
     return (
       <div className='form-container container'>
         <form onSubmit={this.handleSubmit}>
+          <div className='form-row'>
+            <div className='has-error'>
+              <span>
+                {errorMessage}
+              </span>
+            </div>
+          </div>
+
           <div className='form-group row'>
             <div className='col-12 form-row'>
               <TextInput
@@ -139,7 +164,8 @@ const mapStateToProps = (store) => ({
 
 const mapDispatchToProps = {
   updateForm,
-  updatePotluckDishes
+  updatePotluckDishes,
+  updateErrors
 }
 
 Potluck.propTypes = {
