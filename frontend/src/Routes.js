@@ -6,6 +6,8 @@ import Home from 'pages/Home'
 import Rsvp from 'pages/Rsvp'
 import Donate from 'pages/Donate'
 import Potluck from 'pages/Potluck'
+import Cornhole from 'pages/Cornhole'
+import Volunteers from 'pages/Volunteers'
 
 // components to render
 import Header from 'components/Header'
@@ -30,10 +32,10 @@ class Routes extends Component {
           <Route exact path='/' component={Home} />
 
           <Route path='/rsvp' component={Rsvp} />
-          <Route path='/cornhole' render={() => ( <h1>cornhole</h1> )} />
-          <Route path='/volunteer' render={() => ( <h1>volunteer</h1> )} />
           <Route path='/potluck' component={Potluck} />
           <Route path='/donate' component={Donate} />
+          <Route path='/cornhole' component={Cornhole} />
+          <Route path='/volunteer' component={Volunteers}/>
 
           <Route component={Home}/>
         </Switch>
