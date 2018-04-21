@@ -17,9 +17,9 @@ import './styles.sass'
 
 //SelectInput options array
 const partnerOptions = [
-  <option key={0} value=''>Select One</option>,
-  <option key={1} value='yes'>Yes</option>,
-  <option key={2} value='no'>No</option>
+  <option key={0} value=''>Do you have a partner?</option>,
+  <option key={1} value='true'>Yes</option>,
+  <option key={2} value='false'>No</option>
 ]
 
 class Cornhole extends Component {
@@ -47,9 +47,9 @@ class Cornhole extends Component {
       partnerFirstName,
       partnerLastName,
       boards
-      }
+    }
 
-    let validation = new Validator(data, partner === 'yes' ? rulesWithPartner : rulesWithout, customMessages)
+    let validation = new Validator(data, partner === 'true' ? rulesWithPartner : rulesWithout, customMessages)
     if (validation.fails()) {
       window.scrollTo(0, 0)
       return updateErrors(validation.errors.errors)
@@ -58,7 +58,6 @@ class Cornhole extends Component {
       window.scrollTo(0, 0)
       updateErrors(validation.errors.errors)
     }
-    console.log('props', this.props);
   }
 
   render(){
@@ -101,7 +100,7 @@ class Cornhole extends Component {
               <TextInput
                 inputName='lastName'
                 value={lastName}
-                placeholder='last Name'
+                placeholder='Last Name'
                 updateForm={updateForm}
                 errors={errors}
                 />
@@ -133,7 +132,7 @@ class Cornhole extends Component {
                 errors={errors}
                 />
             </div>
-            {partner === 'yes' &&
+            {partner === 'true' &&
             <div className='col-12 form-row'>
               <TextInput
                 inputName='partnerFirstName'
@@ -143,7 +142,7 @@ class Cornhole extends Component {
                 errors={errors}
                 />
               </div>}
-              {partner === 'yes' &&
+              {partner === 'true' &&
               <div className='col-12 form-row'>
                 <TextInput
                   inputName='partnerLastName'
@@ -161,9 +160,10 @@ class Cornhole extends Component {
               <TextInput
                 inputName='boards'
                 value={boards}
-                placeholder='How many boards?'
+                placeholder='How many boards can you bring?'
                 updateForm={updateForm}
                 errors={errors}
+                number={true}
                 />
             </div>
             <div className='form-group row'>
