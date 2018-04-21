@@ -26,7 +26,7 @@ var createTablesArray = [
     PRIMARY KEY (id)
   );`,
   `CREATE TABLE potluck_participants (
-    id int NOT NULL AUTO_INCREMENT,
+    id INT NOT NULL AUTO_INCREMENT,
     first_name VARCHAR(30),
     last_name VARCHAR(30),
     email VARCHAR(60),
@@ -34,13 +34,25 @@ var createTablesArray = [
     PRIMARY KEY (id)
   );`,
   `CREATE TABLE potluck_dishes (
-    id int NOT NULL AUTO_INCREMENT,
+    id INT NOT NULL AUTO_INCREMENT,
     potluck_user_id INT,
     category VARCHAR(40),
     type VARCHAR(40),
     other VARCHAR(256),
     PRIMARY KEY (id),
     FOREIGN KEY (potluck_user_id) REFERENCES potluck_participants(id)
+  );`,
+  `CREATE TABLE cornhole_players (
+    id INT NOT NULL AUTO_INCREMENT,
+    first_name VARCHAR(30),
+    last_name VARCHAR(30),
+    phone VARCHAR(60),
+    team_name VARCHAR(128),
+    have_partner BOOLEAN,
+    partner_first_name VARCHAR(30),
+    partner_last_name VARCHAR(30),
+    num_boards INT,
+    PRIMARY KEY (id)
   );`
 ]
 

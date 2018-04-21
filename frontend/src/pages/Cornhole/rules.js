@@ -1,7 +1,6 @@
 let rulesWithout = {
   firstName: 'required',
   lastName: 'required',
-  address: 'required',
   partner: 'required',
   phoneNumber: 'required',
   boards: 'numeric'
@@ -10,7 +9,6 @@ let rulesWithout = {
 let rulesWithPartner = {
   firstName: 'required',
   lastName: 'required',
-  address: 'required',
   partner: 'required',
   partnerFirstName: 'required',
   partnerLastName: 'required',

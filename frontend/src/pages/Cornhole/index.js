@@ -1,16 +1,21 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import Validator from 'validatorjs'
+import axios from 'axios'
 
 //components
 import TextInput from 'components/TextInput'
 import SelectInput from 'components/SelectInput'
+import SuccessBlock from 'components/SuccessBlock'
 
 //actions
-import {updateForm, updateErrors} from 'actions/cornhole'
+import {updateForm, updateErrors, resetForm} from 'actions/cornhole'
 
 // validation rules
 import {rulesWithPartner, rulesWithout, customMessages} from './rules'
+
+// loading spinner
+import loadingSpinner from 'styles/loading.svg'
 
 //stylesheet (s)
 import './styles.sass'
@@ -23,6 +28,13 @@ const partnerOptions = [
 ]
 
 class Cornhole extends Component {
+  state = {
+    loading: false,
+    success: false,
+    error: false,
+    errorMessage: undefined
+  }
+
   handleSubmit = e => {
     e.preventDefault()
     const {
@@ -52,12 +64,45 @@ class Cornhole extends Component {
     let validation = new Validator(data, partner === 'true' ? rulesWithPartner : rulesWithout, customMessages)
     if (validation.fails()) {
       window.scrollTo(0, 0)
+      console.log('HERE1');
       return updateErrors(validation.errors.errors)
     }
     else {
       window.scrollTo(0, 0)
-      updateErrors(validation.errors.errors)
+      this.setState({loading: true})
+      console.log('HERE2');
+      axios.post('/api/v1/cornhole', data)
+      .then(res => {
+        this.setState({
+          loading: false,
+          success: true,
+          error: false,
+          errorMessage: undefined
+        })
+        console.log('Cornhole success: ', res)
+      })
+      .catch(err => {
+        this.setState({
+          loading: false,
+          success: false,
+          error: true,
+          errorMessage: err
+        })
+        console.error('Cornhole error: ', err)
+      })
     }
+  }
+
+  resetForm = () => {
+    const {resetForm} = this.props
+
+    this.setState({
+      loading: false,
+      success: false,
+      error: false,
+      errorMessage: undefined
+    })
+    resetForm()
   }
 
   render(){
@@ -73,6 +118,27 @@ class Cornhole extends Component {
       updateForm,
       errors
     } = this.props
+    const {loading, success} = this.state
+
+    if (loading) {
+      return (
+        <div className='loading-spinner-wrapper'>
+          <img
+            src={loadingSpinner}
+            alt='spinning loading icon'
+          />
+        </div>
+      )
+    }
+
+    if (success) {
+      return (
+        <SuccessBlock
+          resetForm={this.resetForm}
+          btnText='Sign up again?'
+        />
+      )
+    }
 
     return (
       <div className='cornhole-form-container container'>
@@ -192,7 +258,8 @@ const mapStateToProps = store => ({
 
 const mapDispatchToProps = {
   updateForm,
-  updateErrors
+  updateErrors,
+  resetForm
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cornhole);

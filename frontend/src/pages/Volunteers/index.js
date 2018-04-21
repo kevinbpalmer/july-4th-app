@@ -106,7 +106,8 @@ class Volunteers extends Component {
       potluckEmail,
       fireworksEmail,
       cleanEmail,
-      errors
+      errors,
+      updateForm
     } = this.props
 
     return (
@@ -124,7 +125,7 @@ class Volunteers extends Component {
           <div className='form-group row'>
             <div className='col-12 form-row'>
               <SelectInput
-                inputName='volunteer options'
+                inputName='volunteer'
                 value={volunteer}
                 options={volunteerOptions}
                 updateForm={updateForm}

@@ -28,10 +28,12 @@ const apiPrefix = '/api/v1'
 const rsvp = require('./controllers/rsvp')
 const payment = require('./controllers/payment')
 const potluck = require('./controllers/potluck')
+const cornhole = require('./controllers/cornhole')
 
 app.use(apiPrefix + '/rsvp', rsvp)
 app.use(apiPrefix + '/payment', payment)
 app.use(apiPrefix + '/potluck', potluck)
+app.use(apiPrefix + '/cornhole', cornhole)
 
 app.listen(PORT, function(error) {
   return (
