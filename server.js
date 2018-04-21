@@ -5,7 +5,6 @@ const app = express()
 const bodyParser = require('body-parser')
 const PORT = process.env.PORT || 8000
 const expressSanitized = require('express-sanitize-escape')
-
 const db = require('./db.js')
 
 app.use(bodyParser.urlencoded({extended: false}))
