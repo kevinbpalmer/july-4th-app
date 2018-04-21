@@ -8,9 +8,10 @@ import axios from 'axios'
 import TextInput from 'components/TextInput'
 import SelectInput from 'components/SelectInput'
 import Attending from 'components/Attending'
+import SuccessBlock from 'components/SuccessBlock'
 
 // actions
-import {updateForm, updateErrors} from 'actions/rsvp'
+import {updateForm, updateErrors, resetForm} from 'actions/rsvp'
 
 // validation rules
 import {rulesWithEmail, rulesWithPhone, customMessages} from './rules'
@@ -103,12 +104,15 @@ class Rsvp extends Component {
   }
 
   resetForm = () => {
+    const {resetForm} = this.props
+
     this.setState({
       loading: false,
       success: false,
       error: false,
       errorMessage: undefined
     })
+    resetForm()
   }
 
   render() {
@@ -143,15 +147,10 @@ class Rsvp extends Component {
 
     if (success) {
       return (
-        <div className='success-wrapper'>
-          <h2>Success!</h2>
-          <p>
-            We look forward to seeing you at the event!
-          </p>
-          <button className='btn btn-default btn-form' onClick={this.resetForm}>
-            RSVP Again?
-          </button>
-        </div>
+        <SuccessBlock
+          resetForm={this.resetForm}
+          btnText='RSVP Again?'
+        />
       )
     }
 
@@ -309,7 +308,8 @@ const mapStateToProps = store => ({
 
 const mapDispatchToProps = {
   updateForm,
-  updateErrors
+  updateErrors,
+  resetForm
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Rsvp)

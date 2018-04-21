@@ -27,9 +27,11 @@ const apiPrefix = '/api/v1'
 // controllers
 const rsvp = require('./controllers/rsvp')
 const payment = require('./controllers/payment')
+const potluck = require('./controllers/potluck')
 
 app.use(apiPrefix + '/rsvp', rsvp)
 app.use(apiPrefix + '/payment', payment)
+app.use(apiPrefix + '/potluck', potluck)
 
 app.listen(PORT, function(error) {
   return (

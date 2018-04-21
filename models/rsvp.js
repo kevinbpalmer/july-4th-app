@@ -33,15 +33,14 @@ exports.create = function(data) {
   const sqlQuery = 'INSERT INTO rsvps SET ?'
 
   return new Promise((resolve, reject) => {
-      db.query(sqlQuery, post, function (err, rows, fields) {
-        if (err) {
-          reject(err)
-        }
-        else {
-          console.log('Saved rsvp data to the DB')
-          resolve('Saved rsvp data to the DB')
-        }
-      })
+    db.query(sqlQuery, post, function (err, rows, fields) {
+      if (err) {
+        reject(err)
+      }
+      else {
+        console.log('Saved rsvp data to the DB')
+        resolve('Saved rsvp data to the DB')
+      }
+    })
   })
-
 }

@@ -7,9 +7,11 @@ import axios from 'axios'
 // components
 import TextInput from 'components/TextInput'
 import SingleDish from './SingleDish'
+import SuccessBlock from 'components/SuccessBlock'
+import LoadingSpinner from 'components/LoadingSpinner'
 
 // actions
-import {updateForm, updatePotluckDishes, updateErrors} from 'actions/potluck'
+import {updateForm, updatePotluckDishes, updateErrors, resetForm} from 'actions/potluck'
 
 // validation rules
 import {rules, customMessages} from './rules'
@@ -17,7 +19,11 @@ import {rules, customMessages} from './rules'
 class Potluck extends Component {
   state = {
     dishesNum: [],
-    errMessage: undefined
+    errMessage: undefined,
+    loading: false,
+    success: false,
+    error: false,
+    errorMessage: undefined
   }
 
   addDish = () => {
@@ -45,7 +51,6 @@ class Potluck extends Component {
       )
     })
 
-    //console.log('listItems: ', renderedDishes)
     return renderedDishes
   }
 
@@ -68,7 +73,9 @@ class Potluck extends Component {
     }
 
     e.preventDefault()
+
     let validation = new Validator(data, rules, customMessages)
+
     if (validation.fails() || potluckDishes.length < 1) {
       window.scrollTo(0, 0)
       this.setState({
@@ -77,15 +84,63 @@ class Potluck extends Component {
       return updateErrors(validation.errors.errors)
     }
     else {
-      this.setState({errorMessage: undefined})
-      // axios
-      // .post('/api/v1/potluck', data)
+      this.setState({
+        loading: true,
+        errorMessage: undefined
+      })
+
+      axios
+      .post('/api/v1/potluck', data)
+      .then(res => {
+        this.setState({
+          loading: false,
+          success: true,
+          error: false,
+          errorMessage: undefined
+        })
+        console.log('Potluck success! ', res)
+      })
+      .catch(err => {
+        this.setState({
+          loading: false,
+          success: false,
+          error: true,
+          errorMessage: err
+        })
+        console.error('Potluck fail! ', err)
+      })
     }
+  }
+
+  resetForm = () => {
+    const {resetForm} = this.props
+
+    this.setState({
+      loading: false,
+      success: false,
+      error: false,
+      errorMessage: undefined,
+      dishesNum: []
+    })
+    resetForm()
   }
 
   render() {
     const {firstName, lastName, phone, email, updateForm, errors} = this.props
-    const {errorMessage} = this.state
+    const {errorMessage, success, loading} = this.state
+
+    if (loading) {
+      return <LoadingSpinner />
+    }
+
+    if (success) {
+      return (
+        <SuccessBlock
+          resetForm={this.resetForm}
+          btnText='Bring more dishes?'
+        />
+      )
+    }
 
     return (
       <div className='form-container container'>
@@ -136,10 +191,10 @@ class Potluck extends Component {
               />
             </div>
             {this.renderDishes()}
-            <div  className='col-12 form-row'>
-              <button onClick={this.addDish} className='btn btn-default'>
+            <div className='col-12 form-row'>
+              <span onClick={this.addDish} className='btn btn-default'>
                 + Add Dish
-              </button>
+              </span>
             </div>
           </div>
           <div className='form-group row'>
@@ -165,7 +220,8 @@ const mapStateToProps = (store) => ({
 const mapDispatchToProps = {
   updateForm,
   updatePotluckDishes,
-  updateErrors
+  updateErrors,
+  resetForm
 }
 
 Potluck.propTypes = {

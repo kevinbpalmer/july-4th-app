@@ -55,3 +55,5 @@ for (var i = 0; i < createTablesArray.length; i++) {
     }
   })
 }
+
+// SELECT * FROM `potluck_dishes` JOIN `potluck_participants` ON potluck_participants.id = potluck_dishes.potluck_user_id

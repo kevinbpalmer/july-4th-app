@@ -1,4 +1,5 @@
 import * as constants from 'constants/potluck';
+import {RESET_FORM} from 'constants/globals'
 
 const initialState = {
   firstName: '',
@@ -29,6 +30,18 @@ const potluck = (state = initialState, action) => {
       return {
         ...state,
         dishes: action.payload
+      }
+    }
+
+    case RESET_FORM: {
+      return {
+        ...state,
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        dishes: [],
+        errors: {}
       }
     }
     default:
