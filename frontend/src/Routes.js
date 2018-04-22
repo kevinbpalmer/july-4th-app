@@ -8,6 +8,7 @@ import Donate from 'pages/Donate'
 import Potluck from 'pages/Potluck'
 import Cornhole from 'pages/Cornhole'
 import Volunteers from 'pages/Volunteers'
+import Contact from 'pages/Contact'
 
 // components to render
 import Header from 'components/Header'
@@ -36,6 +37,7 @@ class Routes extends Component {
           <Route path='/donate' component={Donate} />
           <Route path='/cornhole' component={Cornhole} />
           <Route path='/volunteer' component={Volunteers}/>
+          <Route path='/contact' component={Contact} />
 
           <Route component={Home}/>
         </Switch>

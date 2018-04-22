@@ -1,118 +1,147 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import Validator from 'validatorjs'
+import axios from 'axios'
 
 //components
 import TextInput from 'components/TextInput'
 import SelectInput from 'components/SelectInput'
+import LoadingSpinner from 'components/LoadingSpinner'
+import SuccessBlock from 'components/SuccessBlock'
 
 //actions
-import {updateForm, updateErrors} from 'actions/volunteers'
+import {updateForm, updateErrors, resetForm} from 'actions/volunteers'
+
+// rules
+import {rules, customMessages} from './rules'
 
 //stylesheet (s)
 import './styles.sass'
 
-
 //SelectInput options array
 const volunteerOptions = [
-  <option key={0} value=''>Select One</option>,
-  <option key={1} value='nameTag'>Name Tag Committee</option>,
-  <option key={2} value='cornhole'>Cornhole Coordinator</option>,
-  <option key={3} value='potluck'>Potluck Committee</option>,
-  <option key={4} value='fireworks'>Firework Committee</option>,
-  <option key={5} value='clean'>Clean Up Committee</option>
+  <option key={0} value=''>Select A Committee</option>,
+  <option key={1} value='Name Tag'>Name Tag Committee</option>,
+  <option key={2} value='Cornhole'>Cornhole Coordinator</option>,
+  <option key={3} value='Potluck'>Potluck Committee</option>,
+  <option key={4} value='Fireworks'>Firework Committee</option>,
+  <option key={5} value='Clean Up'>Clean Up Committee</option>
 ]
 
 class Volunteers extends Component {
+  state = {
+    loading: false,
+    success: false,
+    error: false,
+    errorMessage: undefined
+  }
+
   handleSubmit = e => {
     e.preventDefault()
     const {
-      volunteer,
-      nameTagFirstName,
-      nameTagLastName,
-      nameTagEmail,
-      nameTagPhoneNumber,
-      cornholeFirstName,
-      cornholeLastName,
-      cornholePhoneNumber,
-      potluckFirstName,
-      potluckLastName,
-      potluckPhoneNumber,
-      fireworksFirstName,
-      fireworksLastName,
-      fireworksPhoneNumber,
-      cleanFirstName,
-      cleanLastName,
-      cleanPhoneNumber,
-      updateForm,
-      cornholeEmail,
-      potluckEmail,
-      fireworksEmail,
-      cleanEmail,
+      firstName,
+      lastName,
+      phone,
+      volunteerType,
       updateErrors
     } = this.props
 
     const data = {
-    volunteer,
-    nameTagFirstName,
-    nameTagLastName,
-    nameTagEmail,
-    nameTagPhoneNumber,
-    cornholeFirstName,
-    cornholeLastName,
-    cornholePhoneNumber,
-    potluckFirstName,
-    potluckLastName,
-    potluckPhoneNumber,
-    fireworksFirstName,
-    fireworksLastName,
-    fireworksPhoneNumber,
-    cleanFirstName,
-    cleanLastName,
-    cleanPhoneNumber,
-    cornholeEmail,
-    potluckEmail,
-    fireworksEmail,
-    cleanEmail
+      firstName,
+      lastName,
+      phone,
+      volunteerType
     }
 
-    console.log('props', volunteer);
+    console.log('data: ', data)
+    let validation = new Validator(data, rules, customMessages)
+    if (validation.fails()) {
+      window.scrollTo(0, 0)
+      return updateErrors(validation.errors.errors)
+    }
+    else {
+      this.setState({loading: true})
+
+      axios.post('/api/v1/volunteer', data)
+      .then(res => {
+        this.setState({
+          loading: false,
+          success: true,
+          error: false,
+          errorMessage: undefined
+        })
+        console.log('Volunteer signup success')
+      })
+      .catch(err => {
+        this.setState({
+          loading: false,
+          success: false,
+          error: true,
+          errorMessage: err
+        })
+        console.error('Volunteer signup failed')
+      })
+    }
   }
 
-  onInputChange = e => {
-    console.log('change', e.target.value);
+  onChange = (value, name) => {
+    const {updateForm} = this.props
+    const numOnly = new RegExp('^[0-9]+$')
+    console.log(numOnly.test(value));
+    if (name === 'phone' && value.length > 0 && (value.length > 10 || numOnly.test(value) === false)) {
+      return
+    }
+    if ((name === 'firstName' || name === 'lastName') && value.length > 30) {
+      return
+    }
+
+    updateForm(value, name)
+  }
+
+  resetForm = () => {
+    const {resetForm} = this.props
+
+    this.setState({
+      loading: false,
+      success: false,
+      error: false,
+      errorMessage: undefined
+    })
+    resetForm()
   }
 
   render() {
     const {
-      volunteer,
-      nameTagFirstName,
-      nameTagLastName,
-      nameTagEmail,
-      nameTagPhoneNumber,
-      cornholeFirstName,
-      cornholeLastName,
-      cornholePhoneNumber,
-      potluckFirstName,
-      potluckLastName,
-      potluckPhoneNumber,
-      fireworksFirstName,
-      fireworksLastName,
-      fireworksPhoneNumber,
-      cleanFirstName,
-      cleanLastName,
-      cleanPhoneNumber,
-      cornholeEmail,
-      potluckEmail,
-      fireworksEmail,
-      cleanEmail,
+      firstName,
+      lastName,
+      phone,
+      volunteerType,
       errors,
       updateForm
     } = this.props
+    const {
+      loading,
+      success
+    } = this.state
+
+    if (loading) {
+      return (
+        <LoadingSpinner />
+      )
+    }
+
+    if (success) {
+      return (
+        <SuccessBlock
+          resetForm={this.resetForm}
+          btnText='Volunteer for another committee?'
+        />
+      )
+    }
 
     return (
       <div className='volunteers-form-container container'>
-        <div className='volunteers-info'>
+        <div className='volunteers-info container'>
           <h3>Event Volunteer Sign-Up</h3>
           <p>
             To ensure the event runs as smoothly as possible, there will be
@@ -120,29 +149,49 @@ class Volunteers extends Component {
             pertaining to the event. Your help and time are more than
             appreciated!
           </p>
+          <p>
+            If you need to modify your response, please send us a message on the <a href='/contact'>contact page</a>.
+          </p>
         </div>
         <form onSubmit={this.handleSubmit}>
           <div className='form-group row'>
             <div className='col-12 form-row'>
+              <TextInput
+                inputName='firstName'
+                value={firstName}
+                placeholder='First Name'
+                updateForm={this.onChange}
+                errors={errors}
+              />
+            </div>
+            <div className='col-12 form-row'>
+              <TextInput
+                inputName='lastName'
+                value={lastName}
+                placeholder='Last Name'
+                updateForm={this.onChange}
+                errors={errors}
+              />
+            </div>
+            <div className='col-12 form-row'>
+              <TextInput
+                inputName='phone'
+                value={phone}
+                placeholder='Phone Number'
+                updateForm={this.onChange}
+                errors={errors}
+              />
+            </div>
+            <div className='col-12 form-row'>
               <SelectInput
-                inputName='volunteer'
-                value={volunteer}
+                inputName='volunteerType'
+                value={volunteerType}
                 options={volunteerOptions}
-                updateForm={updateForm}
+                updateForm={this.onChange}
                 errors={errors}
                 onChange={this.onInputChange}
                 />
             </div>
-            {volunteer === 'nameTag' &&
-              <div className='col-12 form-row'>
-                <TextInput
-                  inputName='first name'
-                  value={`${volunteer}FirstName`}
-                  placeholder='First Name'
-                  updateForm={updateForm}
-                  errors={errors}
-                  />
-                </div>}
             <div className='form-group row'>
               <div className='col-12 btn-row'>
                 <button className='btn btn-default btn-form' type='submit'>Submit</button>
@@ -156,33 +205,17 @@ class Volunteers extends Component {
 }
 
 const mapStateToProps = store => ({
-  volunteer: store.volunteers.volunteer,
-  nameTagFirstName: store.volunteers.nameTagFirstName,
-  nameTagLastName: store.volunteers.nameTagLastName,
-  nameTagEmail: store.volunteers.nameTagEmail,
-  nameTagPhoneNumber: store.volunteers.nameTagPhoneNumber,
-  cornholeFirstName: store.volunteers.cornholeFirstName,
-  cornholeLastName: store.volunteers.cornholeLastName,
-  cornholeEmail: store.volunteers.cornholeEmail,
-  cornholePhoneNumber: store.volunteers.cornholePhoneNumber,
-  potluckFirstName: store.volunteers.potluckFirstName,
-  potluckLastName: store.volunteers.potluckLastName,
-  potluckEmail: store.volunteers.potluckEmail,
-  potluckPhoneNumber: store.volunteers.potluckPhoneNumber,
-  fireworksFirstName: store.volunteers.fireworksFirstName,
-  fireworksLastName: store.volunteers.fireworksLastName,
-  fireworksEmail: store.volunteers.fireworksEmail,
-  fireworksPhoneNumber: store.volunteers.fireworksPhoneNumber,
-  cleanFirstName: store.volunteers.cleanFirstName,
-  cleanLastName: store.volunteers.cleanLastName,
-  cleanEmail: store.volunteers.cleanEmail,
-  cleanPhoneNumber: store.volunteers.cleanPhoneNumber,
+  firstName: store.volunteers.firstName,
+  lastName: store.volunteers.lastName,
+  phone: store.volunteers.phone,
+  volunteerType: store.volunteers.volunteerType,
   errors: store.volunteers.errors
 })
 
 const mapDispatchToProps = {
   updateForm,
-  updateErrors
-};
+  updateErrors,
+  resetForm
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Volunteers);
+export default connect(mapStateToProps, mapDispatchToProps)(Volunteers)

@@ -16,7 +16,7 @@ var createTablesArray = [
     address VARCHAR(150),
     preferredComm VARCHAR(20),
     email VARCHAR(60),
-    phone VARCHAR(60),
+    phone VARCHAR(20),
     attendingLunch BOOLEAN,
     lunchNumAdults VARCHAR(10),
     lunchNumKids VARCHAR(10),
@@ -30,7 +30,7 @@ var createTablesArray = [
     first_name VARCHAR(30),
     last_name VARCHAR(30),
     email VARCHAR(60),
-    phone VARCHAR(60),
+    phone VARCHAR(20),
     PRIMARY KEY (id)
   );`,
   `CREATE TABLE potluck_dishes (
@@ -46,12 +46,20 @@ var createTablesArray = [
     id INT NOT NULL AUTO_INCREMENT,
     first_name VARCHAR(30),
     last_name VARCHAR(30),
-    phone VARCHAR(60),
+    phone VARCHAR(20),
     team_name VARCHAR(128),
     have_partner BOOLEAN,
     partner_first_name VARCHAR(30),
     partner_last_name VARCHAR(30),
     num_boards INT,
+    PRIMARY KEY (id)
+  );`,
+  `CREATE TABLE volunteers (
+    id INT NOT NULL AUTO_INCREMENT,
+    first_name VARCHAR(30),
+    last_name VARCHAR(30),
+    phone VARCHAR(20),
+    volunteer_type VARCHAR(30),
     PRIMARY KEY (id)
   );`
 ]
