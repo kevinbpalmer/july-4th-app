@@ -9,6 +9,7 @@ import SelectInput from 'components/SelectInput'
 import LoadingSpinner from 'components/LoadingSpinner'
 import SuccessBlock from 'components/SuccessBlock'
 import ContactBlurb from 'components/ContactBlurb'
+import ErrorBlock from 'components/ErrorBlock'
 
 //actions
 import {updateForm, updateErrors, resetForm} from 'actions/volunteers'
@@ -120,7 +121,8 @@ class Volunteers extends Component {
     } = this.props
     const {
       loading,
-      success
+      success,
+      error
     } = this.state
 
     if (loading) {
@@ -148,6 +150,7 @@ class Volunteers extends Component {
             appreciated!
           </p>
           <ContactBlurb />
+          {error && <ErrorBlock />}
         </div>
         <form onSubmit={this.handleSubmit}>
           <div className='form-group row'>

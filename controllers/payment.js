@@ -33,13 +33,9 @@ router.post('/', function(req, res, next) {
     source: token.id,
   }, function(err, charge) {
     if (err) {
-      console.log(err)
-      return res.status(400).json({
-        error: {
-          status: err.statusCode,
-          message: err.message
-        }
-      })
+      console.log(err.message)
+
+      return res.status(400).json({message: err.message})
     }
 
     payment.create(charge.amount, charge.created, charge.id, charge.source.name)

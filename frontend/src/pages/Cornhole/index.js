@@ -8,6 +8,7 @@ import TextInput from 'components/TextInput'
 import SelectInput from 'components/SelectInput'
 import SuccessBlock from 'components/SuccessBlock'
 import ContactBlurb from 'components/ContactBlurb'
+import ErrorBlock from 'components/ErrorBlock'
 
 //actions
 import {updateForm, updateErrors, resetForm} from 'actions/cornhole'
@@ -117,7 +118,7 @@ class Cornhole extends Component {
       updateForm,
       errors
     } = this.props
-    const {loading, success} = this.state
+    const {loading, success, error} = this.state
 
     if (loading) {
       return (
@@ -148,6 +149,7 @@ class Cornhole extends Component {
           <p>Entry Fee: $10 per Team (Pay at tournament)</p>
           <p>Prize: Prize Money & Trophy - 1st & 2nd Place </p>
           <ContactBlurb />
+          {error && <ErrorBlock />}
         </div>
         <form onSubmit={this.handleSubmit}>
           <div className='form-group row'>

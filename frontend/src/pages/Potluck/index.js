@@ -9,6 +9,7 @@ import SingleDish from './SingleDish'
 import SuccessBlock from 'components/SuccessBlock'
 import LoadingSpinner from 'components/LoadingSpinner'
 import ContactBlurb from 'components/ContactBlurb'
+import ErrorBlock from 'components/ErrorBlock'
 
 // actions
 import {updateForm, updatePotluckDishes, updateErrors, resetForm} from 'actions/potluck'
@@ -105,7 +106,7 @@ class Potluck extends Component {
           loading: false,
           success: false,
           error: true,
-          errorMessage: err
+          errorMessage: undefined
         })
         console.error('Potluck fail! ', err)
       })
@@ -127,7 +128,7 @@ class Potluck extends Component {
 
   render() {
     const {firstName, lastName, phone, email, updateForm, errors} = this.props
-    const {errorMessage, success, loading} = this.state
+    const {errorMessage, success, loading, error} = this.state
 
     if (loading) {
       return <LoadingSpinner />
@@ -165,6 +166,7 @@ class Potluck extends Component {
         <p>Potluck will take place at 6:00 pm - rain or shine!</p>
         <p>Thank you so much for your participation!</p>
         <ContactBlurb />
+        {error && <ErrorBlock />}
         <form onSubmit={this.handleSubmit}>
           <div className='form-row'>
             <div className='has-error'>

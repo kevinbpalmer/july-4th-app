@@ -58,13 +58,13 @@ class StripeForm extends Component {
             })
           })
           .catch(err => {
-            console.error('ERROR: ', err)
+            console.error('ERROR: ', err.message)
 
             this.setState({
               loading: false,
               success: false,
               error: true,
-              errorMessage: err.message
+              errorMessage: err.status === '400' ? err.message : undefined
             })
           })
         }
@@ -129,7 +129,7 @@ class StripeForm extends Component {
 
   render() {
     const {firstName, lastName, amount, errors} = this.props
-    const {error, success, loading} = this.state
+    const {error, success, loading, errorMessage} = this.state
 
     if (loading) {
       return <LoadingSpinner />
@@ -151,6 +151,11 @@ class StripeForm extends Component {
             <p>
               Your payment was unsuccessful. Please try again!
             </p>
+            {errorMessage &&
+              <p>
+                {errorMessage}
+              </p>
+            }
           </div>}
 
           <div className='form-group row'>

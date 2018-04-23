@@ -72,9 +72,10 @@ class ContactForm extends Component {
       .catch(err => {
         this.setState({
           loading: false,
-          success: true,
-          error: false,
-          errorMessage: err
+          success: false,
+          error: true,
+          errorMessage: undefined,
+          showText: true
         })
         console.error('Failed to send a message: ', err)
       })

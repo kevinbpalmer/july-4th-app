@@ -39,6 +39,15 @@ app.use(apiPrefix + '/cornhole', cornhole)
 app.use(apiPrefix + '/volunteer', volunteer)
 app.use(apiPrefix + '/contact', contact)
 
+// Unhandled errors go here
+app.use(function(err, req, res, next) {
+  var error = err || {}
+  console.log('FINAL ERROR HANDLER: ', error.message)
+
+  res.status(error.status || 500)
+  return res.json({ message: error.message || 'Something went wrong'})
+})
+
 app.listen(PORT, function(error) {
   return (
     error
