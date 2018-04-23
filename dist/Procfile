@@ -1,1 +1,0 @@
-web: node dbInit.js && npm install && npm start
