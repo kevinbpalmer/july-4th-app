@@ -31,18 +31,18 @@ const cornhole = require('./controllers/cornhole')
 const volunteer = require('./controllers/volunteer')
 const contact = require('./controllers/contact')
 
+app.use(express.static(path.join(__dirname, 'dist/index.html')))
+app.get('*', function(req, res) {
+    console.log('HERE')
+    res.sendFile(path.join(__dirname, 'dist/index.html'));
+})
+
 app.use(apiPrefix + '/rsvp', rsvp)
 app.use(apiPrefix + '/payment', payment)
 app.use(apiPrefix + '/potluck', potluck)
 app.use(apiPrefix + '/cornhole', cornhole)
 app.use(apiPrefix + '/volunteer', volunteer)
 app.use(apiPrefix + '/contact', contact)
-
-app.use(express.static(path.join(__dirname, 'dist/index.html')))
-app.get('*', function(req, res) {
-    console.log('HERE')
-    res.sendFile(path.join(__dirname, 'dist/index.html'));
-})
 
 // Unhandled errors go here
 app.use(function(err, req, res, next) {
