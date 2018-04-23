@@ -8,6 +8,10 @@ const mailgun = require('mailgun-js')({apiKey, domain})
 // database model
 const contactModel = require('../models/contact')
 
+router.get('/', function (req, res, next) {
+  res.status(200).json('WORKS')
+})
+
 router.post('/', function (req, res, next) {
   // Token is created using Checkout or Elements! Get the payment token ID submitted by the form:
   if (!req.body || Object.keys(req.body).length === 0) {
