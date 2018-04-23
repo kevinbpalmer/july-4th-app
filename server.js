@@ -38,7 +38,11 @@ app.use(apiPrefix + '/cornhole', cornhole)
 app.use(apiPrefix + '/volunteer', volunteer)
 app.use(apiPrefix + '/contact', contact)
 
-app.use(express.static(path.join(__dirname, 'frontend/build')))
+app.use(express.static(path.join(__dirname, 'dist/index.html')))
+app.get('*', function(req, res) {
+    console.log('HERE')
+    res.sendFile(path.join(__dirname, 'dist/index.html'));
+})
 
 // Unhandled errors go here
 app.use(function(err, req, res, next) {
