@@ -6,4 +6,8 @@ const connection = mysql.createConnection({
   password : process.env.DB_PASSWORD ? process.env.DB_PASSWORD : 'root'
 })
 
+setInterval(function () {
+    connection.query('SELECT 1')
+}, 5000);
+
 module.exports = connection
