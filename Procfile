@@ -1,1 +1,1 @@
-web: cd frontend/ && npm run build && cd .. && node dbInit && npm start
+web: cd frontend/ && npm run build && cd .. && npm install && npm start
