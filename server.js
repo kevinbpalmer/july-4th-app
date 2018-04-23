@@ -41,7 +41,7 @@ app.use(apiPrefix + '/contact', contact)
 app.use(express.static(path.join(__dirname, 'frontend/build')))
 app.get('*', function(req, res) {
     console.log('HERE')
-    res.sendfile(path.join(__dirname, 'dist/index.html'));
+    res.sendFile(path.join(__dirname, 'dist/index.html'));
 })
 
 // Unhandled errors go here
