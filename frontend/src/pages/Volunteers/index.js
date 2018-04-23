@@ -8,6 +8,7 @@ import TextInput from 'components/TextInput'
 import SelectInput from 'components/SelectInput'
 import LoadingSpinner from 'components/LoadingSpinner'
 import SuccessBlock from 'components/SuccessBlock'
+import ContactBlurb from 'components/ContactBlurb'
 
 //actions
 import {updateForm, updateErrors, resetForm} from 'actions/volunteers'
@@ -53,7 +54,6 @@ class Volunteers extends Component {
       volunteerType
     }
 
-    console.log('data: ', data)
     let validation = new Validator(data, rules, customMessages)
     if (validation.fails()) {
       window.scrollTo(0, 0)
@@ -70,7 +70,7 @@ class Volunteers extends Component {
           error: false,
           errorMessage: undefined
         })
-        console.log('Volunteer signup success')
+        console.log('Volunteer signup success: ', res)
       })
       .catch(err => {
         this.setState({
@@ -79,7 +79,7 @@ class Volunteers extends Component {
           error: true,
           errorMessage: err
         })
-        console.error('Volunteer signup failed')
+        console.error('Volunteer signup failed: ', err)
       })
     }
   }
@@ -87,7 +87,7 @@ class Volunteers extends Component {
   onChange = (value, name) => {
     const {updateForm} = this.props
     const numOnly = new RegExp('^[0-9]+$')
-    console.log(numOnly.test(value));
+
     if (name === 'phone' && value.length > 0 && (value.length > 10 || numOnly.test(value) === false)) {
       return
     }
@@ -116,8 +116,7 @@ class Volunteers extends Component {
       lastName,
       phone,
       volunteerType,
-      errors,
-      updateForm
+      errors
     } = this.props
     const {
       loading,
@@ -142,16 +141,13 @@ class Volunteers extends Component {
     return (
       <div className='volunteers-form-container container'>
         <div className='volunteers-info container'>
-          <h3>Event Volunteer Sign-Up</h3>
           <p>
             To ensure the event runs as smoothly as possible, there will be
             committees put in place this year to help with various tasks
             pertaining to the event. Your help and time are more than
             appreciated!
           </p>
-          <p>
-            If you need to modify your response, please send us a message on the <a href='/contact'>contact page</a>.
-          </p>
+          <ContactBlurb />
         </div>
         <form onSubmit={this.handleSubmit}>
           <div className='form-group row'>

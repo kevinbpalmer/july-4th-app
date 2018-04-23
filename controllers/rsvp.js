@@ -22,10 +22,6 @@ router.post('/', function (req, res, next) {
     return res.status(400).json('No address')
   }
 
-  if (!req.body.preferredComm) {
-    return res.status(400).json('No communication type selected')
-  }
-
   rsvp.create(req.body)
   .then(result => {
     return res.status(200).json('Successfully rsvpd')

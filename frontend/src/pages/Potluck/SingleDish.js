@@ -72,8 +72,6 @@ class SingleDish extends Component {
   }
 
   componentDidUpdate() {
-    console.log('STATE: ', this.state)
-
     this.setValue()
   }
 
@@ -97,7 +95,6 @@ class SingleDish extends Component {
 
   updateDish = (value, name) => {
     const {updatePotluckDishes, potluckDishes} = this.props
-    console.log('NAME|VAL: ', name, value, potluckDishes)
 
     let found = false
     for(let i = 0; i < potluckDishes.length; i++) {
@@ -121,11 +118,8 @@ class SingleDish extends Component {
     const {name} = this.state
     const {potluckDishes, updatePotluckDishes} = this.props
 
-    console.log('SUBDISH: ', subDishValue, subDishName, name)
-    let found = false
     for(let i = 0; i < potluckDishes.length; i++) {
       if (potluckDishes[i].name === name) {
-        found = true
         potluckDishes[i].subDish = {
           name: subDishName,
           value: subDishValue,
@@ -200,8 +194,7 @@ class SingleDish extends Component {
   }
 
   renderOtherField = () => {
-    const {potluckDishes, updateForm} = this.props
-    const {num, value, subDish} = this.state
+    const {value, subDish} = this.state
 
     if (value === 'other' || (subDish && subDish.value === 'other')) {
       return (
@@ -216,8 +209,6 @@ class SingleDish extends Component {
   }
 
   handleOtherVal = (value, name) => {
-    console.log('handleOtherVal: ', value, name)
-
     this.setState({
       subDish: Object.assign({}, this.state.subDish, {
         otherVal: value
@@ -228,12 +219,9 @@ class SingleDish extends Component {
 
   handleUpdatingOtherSubDishVal = (value, name) => {
     const {potluckDishes, updatePotluckDishes} = this.props
-    console.log('DKHJDKH: ', value, this.state.name)
-    let found = false
+
     for(let i = 0; i < potluckDishes.length; i++) {
       if (potluckDishes[i].name === this.state.name) {
-        console.log('HERE??');
-        found = true
         potluckDishes[i].otherVal = value
         potluckDishes[i].subDish = Object.assign({}, this.state.subDish, {
           otherVal: value
@@ -241,14 +229,12 @@ class SingleDish extends Component {
         break
       }
     }
-    console.log('SUBDISHUUU: ', potluckDishes)
     updatePotluckDishes(potluckDishes)
   }
 
   render() {
     const {value} = this.state
     const {errors, index} = this.props
-
 
     return (
       <div className='dish-wrapper'>
@@ -269,7 +255,9 @@ class SingleDish extends Component {
 }
 
 SingleDish.propTypes = {
-  // proptypes go here
+  errors: PropTypes.object,
+  index: PropTypes.number,
+  updatePotluckDishes: PropTypes.func.isRequired
 }
 
 export default SingleDish

@@ -3,6 +3,8 @@
 .footer-main
   padding: 3rem 1rem
   background: $red
+  @media(max-width: $sm)
+    padding: 1rem
   ul
     text-align:  center
     margin: 0
@@ -10,6 +12,9 @@
       display: inline-block
       margin: 0
       margin-right: 1rem
+      @media(max-width: $sm)
+        display: block
+        margin-bottom: 1rem
       a
         margin: 0
         color: $grey-light

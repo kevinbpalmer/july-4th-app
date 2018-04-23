@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import Validator from 'validatorjs'
 import axios from 'axios'
@@ -9,6 +8,7 @@ import TextInput from 'components/TextInput'
 import SingleDish from './SingleDish'
 import SuccessBlock from 'components/SuccessBlock'
 import LoadingSpinner from 'components/LoadingSpinner'
+import ContactBlurb from 'components/ContactBlurb'
 
 // actions
 import {updateForm, updatePotluckDishes, updateErrors, resetForm} from 'actions/potluck'
@@ -144,6 +144,27 @@ class Potluck extends Component {
 
     return (
       <div className='form-container container'>
+        <p>Date: Saturday, June 30th</p>
+        <p>Time: 6:00 pm - Rain or Shine!</p>
+        <p>Location: 1306 Harvest Grove Blvd.</p>
+
+        <p>Main course will be - pulled pork & chicken thighs</p>
+
+        <p>
+          Serving spoons and tongs will be provided. Please label all dishes with your name.
+          Extension cords will be available for crockpots.
+        </p>
+
+        <p>
+          DO NOT BRING POTLUCK DINNER DISHES UNTIL 5:45 PM ON EVENT DAY.
+          THERE IS NO ROOM TO STORE FOOD PRIOR TO THE POTLUCK.
+          POTLUCK COMMITTEE WILL BE AVAILABLE TO INSTRUCT WHERE TO PUT DISHES
+        </p>
+
+        <p>BYOB  - Keg beer available all day.</p>
+        <p>Potluck will take place at 6:00 pm - rain or shine!</p>
+        <p>Thank you so much for your participation!</p>
+        <ContactBlurb />
         <form onSubmit={this.handleSubmit}>
           <div className='form-row'>
             <div className='has-error'>
@@ -222,10 +243,6 @@ const mapDispatchToProps = {
   updatePotluckDishes,
   updateErrors,
   resetForm
-}
-
-Potluck.propTypes = {
-  // proptypes go here
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Potluck)

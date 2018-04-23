@@ -11,12 +11,16 @@
   .hero-content-container
     text-align: center
     line-height: 0
+    @media(max-width: $sm)
+      padding: 0 .5rem
     .hero-title
       font-family: 'Clicker Script', cursive
       text-transform: inherit
       letter-spacing: .1em
       margin: 0
       font-size: 3.5em
+      @media(max-width: $sm)
+        padding-bottom: 1.5rem
     .hero-subtitle
       font-family: 'Coming Soon', cursive
       font-size: 1.5em

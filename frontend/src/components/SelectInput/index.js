@@ -75,7 +75,11 @@ class SelectInput extends Component {
   }
 
   SelectInput.propTypes = {
-    // proptypes go here
+    errors: PropTypes.object,
+    inputName: PropTypes.string.isRequired,
+    options: PropTypes.array.isRequired,
+    updateForm: PropTypes.func.isRequired,
+    value: PropTypes.string.isRequired
   }
 
   export default SelectInput

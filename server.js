@@ -30,12 +30,14 @@ const payment = require('./controllers/payment')
 const potluck = require('./controllers/potluck')
 const cornhole = require('./controllers/cornhole')
 const volunteer = require('./controllers/volunteer')
+const contact = require('./controllers/contact')
 
 app.use(apiPrefix + '/rsvp', rsvp)
 app.use(apiPrefix + '/payment', payment)
 app.use(apiPrefix + '/potluck', potluck)
 app.use(apiPrefix + '/cornhole', cornhole)
 app.use(apiPrefix + '/volunteer', volunteer)
+app.use(apiPrefix + '/contact', contact)
 
 app.listen(PORT, function(error) {
   return (

@@ -34,6 +34,9 @@ class Header extends Component {
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className='ml-auto' navbar>
             <NavItem>
+              <Link to='/'>Home</Link>
+            </NavItem>
+            <NavItem>
               <Link to='/#details'>Details</Link>
             </NavItem>
             <NavItem>
@@ -58,6 +61,9 @@ class Header extends Component {
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
+            <NavItem>
+              <Link to='/contact'>Contact</Link>
+            </NavItem>
           </Nav>
         </Collapse>
       </Navbar>

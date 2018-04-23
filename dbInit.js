@@ -11,18 +11,17 @@ var createTablesArray = [
   );`,
   `CREATE TABLE rsvps (
     id int NOT NULL AUTO_INCREMENT,
-    firstName VARCHAR(30),
-    lastName VARCHAR(30),
+    first_name VARCHAR(30),
+    last_name VARCHAR(30),
     address VARCHAR(150),
-    preferredComm VARCHAR(20),
     email VARCHAR(60),
     phone VARCHAR(20),
-    attendingLunch BOOLEAN,
-    lunchNumAdults VARCHAR(10),
-    lunchNumKids VARCHAR(10),
-    attendingPotluck BOOLEAN,
-    potluckNumAdults VARCHAR(10),
-    potluckNumKids VARCHAR(10),
+    attending_lunch BOOLEAN,
+    num_lunch_adults VARCHAR(10),
+    num_lunch_kids VARCHAR(10),
+    attending_potluck BOOLEAN,
+    num_potluck_adults VARCHAR(10),
+    num_potluck_kids VARCHAR(10),
     PRIMARY KEY (id)
   );`,
   `CREATE TABLE potluck_participants (
@@ -60,6 +59,15 @@ var createTablesArray = [
     last_name VARCHAR(30),
     phone VARCHAR(20),
     volunteer_type VARCHAR(30),
+    PRIMARY KEY (id)
+  );`,
+  `CREATE TABLE contact_messages (
+    id INT NOT NULL AUTO_INCREMENT,
+    first_name VARCHAR(30),
+    last_name VARCHAR(30),
+    phone VARCHAR(20),
+    email VARCHAR(60),
+    message VARCHAR(1500),
     PRIMARY KEY (id)
   );`
 ]

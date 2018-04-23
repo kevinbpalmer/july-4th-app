@@ -15,6 +15,7 @@
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "express-sanitize-escape": "^1.1.0",
+    "mailgun-js": "^0.17.0",
     "mysql": "^2.15.0",
     "path": "^0.12.7",
     "stripe": "^5.6.1"

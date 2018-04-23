@@ -7,6 +7,7 @@ import axios from 'axios'
 import TextInput from 'components/TextInput'
 import SelectInput from 'components/SelectInput'
 import SuccessBlock from 'components/SuccessBlock'
+import ContactBlurb from 'components/ContactBlurb'
 
 //actions
 import {updateForm, updateErrors, resetForm} from 'actions/cornhole'
@@ -46,7 +47,6 @@ class Cornhole extends Component {
       partnerFirstName,
       partnerLastName,
       boards,
-      updateForm,
       updateErrors
     } = this.props
 
@@ -64,13 +64,12 @@ class Cornhole extends Component {
     let validation = new Validator(data, partner === 'true' ? rulesWithPartner : rulesWithout, customMessages)
     if (validation.fails()) {
       window.scrollTo(0, 0)
-      console.log('HERE1');
       return updateErrors(validation.errors.errors)
     }
     else {
       window.scrollTo(0, 0)
       this.setState({loading: true})
-      console.log('HERE2');
+
       axios.post('/api/v1/cornhole', data)
       .then(res => {
         this.setState({
@@ -141,15 +140,14 @@ class Cornhole extends Component {
     }
 
     return (
-      <div className='cornhole-form-container container'>
+      <div className='form-container container'>
         <div className='cornhole-info'>
-          <h3>Cornhole Tournament Sign-Up</h3>
-          <p>Harvest Annual Cornhole Tournament</p>
-              <p>Date: Saturday, June 30th</p>
-              <p>Time: 2:00 pm</p>
-              <p>Location: 1306 Harvest Grove Blvd.</p>
-              <p>Entry Fee: $10 per Team (Pay at tournament)</p>
-              <p>Prize: Prize Money & Trophy - 1st & 2nd Place </p>
+          <p>Date: Saturday, June 30th</p>
+          <p>Time: 2:00 pm</p>
+          <p>Location: 1306 Harvest Grove Blvd.</p>
+          <p>Entry Fee: $10 per Team (Pay at tournament)</p>
+          <p>Prize: Prize Money & Trophy - 1st & 2nd Place </p>
+          <ContactBlurb />
         </div>
         <form onSubmit={this.handleSubmit}>
           <div className='form-group row'>

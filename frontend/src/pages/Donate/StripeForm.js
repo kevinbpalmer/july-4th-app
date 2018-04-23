@@ -5,17 +5,16 @@ import {connect} from 'react-redux'
 import Validator from 'validatorjs'
 import axios from 'axios'
 
-// form components
+// components
 import TextInput from 'components/TextInput'
+import LoadingSpinner from 'components/LoadingSpinner'
+import SuccessBlock from 'components/SuccessBlock'
 
 // actions
-import {updateForm, updateErrors} from 'actions/donate'
+import {updateForm, updateErrors, resetForm} from 'actions/donate'
 
 // validation rules
 import {rules, customMessages} from './rules'
-
-// loading spinner
-import loadingSpinner from 'styles/loading.svg'
 
 class StripeForm extends Component {
   state = {
@@ -116,29 +115,32 @@ class StripeForm extends Component {
     updateForm(value, inputName)
   }
 
+  resetForm = () => {
+    const {resetForm} = this.props
+
+    this.setState({
+      loading: false,
+      success: false,
+      error: false,
+      errorMessage: undefined
+    })
+    resetForm()
+  }
+
   render() {
     const {firstName, lastName, amount, errors} = this.props
-    const {error, errorMessage, success, loading} = this.state
+    const {error, success, loading} = this.state
 
     if (loading) {
-      return (
-        <div className='loading-spinner-wrapper'>
-          <img
-            src={loadingSpinner}
-            alt='spinning loading icon'
-          />
-        </div>
-      )
+      return <LoadingSpinner />
     }
 
     if (success) {
       return (
-        <div className='success-wrapper'>
-          <h2>Success!</h2>
-          <p>
-            We look forward to seeing you at the event!
-          </p>
-        </div>
+        <SuccessBlock
+          resetForm={this.resetForm}
+          btnText='Donate again?'
+        />
       )
     }
 
@@ -200,7 +202,14 @@ class StripeForm extends Component {
     }
 
     StripeForm.propTypes = {
-      // proptypes go here
+      amount: PropTypes.string,
+      errors: PropTypes.object,
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
+      resetForm: PropTypes.func,
+      stripe: PropTypes.object.isRequired,
+      updateErrors: PropTypes.func,
+      updateForm: PropTypes.func
     }
 
     const mapStateToProps = store => ({
@@ -212,7 +221,8 @@ class StripeForm extends Component {
 
     const mapDispatchToProps = {
       updateForm,
-      updateErrors
+      updateErrors,
+      resetForm
     }
 
     export default injectStripe(connect(mapStateToProps, mapDispatchToProps)(StripeForm))

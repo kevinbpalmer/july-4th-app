@@ -9,25 +9,20 @@ import TextInput from 'components/TextInput'
 import SelectInput from 'components/SelectInput'
 import Attending from 'components/Attending'
 import SuccessBlock from 'components/SuccessBlock'
+import ErrorBlock from 'components/ErrorBlock'
+import ContactBlurb from 'components/ContactBlurb'
 
 // actions
 import {updateForm, updateErrors, resetForm} from 'actions/rsvp'
 
 // validation rules
-import {rulesWithEmail, rulesWithPhone, customMessages} from './rules'
+import {rules, customMessages} from './rules'
 
 // loading spinner
 import loadingSpinner from 'styles/loading.svg'
 
 // stylesheet(s)
 import './styles.sass'
-
-// SelectInput options array
-const preferredCommOptions = [
-  <option key={0} value=''>Select One</option>,
-  <option key={1} value='phone'>Phone</option>,
-  <option key={2} value='email'>Email</option>
-]
 
 class Rsvp extends Component {
   state = {
@@ -43,7 +38,6 @@ class Rsvp extends Component {
       firstName,
       lastName,
       address,
-      preferredComm,
       email,
       phone,
       attendingLunch,
@@ -59,7 +53,6 @@ class Rsvp extends Component {
       firstName,
       lastName,
       address,
-      preferredComm,
       email,
       phone,
       attendingLunch,
@@ -70,7 +63,7 @@ class Rsvp extends Component {
       potluckNumKids
     }
 
-    let validation = new Validator(data, preferredComm === 'email' ? rulesWithEmail : rulesWithPhone, customMessages)
+    let validation = new Validator(data, rules, customMessages)
     if (validation.fails()) {
       window.scrollTo(0, 0)
       return updateErrors(validation.errors.errors)
@@ -103,6 +96,23 @@ class Rsvp extends Component {
     }
   }
 
+  handleInputChange = (value, name) => {
+    const {updateForm} = this.props
+    const numOnly = new RegExp('^[0-9]+$')
+
+    if (name === 'phone' && value.length > 0 && (value.length > 10 || numOnly.test(value) === false)) {
+      return
+    }
+    if ((name === 'firstName' || name === 'lastName') && value.length > 30) {
+      return
+    }
+    if (name === 'email' && value.length > 60) {
+      return
+    }
+
+    updateForm(value, name)
+  }
+
   resetForm = () => {
     const {resetForm} = this.props
 
@@ -120,7 +130,6 @@ class Rsvp extends Component {
       firstName,
       lastName,
       address,
-      preferredComm,
       email,
       phone,
       attendingLunch,
@@ -129,10 +138,9 @@ class Rsvp extends Component {
       attendingPotluck,
       potluckNumAdults,
       potluckNumKids,
-      updateForm,
       errors
     } = this.props
-    const {loading, success} = this.state
+    const {loading, success, error} = this.state
 
     if (loading) {
       return (
@@ -156,6 +164,8 @@ class Rsvp extends Component {
 
     return (
       <div className='form-container container'>
+        <ContactBlurb />
+        {error && <ErrorBlock />}
         <form onSubmit={this.handleSubmit}>
           <div className='form-group row'>
             <div className='col-12 form-row'>
@@ -163,7 +173,7 @@ class Rsvp extends Component {
                 inputName='firstName'
                 value={firstName}
                 placeholder='First Name'
-                updateForm={updateForm}
+                updateForm={this.handleInputChange}
                 errors={errors}
               />
             </div>
@@ -172,7 +182,7 @@ class Rsvp extends Component {
                 inputName='lastName'
                 value={lastName}
                 placeholder='Last Name'
-                updateForm={updateForm}
+                updateForm={this.handleInputChange}
                 errors={errors}
               />
             </div>
@@ -181,44 +191,33 @@ class Rsvp extends Component {
                 inputName='address'
                 value={address}
                 placeholder='Address'
-                updateForm={updateForm}
+                updateForm={this.handleInputChange}
                 errors={errors}
               />
             </div>
-            <div className='col-12 form-row'>
-              <SelectInput
-                inputName='preferredComm'
-                value={preferredComm}
-                updateForm={updateForm}
-                options={preferredCommOptions}
-                errors={errors}
-              />
-            </div>
-            {preferredComm === 'email' &&
             <div className='col-12 form-row'>
               <TextInput
                 inputName='email'
                 value={email}
                 placeholder='Email Address'
-                updateForm={updateForm}
+                updateForm={this.handleInputChange}
                 errors={errors}
               />
-            </div>}
-            {preferredComm === 'phone' &&
+            </div>
             <div className='col-12 form-row'>
               <TextInput
                 inputName='phone'
                 value={phone}
                 placeholder='Phone Number'
-                updateForm={updateForm}
+                updateForm={this.handleInputChange}
                 errors={errors}
               />
-            </div>}
+            </div>
             <div className='col-12 form-row'>
               <Attending
                 inputName='attendingLunch'
                 value={attendingLunch}
-                updateForm={updateForm}
+                updateForm={this.handleInputChange}
                 label='Attending Lunch?'
               />
             </div>
@@ -228,7 +227,7 @@ class Rsvp extends Component {
                   inputName='lunchNumAdults'
                   value={lunchNumAdults}
                   placeholder='Number of Adults for Lunch'
-                  updateForm={updateForm}
+                  updateForm={this.handleInputChange}
                   number={true}
                   errors={errors}
                 />
@@ -239,7 +238,7 @@ class Rsvp extends Component {
                   inputName='lunchNumKids'
                   value={lunchNumKids}
                   placeholder='Number of Kids for Lunch'
-                  updateForm={updateForm}
+                  updateForm={this.handleInputChange}
                   number={true}
                   errors={errors}
                 />
@@ -248,7 +247,7 @@ class Rsvp extends Component {
             <Attending
               inputName='attendingPotluck'
               value={attendingPotluck}
-              updateForm={updateForm}
+              updateForm={this.handleInputChange}
               label='Attending Potluck?'
             />
           </div>
@@ -258,7 +257,7 @@ class Rsvp extends Component {
                 inputName='potluckNumAdults'
                 value={potluckNumAdults}
                 placeholder='Number of Adults for Potluck'
-                updateForm={updateForm}
+                updateForm={this.handleInputChange}
                 number={true}
                 errors={errors}
               />
@@ -269,7 +268,7 @@ class Rsvp extends Component {
                 inputName='potluckNumKids'
                 value={potluckNumKids}
                 placeholder='Number of Kids for Potluck'
-                updateForm={updateForm}
+                updateForm={this.handleInputChange}
                 number={true}
                 errors={errors}
               />
@@ -287,14 +286,27 @@ class Rsvp extends Component {
 }
 
 Rsvp.propTypes = {
-  // proptypes go here
+  address: PropTypes.string,
+  attendingLunch: PropTypes.bool,
+  attendingPotluck: PropTypes.bool,
+  email: PropTypes.string,
+  errors: PropTypes.object,
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
+  lunchNumAdults: PropTypes.string,
+  lunchNumKids: PropTypes.string,
+  phone: PropTypes.string,
+  potluckNumAdults: PropTypes.string,
+  potluckNumKids: PropTypes.string,
+  resetForm: PropTypes.func,
+  updateErrors: PropTypes.func,
+  updateForm: PropTypes.func
 }
 
 const mapStateToProps = store => ({
   firstName: store.rsvp.firstName,
   lastName: store.rsvp.lastName,
   address: store.rsvp.address,
-  preferredComm: store.rsvp.preferredComm,
   email: store.rsvp.email,
   phone: store.rsvp.phone,
   attendingLunch: store.rsvp.attendingLunch,

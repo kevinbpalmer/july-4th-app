@@ -1,23 +1,9 @@
-let rulesWithPhone = {
-  firstName: 'required',
-  lastName: 'required',
-  address: 'required',
-  preferredComm: 'required',
-  phone: 'required',
-  attendingLunch: 'required',
-  lunchNumAdults: 'numeric',
-  lunchNumKids: 'numeric',
-  attendingPotluck: 'required',
-  potluckNumAdults: 'numeric',
-  potluckNumKids: 'numeric'
-}
-
-let rulesWithEmail = {
-  firstName: 'required',
-  lastName: 'required',
-  address: 'required',
-  preferredComm: 'required',
-  email: 'required',
+let rules = {
+  firstName: 'required|max:30',
+  lastName: 'required|max:30',
+  address: 'required|max:150',
+  phone: 'required|max:10|min:10',
+  email: 'required|email',
   attendingLunch: 'required',
   lunchNumAdults: 'numeric',
   lunchNumKids: 'numeric',
@@ -31,4 +17,4 @@ let customMessages = {
   numeric: 'Must be a number'
 }
 
-export {rulesWithPhone, rulesWithEmail, customMessages}
+export {rules, customMessages}

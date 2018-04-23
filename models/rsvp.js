@@ -5,7 +5,6 @@ exports.create = function(data) {
     firstName,
     lastName,
     address,
-    preferredComm,
     email,
     phone,
     attendingLunch,
@@ -17,18 +16,17 @@ exports.create = function(data) {
   } = data
 
   const post = {
-    firstName,
-    lastName,
+    first_name: firstName,
+    last_name: lastName,
     address,
-    preferredComm,
     email,
     phone,
-    attendingLunch,
-    lunchNumAdults,
-    lunchNumKids,
-    attendingPotluck,
-    potluckNumAdults,
-    potluckNumKids
+    attending_lunch: attendingLunch,
+    num_lunch_adults: lunchNumAdults,
+    num_lunch_kids: lunchNumKids,
+    attending_potluck: attendingPotluck,
+    num_potluck_adults: potluckNumAdults,
+    num_potluck_kids: potluckNumKids
   }
   const sqlQuery = 'INSERT INTO rsvps SET ?'
 
