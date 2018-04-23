@@ -32,10 +32,6 @@ const volunteer = require('./controllers/volunteer')
 const contact = require('./controllers/contact')
 
 app.use(express.static(path.join(__dirname, 'dist/index.html')))
-app.get('*', function(req, res) {
-    console.log('HERE')
-    res.sendFile(path.join(__dirname, 'dist/index.html'));
-})
 
 app.use(apiPrefix + '/rsvp', rsvp)
 app.use(apiPrefix + '/payment', payment)
