@@ -10,7 +10,6 @@ const db = require('./db.js')
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 app.use(expressSanitized.middleware())
-app.use(express.static(path.join(__dirname, 'frontend/build')))
 
 // simple query to make sure the connection worked
 db.query('SELECT 1 + 1 AS solution', function (err, rows, fields) {
@@ -38,6 +37,11 @@ app.use(apiPrefix + '/potluck', potluck)
 app.use(apiPrefix + '/cornhole', cornhole)
 app.use(apiPrefix + '/volunteer', volunteer)
 app.use(apiPrefix + '/contact', contact)
+
+app.get('*', function(req, res) {
+    console.log('HERE')
+    res.sendfile(path.join(__dirname, 'frontend/build/index.html'));
+})
 
 // Unhandled errors go here
 app.use(function(err, req, res, next) {
