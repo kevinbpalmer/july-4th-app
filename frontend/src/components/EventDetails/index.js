@@ -13,7 +13,7 @@ class EventDetails extends Component {
         <h2>Event Details</h2>
         <Timeline />
         - See below regarding parking -
-        <div className='event-details'>
+        <div className='event-details container'>
           <div className='single-event'>
             <h4>Parade</h4>
             <p>
