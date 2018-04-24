@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon server.js",
-    "start": "node server.js"
+    "start": "./node_modules/.bin/forever start server.js"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +16,7 @@
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "express-sanitize-escape": "^1.1.0",
+    "forever": "^0.15.3",
     "mailgun-js": "^0.17.0",
     "morgan": "^1.9.0",
     "mysql": "^2.15.0",
