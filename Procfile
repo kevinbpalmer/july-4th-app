@@ -1,1 +1,1 @@
-web: sh -c 'cd ./frontend/ && npm run build && cd ..' && npm install && npm run dev
+web: cd /app/frontend/ && npm run build && cd .. && npm install && npm run dev
