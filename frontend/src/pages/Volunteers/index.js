@@ -111,6 +111,65 @@ class Volunteers extends Component {
     resetForm()
   }
 
+  renderCommitteeDescription = () => {
+    const {volunteerType} = this.props
+
+    if (volunteerType === 'Name Tag') {
+      return (
+        <div
+          style={{
+            paddingTop: '.5rem'
+          }}>
+          <p>Pass out name tags to each guest at event.</p>
+        </div>
+      )
+    }
+    if (volunteerType === 'Cornhole') {
+      return (
+        <div
+          style={{
+            paddingTop: '.5rem'
+          }}>
+          <p>Ensure cornole boards are regulation and spaced at regulation, collect prize money from each team/team member, organize and track winner & loser bracket, match up players without a teammate, award prize to 1st & 2nd place.</p>
+        </div>
+      )
+    }
+    if (volunteerType === 'Potluck') {
+      return (
+        <div
+          style={{
+            paddingTop: '.5rem'
+          }}>
+          <p>Serve guests cafeteria style to control portions (mainly protein) and for sanitary purposes, organize dishes by course, label food dishes if needed, ensure owner’s name is on dish.</p>
+          <p>(Committee members will set aside a plate of food prior to serving guests to eat after serving food)</p>
+        </div>
+      )
+    }
+    if (volunteerType === 'Fireworks') {
+      return (
+        <div
+          style={{
+            paddingTop: '.5rem'
+          }}>
+          <p>Friday - prep, fuse, and organize fireworks to prepare for the show the following day. Dinner will be provided.</p>
+          <p>Saturday - organize fireworks prior to show, follow instructions from lead person, light fireworks during show, etc.</p>
+
+          <p>Must be 12 years and older to assist and able to follow strict safety instructions.</p>
+        </div>
+      )
+    }
+    if (volunteerType === 'Clean Up') {
+      return (
+        <div
+          style={{
+            paddingTop: '.5rem'
+          }}>
+          <p>Clean up morning after event - collect firework debri and event trash, load/haul off trash, stack chairs & tables, etc.</p>
+        </div>
+      )
+    }
+  }
+
   render() {
     const {
       firstName,
@@ -189,7 +248,8 @@ class Volunteers extends Component {
                 updateForm={this.onChange}
                 errors={errors}
                 onChange={this.onInputChange}
-                />
+              />
+              {this.renderCommitteeDescription()}
             </div>
             <div className='form-group row'>
               <div className='col-12 btn-row'>

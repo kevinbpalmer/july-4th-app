@@ -3,19 +3,18 @@
 #details
   background: $blue-dark
   min-height: 250px
-  padding: 4rem 0
+  padding: 4rem 0 0
   display: flex
   flex-direction: column
   align-items: center
   justify-content: center
   color: rgba(255,255,255, .8)
-
   .timeline-container
     display: flex
     flex-direction: column
     flex-wrap: nowrap
     max-width: 100%
-    width: 300px
+    width: 325px
     position: relative
     overflow: hidden
     @media(max-width: $sm)
@@ -23,6 +22,8 @@
     p
       margin: 0
       margin-bottom: 1rem
+      a
+        color: rgba(255, 255, 255, 0.8)
     .clock-icon
       font-size: 1rem
     .single-item
@@ -44,3 +45,9 @@
       height: 100%
       width: 1px
       background: #fff
+  .event-details
+    padding: 1rem 2rem
+    .single-event
+      padding-bottom: 2rem
+      h4
+        font-weight: bold

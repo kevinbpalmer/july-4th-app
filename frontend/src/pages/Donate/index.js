@@ -19,7 +19,9 @@ class Donate extends Component {
         </p>
 
         <p>
-          Because this is such a grand event, we are asking for donations from each household to fund this action-packed day. We are requesting a minimum donation of $25 for a group of 2, $50 for a group of 4, and $100 for a group of 8. Every donation is appreciated!
+          <b>
+            Because this is such a grand event, we are asking for donations from each household to fund this action-packed day. We are requesting a minimum donation of $25 for a group of 2, $50 for a group of 4, and $100 for a group of 8. Every donation is appreciated!
+          </b>
         </p>
 
         <p>

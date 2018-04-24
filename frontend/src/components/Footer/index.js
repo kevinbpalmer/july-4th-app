@@ -39,6 +39,9 @@ const Footer = () => {
           </Link>
         </li>
       </ul>
+      <p>
+        Built by: <a href='mailto: kevin.bradley.palmer@gmail.com'>Kevin Palmer</a>
+      </p>
     </div>
   )
 }

@@ -156,11 +156,13 @@ class Potluck extends Component {
           Extension cords will be available for crockpots.
         </p>
 
-        <p>
-          DO NOT BRING POTLUCK DINNER DISHES UNTIL 5:45 PM ON EVENT DAY.
-          THERE IS NO ROOM TO STORE FOOD PRIOR TO THE POTLUCK.
-          POTLUCK COMMITTEE WILL BE AVAILABLE TO INSTRUCT WHERE TO PUT DISHES
-        </p>
+          <b>
+            <p>
+              DO NOT BRING POTLUCK DINNER DISHES UNTIL 5:45 PM ON EVENT DAY. <br />
+              THERE IS NO ROOM TO STORE FOOD PRIOR TO THE POTLUCK. <br />
+              POTLUCK COMMITTEE WILL BE AVAILABLE TO INSTRUCT WHERE TO PUT DISHES
+            </p>
+          </b>
 
         <p>BYOB  - Keg beer available all day.</p>
         <p>Potluck will take place at 6:00 pm - rain or shine!</p>

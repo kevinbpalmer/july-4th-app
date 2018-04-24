@@ -226,7 +226,7 @@ class Cornhole extends Component {
               <TextInput
                 inputName='boards'
                 value={boards}
-                placeholder='How many boards can you bring?'
+                placeholder='How many board sets can you bring?'
                 updateForm={updateForm}
                 errors={errors}
                 number={true}

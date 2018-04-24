@@ -22,6 +22,10 @@ class Routes extends Component {
 
   componentDidUpdate() {
     window.scrollTo(0, 0)
+
+    if (document.getElementsByClassName('navbar-collapse')[0].classList.contains('show')) {
+      document.getElementsByClassName('navbar-toggler')[0].click()
+    }
   }
 
   render() {

@@ -1,7 +1,7 @@
 #details {
   background: #00203B;
   min-height: 250px;
-  padding: 4rem 0;
+  padding: 4rem 0 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,7 +12,7 @@
     flex-direction: column;
     flex-wrap: nowrap;
     max-width: 100%;
-    width: 300px;
+    width: 325px;
     position: relative;
     overflow: hidden; }
     @media (max-width: 48rem) {
@@ -21,6 +21,8 @@
     #details .timeline-container p {
       margin: 0;
       margin-bottom: 1rem; }
+      #details .timeline-container p a {
+        color: rgba(255, 255, 255, 0.8); }
     #details .timeline-container .clock-icon {
       font-size: 1rem; }
     #details .timeline-container .single-item {
@@ -42,6 +44,12 @@
       height: 100%;
       width: 1px;
       background: #fff; }
+  #details .event-details {
+    padding: 1rem 2rem; }
+    #details .event-details .single-event {
+      padding-bottom: 2rem; }
+      #details .event-details .single-event h4 {
+        font-weight: bold; }
 .home_page_container {
   width: 100%;
   height: 100%; }
@@ -250,6 +258,13 @@
         margin: 0;
         color: #CDD9D6;
         font-size: 1.15em; }
+  .footer-main p {
+    margin-top: 1rem;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8); }
+    .footer-main p a {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.4); }
 .hero-content-wrapper {
   background: url(/static/media/home_bg.49afdd84.jpeg) center center no-repeat;
   background-size: cover;
@@ -263,11 +278,11 @@
     line-height: 0; }
     @media (max-width: 48rem) {
       .hero-content-wrapper .hero-content-container {
-        padding: 0 .5rem; } }
+        padding: 3.75rem .5rem 0; } }
     .hero-content-wrapper .hero-content-container .hero-title {
       font-family: 'Clicker Script', cursive;
       text-transform: inherit;
-      letter-spacing: .1em;
+      letter-spacing: .01em;
       margin: 0;
       font-size: 3.5em; }
       @media (max-width: 48rem) {
@@ -279,7 +294,7 @@
       letter-spacing: .1em; }
     .hero-content-wrapper .hero-content-container .extravaganza {
       font-size: 1.5em;
-      letter-spacing: .4em; }
+      letter-spacing: .2em; }
       .hero-content-wrapper .hero-content-container .extravaganza:before {
         border-bottom: transparent; }
     .hero-content-wrapper .hero-content-container .hero-button-container button {
@@ -410,4 +425,4 @@ html {
         background: rgba(255, 255, 255, 0.75);
         color: rgba(0, 0, 0, 0.75); }
 
-/*# sourceMappingURL=main.8f6d2f99.css.map*/
+/*# sourceMappingURL=main.83e201b0.css.map*/
