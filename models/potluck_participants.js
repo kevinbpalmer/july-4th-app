@@ -12,11 +12,11 @@ exports.create = function(firstName, lastName, email, phone) {
   return new Promise((resolve, reject) => {
       db.query(sqlQuery, post, function (err, results) {
         if (err) {
-          console.error(err)
+          process.env.DEBUG && console.error(err)
           reject(err)
         }
         else {
-          console.log('RESULTS: ', results.insertId)
+          process.env.DEBUG && console.log('RESULTS: ', results.insertId)
           resolve(results.insertId)
         }
       })

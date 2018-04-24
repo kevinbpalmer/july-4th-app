@@ -1,15 +1,25 @@
 require('dotenv').load()
 const path = require('path')
+const compression = require('compression')
 const express = require('express')
-const app = express()
 const bodyParser = require('body-parser')
 const PORT = process.env.PORT || 8000
 const expressSanitized = require('express-sanitize-escape')
 const db = require('./db.js')
 
+// logging
+const morgan = require('morgan')
+const winston = require('./winston')
+
+const app = express()
+
+app.use(compression())
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 app.use(expressSanitized.middleware())
+
+// configure logging
+app.use(morgan('combined', { stream: winston.stream }))
 
 // simple query to make sure the connection worked
 db.query('SELECT 1 + 1 AS solution', function (err, rows, fields) {
@@ -17,7 +27,7 @@ db.query('SELECT 1 + 1 AS solution', function (err, rows, fields) {
     throw err
   }
   else {
-    console.log('DB connected')
+    process.env.DEBUG && console.log('DB connected')
   }
 })
 
@@ -31,8 +41,6 @@ const cornhole = require('./controllers/cornhole')
 const volunteer = require('./controllers/volunteer')
 const contact = require('./controllers/contact')
 
-
-
 app.use(apiPrefix + '/rsvp', rsvp)
 app.use(apiPrefix + '/payment', payment)
 app.use(apiPrefix + '/potluck', potluck)
@@ -40,19 +48,15 @@ app.use(apiPrefix + '/cornhole', cornhole)
 app.use(apiPrefix + '/volunteer', volunteer)
 app.use(apiPrefix + '/contact', contact)
 
-app.use('/', express.static('dist'))
+app.use('/', express.static('build'))
 app.get('/*', function(req, res){
-  res.sendFile(__dirname + '/dist/index.html')
+  res.sendFile(__dirname + '/build/index.html')
 })
-// app.get('*', function(req, res) {
-//     console.log('HERE')
-//     express.static('dist')
-// })
 
 // Unhandled errors go here
 app.use(function(err, req, res, next) {
   var error = err || {}
-  console.log('FINAL ERROR HANDLER: ', error.message)
+  process.env.DEBUG && console.log('FINAL ERROR HANDLER: ', error.message)
 
   res.status(error.status || 500)
   return res.json({ message: error.message || 'Something went wrong'})

@@ -14,7 +14,7 @@ exports.create = function(amount, created, transaction_id, name) {
       throw err
     }
     else {
-      console.log('Saved payment success data to DB')
+      process.env.DEBUG && console.log('Saved payment success data to DB')
     }
   })
 }

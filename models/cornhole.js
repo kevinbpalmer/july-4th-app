@@ -32,7 +32,7 @@ exports.create = function(data) {
         reject(err)
       }
       else {
-        console.log('Saved cornhole data to the DB')
+        process.env.DEBUG && console.log('Saved cornhole data to the DB')
         resolve('Saved cornhole data to the DB')
       }
     })

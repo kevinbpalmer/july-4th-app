@@ -43,7 +43,7 @@ router.post('/', function (req, res, next) {
     })
   })
   .catch(err => {
-    console.error(err)
+    process.env.DEBUG && console.error(err)
     res.status(400).json('Failed to save participant')
   })
 })
@@ -53,7 +53,7 @@ module.exports = router
 function saveDish(dishes, id) {
 
   return new Promise(function(resolve, reject) {
-    console.log('DISHES LENGTH: ', dishes.length);
+    process.env.DEBUG && console.log('DISHES LENGTH: ', dishes.length);
 
     for (var i = 0; i < dishes.length; i++) {
       const isOther = dishes[i].value

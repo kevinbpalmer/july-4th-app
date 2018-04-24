@@ -33,7 +33,7 @@ router.post('/', function(req, res, next) {
     source: token.id,
   }, function(err, charge) {
     if (err) {
-      console.log(err.message)
+      process.env.DEBUG && console.log(err.message)
 
       return res.status(400).json({message: err.message})
     }

@@ -34,11 +34,11 @@ router.post('/', function (req, res, next) {
 
   volunteerModel.create(firstName, lastName, phone, volunteerType)
   .then(result => {
-    console.log(result)
+    process.env.DEBUG && console.log(result)
     res.status(200).json('Successfully signed up to volunteer')
   })
   .catch(err => {
-    console.error(err)
+    process.env.DEBUG && console.error(err)
     res.status(400).json('Failed to sign up to volunteer')
   })
 })

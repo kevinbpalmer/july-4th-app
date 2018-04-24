@@ -13,7 +13,7 @@ exports.create = function(first_name, last_name, phone, email, message) {
   return new Promise((resolve, reject) => {
       db.query(sqlQuery, post, function (err, results) {
         if (err) {
-          console.error(err)
+          process.env.DEBUG && console.error(err)
           reject(err)
         }
         else {

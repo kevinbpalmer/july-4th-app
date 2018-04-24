@@ -32,7 +32,7 @@ class ContactForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault()
-
+    console.log('AYYYOOO');
     const {
       firstName,
       lastName,
@@ -52,12 +52,11 @@ class ContactForm extends Component {
 
     let validation = new Validator(data, rules, customMessages)
     if (validation.fails()) {
-      window.scrollTo(0, 0)
       return updateErrors(validation.errors.errors)
     }
     else {
       this.setState({loading: true, showText: false})
-
+      window.scrollTo(0, 0)
 
       axios.post('/api/v1/contact', data)
       .then(res => {

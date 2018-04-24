@@ -61,18 +61,18 @@ router.post('/', function (req, res, next) {
 
   contactModel.create(firstName, lastName, phone, email, message)
   .then(result => {
-    console.log('Saved message to DB', result)
+    process.env.DEBUG && console.log('Saved message to DB', result)
   })
   .catch(err => {
-    console.log('Failed to save message to DB', err)
+    process.env.DEBUG && console.log('Failed to save message to DB', err)
   })
 
   mailgun.messages().send(data, function (error, body) {
     if (error) {
-      console.error('ERROR SENDING MESSAGE: ', error)
+      process.env.DEBUG && console.error('ERROR SENDING MESSAGE: ', error)
       return res.status(400).json(error)
     }
-    console.log('Message sent: ', body)
+    process.env.DEBUG && console.log('Message sent: ', body)
     res.status(200).json('Sent the email!')
   })
 })

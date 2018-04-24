@@ -27,11 +27,11 @@ router.post('/', function (req, res, next) {
 
   cornhole.create(req.body)
   .then(result => {
-    console.log('Successfully saved data to cornhole db')
+    process.env.DEBUG && console.log('Successfully saved data to cornhole db')
     res.status(200).json('Success!')
   })
   .catch(err => {
-    console.error('Cornhole model error: ', err)
+    process.env.DEBUG && console.error('Cornhole model error: ', err)
     res.status(400).json(err)
   })
 })
