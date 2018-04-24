@@ -20,5 +20,36 @@ exports.create = function(participantId, category, type, other) {
         }
       })
   })
+}
 
+exports.getDishes = function() {
+  const sqlQuery = 'SELECT * FROM potluck_dishes;'
+
+  return new Promise((resolve, reject) => {
+      db.query(sqlQuery, function (err, results) {
+        if (err) {
+          process.env.DEBUG && console.error(err)
+          reject(err)
+        }
+        else {
+          resolve(results)
+        }
+      })
+  })
+}
+
+exports.getDishesByCategory = function(category) {
+  const sqlQuery = `SELECT * FROM potluck_dishes WHERE category = '${category}';`
+
+  return new Promise((resolve, reject) => {
+      db.query(sqlQuery, function (err, results) {
+        if (err) {
+          process.env.DEBUG && console.error(err)
+          reject(err)
+        }
+        else {
+          resolve(results)
+        }
+      })
+  })
 }

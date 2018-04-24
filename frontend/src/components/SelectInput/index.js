@@ -79,7 +79,7 @@ class SelectInput extends Component {
     inputName: PropTypes.string.isRequired,
     options: PropTypes.array.isRequired,
     updateForm: PropTypes.func.isRequired,
-    value: PropTypes.string.isRequired
+    value: PropTypes.string
   }
 
   export default SelectInput

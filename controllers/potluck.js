@@ -4,6 +4,30 @@ const router = express.Router()
 const potluckParticipants = require('../models/potluck_participants')
 const potluckDishes = require('../models/potluck_dishes')
 
+router.get('/', function (req, res, next) {
+  potluckDishes.getDishes()
+  .then(result => {
+    process.env.DEBUG && console.log('Got dishes: ', result)
+    res.status(200).json(result)
+  })
+  .catch(err => {
+    res.status(400).json(err)
+  })
+})
+
+router.get('/:category', function (req, res, next) {
+  process.env.DEBUG && console.log('REQ PARAMS: ', req.params.category)
+
+  potluckDishes.getDishesByCategory(req.params.category)
+  .then(result => {
+  process.env.DEBUG && console.log('Got dishes: ', result)
+    res.status(200).json(result)
+  })
+  .catch(err => {
+    res.status(400).json(err)
+  })
+})
+
 router.post('/', function (req, res, next) {
   // Token is created using Checkout or Elements! Get the payment token ID submitted by the form:
   if (!req.body || Object.keys(req.body).length === 0) {
@@ -75,17 +99,3 @@ function saveDish(dishes, id) {
   });
 
 }
-
-
-// potluck.create(req.body)
-// .then(result => {
-//   return res.status(200).json('Successfully signed up for the potluck')
-// })
-// .catch(err => {
-//   return res.status(400).json({
-//     error: {
-//       status: 400,
-//       message: err
-//     }
-//   })
-// })
