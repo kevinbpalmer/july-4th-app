@@ -24,7 +24,25 @@ class Potluck extends Component {
     loading: false,
     success: false,
     error: false,
-    errorMessage: undefined
+    errorMessage: undefined,
+    dbDishes: undefined
+  }
+
+  componentDidMount() {
+    this.fetchDishes()
+  }
+
+  fetchDishes = () => {
+    axios
+    .get('/api/v1/potluck')
+    .then(res => {
+      this.setState({
+        dbDishes: res.data
+      })
+    })
+    .catch(err => {
+      process.env.DEBUG && console.error('Error fetching dishes from DB: ', err)
+    })
   }
 
   addDish = () => {
@@ -36,7 +54,7 @@ class Potluck extends Component {
 
   renderDishes = () => {
     const {updatePotluckDishes, errors, potluckDishes} = this.props
-    const {dishesNum} = this.state
+    const {dishesNum, dbDishes} = this.state
 
     const renderedDishes = dishesNum.map((item, index) => {
       return (
@@ -47,6 +65,7 @@ class Potluck extends Component {
             removeDish={this.removeDish}
             potluckDishes={potluckDishes}
             errors={errors}
+            dbDishes={dbDishes}
           />
         </div>
       )
@@ -124,6 +143,7 @@ class Potluck extends Component {
       dishesNum: []
     })
     resetForm()
+    this.fetchDishes()
   }
 
   render() {

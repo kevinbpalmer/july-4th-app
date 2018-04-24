@@ -23,7 +23,7 @@ const appetizerOptions = [
   <option key={1} value='Veggie Tray'>Veggie tray</option>,
   <option key={2} value='Fruit Tray'>Fruit Tray</option>,
   <option key={3} value='Chips/Crackers and Dip'>Chips/Crackers &amp; Dip</option>,
-  <option key={4} value='Finger Sandiwches'>Finger Sandwiches</option>,
+  <option key={4} value='Finger Sandwiches'>Finger Sandwiches</option>,
   <option key={5} value='Meat'>Meat (Bite-sized sausage, bacon wrapped meat, etc.)</option>,
   <option key={6} value='other'>Other</option>
 ]
@@ -63,16 +63,42 @@ class SingleDish extends Component {
     value: undefined,
     num: undefined,
     subDish: {
+      name: '',
+      value: '',
       otherVal: ''
-    }
+    },
+    databaseCount: undefined
   }
 
   componentDidMount() {
     this.setValue()
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
+    const {value, subDish} = this.state
+
     this.setValue()
+    if (value && prevState.subDish.value !== subDish.value) {
+      this.getCurrentCategoryCount(value, subDish.value)
+    }
+  }
+
+  getCurrentCategoryCount = (category, subDishValue) => {
+    const {dbDishes} = this.props
+
+    if (!dbDishes || dbDishes.length < 1) {
+      process.env.DEBUG && console.log('No dishes in database!')
+      return
+    }
+
+    let count = 0
+    dbDishes.map((item, index) => {
+      if (item.category === category && item.type === subDishValue) {
+        console.log('ITEM: ', item, this.state)
+        count++
+      }
+    })
+    console.log('FINAL Count??: ', count)
   }
 
   setValue = () => {
@@ -86,6 +112,8 @@ class SingleDish extends Component {
           value: potluckDishes[i].value,
           num: i,
           subDish: potluckDishes[i].subDish ? potluckDishes[i].subDish : {
+            name: '',
+            value: '',
             otherVal: ''
           }
         })
@@ -147,7 +175,7 @@ class SingleDish extends Component {
       return (
         <div className='form-row'>
           <SelectInput
-            inputName={`appetizer`}
+            inputName={`Appetizer`}
             updateForm={this.handleSubDish}
             options={appetizerOptions}
             errors={errors}
@@ -159,7 +187,7 @@ class SingleDish extends Component {
       return (
         <div className='form-row'>
           <SelectInput
-            inputName={`sideDish`}
+            inputName={`Side Dish`}
             updateForm={this.handleSubDish}
             options={sideDishOptions}
             errors={errors}
@@ -171,7 +199,7 @@ class SingleDish extends Component {
       return (
         <div className='form-row'>
           <SelectInput
-            inputName={`dessert`}
+            inputName={`Dessert`}
             updateForm={this.handleSubDish}
             options={dessertOptions}
             errors={errors}
@@ -183,7 +211,7 @@ class SingleDish extends Component {
       return (
         <div className='form-row'>
           <SelectInput
-            inputName={`drink`}
+            inputName={`Drinks`}
             updateForm={this.handleSubDish}
             options={drinkOptions}
             errors={errors}
