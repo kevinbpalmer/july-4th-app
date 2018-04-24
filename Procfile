@@ -1,1 +1,1 @@
-web: npm install && npm start
+web: sh -c "npm install && npm start"
