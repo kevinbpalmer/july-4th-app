@@ -25,7 +25,8 @@ class Potluck extends Component {
     success: false,
     error: false,
     errorMessage: undefined,
-    dbDishes: undefined
+    dbDishes: undefined,
+    dishCounts: undefined
   }
 
   componentDidMount() {
@@ -39,9 +40,37 @@ class Potluck extends Component {
       this.setState({
         dbDishes: res.data
       })
+      this.getCurrentCategoryCount(res.data)
     })
     .catch(err => {
       process.env.DEBUG && console.error('Error fetching dishes from DB: ', err)
+    })
+  }
+
+  getCurrentCategoryCount = (dbDishes) => {
+    const {dishCounts} = this.state
+
+    if (!dbDishes || dbDishes.length < 1) {
+      process.env.DEBUG && console.log('No dishes in database!')
+      return
+    }
+
+    let counts = {}
+    dbDishes.map((item, index) => {
+      let category = item.category.replace(/\s+/g, '')
+      let type = item.type.replace(/\s+/g, '')
+
+      if (counts.hasOwnProperty(type)) {
+        counts[type] = counts[type] + 1
+      }
+      else {
+        Object.assign(counts, {
+          [type]: 1
+        })
+      }
+    })
+    this.setState({
+      dishCounts: counts
     })
   }
 
@@ -54,7 +83,7 @@ class Potluck extends Component {
 
   renderDishes = () => {
     const {updatePotluckDishes, errors, potluckDishes} = this.props
-    const {dishesNum, dbDishes} = this.state
+    const {dishesNum, dishCounts} = this.state
 
     const renderedDishes = dishesNum.map((item, index) => {
       return (
@@ -65,7 +94,7 @@ class Potluck extends Component {
             removeDish={this.removeDish}
             potluckDishes={potluckDishes}
             errors={errors}
-            dbDishes={dbDishes}
+            dishCounts={dishCounts}
           />
         </div>
       )
@@ -165,7 +194,6 @@ class Potluck extends Component {
 
     return (
       <div className='form-container container'>
-        <p>Date: Saturday, June 30th</p>
         <p>Time: 6:00 pm - Rain or Shine!</p>
         <p>Location: 1306 Harvest Grove Blvd.</p>
 
@@ -242,7 +270,7 @@ class Potluck extends Component {
               </span>
             </div>
           </div>
-          <div className='form-group row'>
+          <div className='form-group row btn-group'>
             <div className='col-auto btn-row'>
               <button className='btn btn-default btn-form' type='submit'>Submit</button>
             </div>

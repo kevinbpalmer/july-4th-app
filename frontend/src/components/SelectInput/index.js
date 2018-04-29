@@ -19,7 +19,10 @@ class SelectInput extends Component {
   }
 
   renderOptions = () => {
-    const {options} = this.props
+    const {options, optionCounts} = this.props
+    if (optionCounts) {
+      console.log('AYOOO: ', this.props)
+    }
 
     const listItems = options.map((item) => {
       return item
@@ -76,7 +79,7 @@ class SelectInput extends Component {
 
   SelectInput.propTypes = {
     errors: PropTypes.object,
-    inputName: PropTypes.string.isRequired,
+    inputName: PropTypes.string,
     options: PropTypes.array.isRequired,
     updateForm: PropTypes.func.isRequired,
     value: PropTypes.string

@@ -11,6 +11,11 @@ class EventDetails extends Component {
     return (
       <section id='details'>
         <h2>Event Details</h2>
+        <h2>Saturday, June 30th, 2018</h2>
+        <h2>1306 Harvest Grove Blvd</h2>
+        <h4>Festivities begin at 11:00 am</h4>
+        <p>Times subject to change leading up to event day.</p>
+        <p>All activities are dependant on the amount of donations received.</p>
         <Timeline />
         - See below regarding parking -
         <div className='event-details container'>
@@ -71,7 +76,7 @@ class EventDetails extends Component {
             </p>
 
             <p>
-              One entry per person. Must be present to win! No purchase necessary. Prizes include a dinner excursion at Bonefish Grill, ….. Some restrictions may apply to certain prizes.
+              One entry per person. Must be present to win! No purchase necessary. Some restrictions may apply to certain prizes.
             </p>
           </div>
           <div className='single-event'>

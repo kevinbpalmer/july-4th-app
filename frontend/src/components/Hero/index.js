@@ -54,7 +54,7 @@ class Hero extends Component {
         }}>
         <div className='hero-content-container'>
           <h1 className='hero-title'>
-            Harvest Fourth of July
+            Harvest <br className='hide-tablet' />Fourth of July
           </h1>
           <br />
           <h5 className='hero-subtitle extravaganza'>

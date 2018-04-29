@@ -18,7 +18,6 @@ const renderEvents = arrayOfEvents => {
 const SingleTimelineItem = ({time, name, clickable, link, id}) => {
   return (
     <div className='single-item'>
-      <p className='time'>{time}</p>
       {clickable === true &&
         <p className='event-name'>
           <Link to={link}>{renderEvents(name)}</Link>
@@ -29,6 +28,9 @@ const SingleTimelineItem = ({time, name, clickable, link, id}) => {
           {renderEvents(name)}
         </p>
       }
+
+      <p className='time'>{time}</p>
+      
     </div>
   )
 }

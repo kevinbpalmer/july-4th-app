@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 // Set your secret key: remember to change this to your live secret key in production
 // See your keys here: https://dashboard.stripe.com/account/apikeys
-const stripe = require('stripe')(process.env.STRIPE_SECRET_TOKEN)
+const stripe = require('stripe')(process.env.NODE_ENV === 'production' ? process.env.STRIPE_SECRET_TOKEN_PROD : process.env.STRIPE_SECRET_TOKEN_DEV)
 
 // import data create method from the model
 const payment = require('../models/payment')
@@ -37,7 +37,7 @@ router.post('/', function(req, res, next) {
 
       return res.status(400).json({message: err.message})
     }
-
+    console.log('Made a charge to stripe: ', charge)
     payment.create(charge.amount, charge.created, charge.id, charge.source.name)
     return res.status(200).json('Success')
   })

@@ -237,7 +237,7 @@ class Rsvp extends Component {
                 <TextInput
                   inputName='lunchNumKids'
                   value={lunchNumKids}
-                  placeholder='Number of Kids for Lunch'
+                  placeholder='Number of Kids (under age 10) for Lunch'
                   updateForm={this.handleInputChange}
                   number={true}
                   errors={errors}
@@ -267,7 +267,7 @@ class Rsvp extends Component {
               <TextInput
                 inputName='potluckNumKids'
                 value={potluckNumKids}
-                placeholder='Number of Kids for Potluck'
+                placeholder='Number of Kids (under age 10) for Potluck'
                 updateForm={this.handleInputChange}
                 number={true}
                 errors={errors}

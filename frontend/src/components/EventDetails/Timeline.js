@@ -8,18 +8,6 @@ const Timeline = () => {
     <div className='timeline-container'>
       <div className='separator'></div>
       <SingleTimelineItem
-        time='ALL DAY'
-        name={['Inflatable Obstacle Course']}
-      />
-      <SingleTimelineItem
-        time='TBD'
-        name={['Magician']}
-      />
-      <SingleTimelineItem
-        time='TBD'
-        name={['Kid Activity']}
-      />
-      <SingleTimelineItem
         time='10:45AM'
         name={['Parade Line-Up']}
       />
@@ -34,6 +22,18 @@ const Timeline = () => {
       <SingleTimelineItem
         time='11:30AM - 2:30PM'
         name={['Face Painting']}
+      />
+      <SingleTimelineItem
+        time='ALL DAY'
+        name={['Inflatable Obstacle Course']}
+      />
+      <SingleTimelineItem
+        time='TBA'
+        name={['Magician']}
+      />
+      <SingleTimelineItem
+        time='TBA'
+        name={['Kid Activity']}
       />
       <SingleTimelineItem
         time='12:00PM'
@@ -51,7 +51,7 @@ const Timeline = () => {
       />
       <SingleTimelineItem
         time='6:00PM'
-        name={['Potluck Dinner	']}
+        name={['Potluck Dinner']}
         clickable={true}
         link='/potluck'
       />

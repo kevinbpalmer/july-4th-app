@@ -197,7 +197,7 @@ class ContactForm extends Component {
             textArea={true}
           />
         </div>
-        <div className='form-group row'>
+        <div className='form-group row btn-group'>
           <div className='col-12 btn-row'>
             <button className='btn btn-default btn-form' type='submit'>Submit</button>
           </div>

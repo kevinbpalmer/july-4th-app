@@ -38,8 +38,8 @@ exports.getDishes = function() {
   })
 }
 
-exports.getDishesByCategory = function(category) {
-  const sqlQuery = `SELECT * FROM potluck_dishes WHERE category = '${category}';`
+exports.getDishesByCategory = function(category, type) {
+  const sqlQuery = `SELECT * FROM potluck_dishes WHERE category = '${category} AND type = '${type}'';`
 
   return new Promise((resolve, reject) => {
       db.query(sqlQuery, function (err, results) {

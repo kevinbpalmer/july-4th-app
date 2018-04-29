@@ -16,7 +16,7 @@ import createStore from './createStore';
 import 'styles/globals.sass'
 
 ReactDOM.render(
-  <StripeProvider apiKey="pk_test_eXjXV9xyhM7b4Zkcz8a0xP8k">
+  <StripeProvider apiKey={process.env.NODE_ENV === 'production' ? process.env.REACT_APP_STRIPE_PUBLIC_TOKEN_PROD : process.env.REACT_APP_STRIPE_PUBLIC_TOKEN_DEV}>
     <Provider store={createStore}>
       <BrowserRouter>
         <App />

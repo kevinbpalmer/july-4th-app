@@ -9,6 +9,11 @@
   align-items: center
   justify-content: center
   color: rgba(255,255,255, .8)
+  text-align: center
+  .link-bottom-margin
+    margin-bottom: 2rem
+    color: #fff
+    text-decoration: underline
   .timeline-container
     display: flex
     flex-direction: column
@@ -21,23 +26,27 @@
       padding: 0 1rem
     p
       margin: 0
-      margin-bottom: 1rem
       a
         color: rgba(255, 255, 255, 0.8)
+        text-decoration: underline
     .clock-icon
       font-size: 1rem
     .single-item
       display: flex
       width: 100%
+      margin-bottom: .65rem
+      align-items: center
       .time
-        margin-right: auto
-      .event-name
         margin-left: auto
+        font-size: 1em
+      .event-name
+        margin-right: auto
         max-width: 120px
-        text-align: right
+        text-align: left
+        font-size: 1em
         span
-          margin-bottom: 1rem
           display: block
+          line-height: 1.1
     .separator
       position: absolute
       top: -1rem

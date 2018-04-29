@@ -143,8 +143,7 @@ class Cornhole extends Component {
     return (
       <div className='form-container container'>
         <div className='cornhole-info'>
-          <p>Date: Saturday, June 30th</p>
-          <p>Time: 2:00 pm</p>
+          <p>Time: 1:00 pm</p>
           <p>Location: 1306 Harvest Grove Blvd.</p>
           <p>Entry Fee: $10 per Team (Pay at tournament)</p>
           <p>Prize: Prize Money & Trophy - 1st & 2nd Place </p>
@@ -232,7 +231,7 @@ class Cornhole extends Component {
                 number={true}
                 />
             </div>
-            <div className='form-group row'>
+            <div className='form-group row btn-group'>
               <div className='col-12 btn-row'>
                 <button className='btn btn-default btn-form' type='submit'>Submit</button>
               </div>
