@@ -6,7 +6,10 @@ const bodyParser = require('body-parser')
 const PORT = process.env.PORT || 8000
 const expressSanitized = require('express-sanitize-escape')
 const db = require('./db.js')
-
+console.log('PROCESSENV:::: ', process.env)
+console.log('NODE_ENV: ', process.env.NODE_ENV)
+console.log('STRIPE_SECRET_TOKEN_PROD: ', process.env.STRIPE_SECRET_TOKEN_PROD)
+console.log('STRIPE_SECRET_TOKEN_DEV: ', process.env.STRIPE_SECRET_TOKEN_DEV)
 // logging
 const morgan = require('morgan')
 const winston = require('./winston')
