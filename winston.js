@@ -2,7 +2,7 @@ var winston = require('winston')
 
 var options = {
   file: {
-    level: 'info',
+    level: 'warn',
     filename: `${__dirname}/logs/app.log`,
     handleExceptions: true,
     json: true,

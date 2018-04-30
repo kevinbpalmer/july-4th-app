@@ -98,7 +98,7 @@ class StripeForm extends Component {
         return
       }
 
-      if (newVal.length > 4) {
+      if (newVal.length > 6) {
         return
       }
 

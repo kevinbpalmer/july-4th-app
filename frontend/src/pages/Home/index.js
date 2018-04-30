@@ -5,6 +5,7 @@ import ReactGA from 'react-ga'
 // components
 import EventDetails from 'components/EventDetails'
 import ContactForm from 'components/ContactForm'
+import Sponsors from 'components/Sponsors'
 
 // style(s)
 import './styles.sass'
@@ -31,10 +32,7 @@ class Home extends Component {
     return (
       <section className='home_page_container'>
         <EventDetails />
-        <div className='container contact-wrapper'>
-          <h2>Contact Us!</h2>
-          <ContactForm />
-        </div>
+        <Sponsors />
       </section>
     )
   }

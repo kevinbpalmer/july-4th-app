@@ -23,6 +23,9 @@
     @media (max-width: 48rem) {
       #details .timeline-container {
         padding: 0 1rem; } }
+    @media (min-width: 500px) {
+      #details .timeline-container {
+        width: 475px; } }
     #details .timeline-container p {
       margin: 0; }
       #details .timeline-container p a {
@@ -43,22 +46,51 @@
         max-width: 120px;
         text-align: left;
         font-size: 1em; }
+        @media (min-width: 500px) {
+          #details .timeline-container .single-item .event-name {
+            max-width: 200px; } }
         #details .timeline-container .single-item .event-name span {
           display: block;
           line-height: 1.1; }
     #details .timeline-container .separator {
       position: absolute;
       top: -1rem;
-      left: 47%;
+      left: 50%;
       height: 100%;
       width: 1px;
       background: #fff; }
   #details .event-details {
-    padding: 1rem 2rem; }
+    padding: 4rem 2rem 1rem;
+    text-align: left; }
     #details .event-details .single-event {
       padding-bottom: 2rem; }
+      #details .event-details .single-event p {
+        font-size: 1.1em; }
+      #details .event-details .single-event .time {
+        font-size: 1.2em;
+        margin-bottom: .3rem; }
       #details .event-details .single-event h4 {
-        font-weight: bold; }
+        font-weight: bold;
+        margin: 0; }
+.sponsors-container {
+  margin: 2rem auto;
+  text-align: center; }
+  .sponsors-container .sponsors-inner-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; }
+    .sponsors-container .sponsors-inner-container .single-sponsor {
+      text-align: center;
+      margin: 0 1rem 2rem; }
+      .sponsors-container .sponsors-inner-container .single-sponsor .single-sponsor-logo {
+        height: 100px;
+        margin: 1rem; }
+      .sponsors-container .sponsors-inner-container .single-sponsor p {
+        line-height: 1.35;
+        margin: 0; }
+      .sponsors-container .sponsors-inner-container .single-sponsor a {
+        line-height: 1.2;
+        color: #005470; }
 .home_page_container {
   width: 100%;
   height: 100%; }
@@ -121,6 +153,16 @@
   .rsvp-form-container .btn-row {
     display: flex;
     justify-content: flex-end; }
+.progressbar-container {
+  max-width: 800px;
+  margin: 0 auto;
+  margin-bottom: 2rem; }
+  .progressbar-container .amount-wrapper {
+    color: #fff; }
+    .progressbar-container .amount-wrapper h4 {
+      display: inline-block; }
+    .progressbar-container .amount-wrapper span {
+      font-size: 1.5em; }
 .form-container .StripeElement {
   border-bottom: 1px solid rgba(88, 88, 88, 0.2);
   padding: 1rem .5rem;
@@ -187,6 +229,7 @@
       display: block; }
 
 .volunteers-committee-description {
+  margin: 2rem 0;
   text-align: center; }
   .volunteers-committee-description .description-item {
     margin-bottom: 2rem; }
@@ -259,7 +302,7 @@
       border-top: 0;
       border-bottom: .3em solid; }
 .footer-main {
-  padding: 3rem 1rem;
+  padding: 1rem;
   background: #9E150F; }
   @media (max-width: 48rem) {
     .footer-main {
@@ -282,7 +325,7 @@
         color: #CDD9D6;
         font-size: 1.15em; }
   .footer-main p {
-    margin-top: 1rem;
+    margin: 0;
     text-align: center;
     color: rgba(255, 255, 255, 0.8); }
     .footer-main p a {
@@ -371,6 +414,9 @@ html {
       padding-top: 2rem;
       padding-bottom: 2rem;
       text-align: center; }
+      html body .form-container p {
+        margin-bottom: .7rem;
+        font-size: 1.05em; }
     html body .sub-header-container {
       text-align: center;
       padding-bottom: 2rem; }
@@ -458,4 +504,4 @@ html {
         background: rgba(255, 255, 255, 0.75);
         color: rgba(0, 0, 0, 0.75); }
 
-/*# sourceMappingURL=main.4cfe63d0.css.map*/
+/*# sourceMappingURL=main.52a73bd5.css.map*/

@@ -22,7 +22,7 @@ exports.create = function(amount, created, transaction_id, name, error) {
 
 
 exports.getAmount = function() {
-  const sqlQuery = 'SELECT * FROM payments WHERE error = 0;'
+  const sqlQuery = 'SELECT SUM(SUBSTRING(amount, 1, length(amount)-2)) as dollar_amount FROM `payments`;'
 
   return new Promise((resolve, reject) => {
       db.query(sqlQuery, function (err, results) {

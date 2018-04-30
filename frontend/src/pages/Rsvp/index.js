@@ -169,6 +169,7 @@ class Rsvp extends Component {
 
     return (
       <div className='form-container container'>
+        <h5>Let us know you're ready to party!</h5>
         <ContactBlurb />
         {error && <ErrorBlock />}
         <form onSubmit={this.handleSubmit}>

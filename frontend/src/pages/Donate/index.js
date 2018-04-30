@@ -5,27 +5,20 @@ import ReactGA from 'react-ga'
 // form component
 import StripeForm from './StripeForm'
 import ContactBlurb from 'components/ContactBlurb'
+import DonationProgressBar from 'components/DonationProgressBar'
 
 // stylesheet
 import './styles.sass'
 
 class Donate extends Component {
   componentDidMount() {
-   ReactGA.pageview(window.location.pathname + window.location.search) 
+   ReactGA.pageview(window.location.pathname + window.location.search)
   }
 
   render() {
     return (
       <div className='form-container container'>
-        <p>Hi Neighbor!</p>
-
-        <p>
-          Planning for the Harvest 4th of July Extravaganza is in full swing! This event will take place on Saturday, June 30th.
-        </p>
-
-        <p>
-          Activities will include*: a parade, shaved ice truck, various children's activities, cornhole tournament, inflatable obstacle course, hot dog lunch, kegs, potluck dinner, photo booth, live band, a spectacular firework show, and more. (*funds permitting)<br /> It will be an event you and your family won’t want to miss!
-        </p>
+        <h5>Hi Neighbor!</h5>
 
         <p>
           <b>
@@ -43,6 +36,7 @@ class Donate extends Component {
         </p>
 
         <ContactBlurb />
+        <DonationProgressBar textColor='#212529' />
         <Elements>
           <StripeForm />
         </Elements>

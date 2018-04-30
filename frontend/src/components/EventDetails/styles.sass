@@ -24,6 +24,8 @@
     overflow: hidden
     @media(max-width: $sm)
       padding: 0 1rem
+    @media(min-width: 500px)
+      width: 475px
     p
       margin: 0
       a
@@ -44,19 +46,28 @@
         max-width: 120px
         text-align: left
         font-size: 1em
+        @media(min-width: 500px)
+          max-width: 200px
         span
           display: block
           line-height: 1.1
     .separator
       position: absolute
       top: -1rem
-      left: 47%
+      left: 50%
       height: 100%
       width: 1px
       background: #fff
   .event-details
-    padding: 1rem 2rem
+    padding: 4rem 2rem 1rem
+    text-align: left
     .single-event
       padding-bottom: 2rem
+      p
+        font-size: 1.1em
+      .time
+        font-size: 1.2em
+        margin-bottom: .3rem
       h4
         font-weight: bold
+        margin: 0

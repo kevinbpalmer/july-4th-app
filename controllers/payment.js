@@ -10,7 +10,7 @@ const payment = require('../models/payment')
 router.get('/', function(req, res, next) {
   payment.getAmount()
   .then(result => {
-    return res.status(200).json(result)
+    return res.status(200).json(result[0])
   })
   .catch(error => {
     return res.status(400).json(error)
@@ -32,8 +32,8 @@ router.post('/', function(req, res, next) {
     return res.status(400).json('No amount')
   }
 
-  if (req.body.amount.length > 4) {
-    return res.status(400).json('Amount must be 4 characters')
+  if (req.body.amount.length > 6) {
+    return res.status(400).json('Amount must be 6 characters or less')
   }
 
   const token = req.body.stripeToken
