@@ -7,6 +7,7 @@ var createTablesArray = [
     created VARCHAR(40),
     transaction_id VARCHAR(100),
     name VARCHAR(60),
+    error BOOLEAN,
     PRIMARY KEY (id)
   );`,
   `CREATE TABLE rsvps (

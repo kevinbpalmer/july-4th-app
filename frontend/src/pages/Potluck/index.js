@@ -149,7 +149,7 @@ class Potluck extends Component {
           error: false,
           errorMessage: undefined
         })
-        console.log('Potluck success! ', res)
+        process.env.DEBUG && console.log('Potluck success! ', res)
       })
       .catch(err => {
         this.setState({
@@ -158,7 +158,7 @@ class Potluck extends Component {
           error: true,
           errorMessage: undefined
         })
-        console.error('Potluck fail! ', err)
+        process.env.DEBUG && console.error('Potluck fail! ', err)
       })
     }
   }

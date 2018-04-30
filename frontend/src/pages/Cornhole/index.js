@@ -84,7 +84,7 @@ class Cornhole extends Component {
           error: false,
           errorMessage: undefined
         })
-        console.log('Cornhole success: ', res)
+      process.env.DEBUG && console.log('Cornhole success: ', res)
       })
       .catch(err => {
         this.setState({
@@ -93,7 +93,7 @@ class Cornhole extends Component {
           error: true,
           errorMessage: err
         })
-        console.error('Cornhole error: ', err)
+        process.env.DEBUG && console.error('Cornhole error: ', err)
       })
     }
   }

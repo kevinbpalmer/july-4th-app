@@ -98,6 +98,10 @@ class StripeForm extends Component {
         return
       }
 
+      if (newVal.length > 4) {
+        return
+      }
+
       if (newVal.length === 1) {
         const valueWithDecimalsAdded = '.' + 0 + newVal.slice(-1)
         return updateForm(valueWithDecimalsAdded, inputName)

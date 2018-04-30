@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import {Link, withRouter} from 'react-router-dom'
 
+// components
+import DonationProgressBar from 'components/DonationProgressBar'
+
 // style(s)
 import './styles.sass'
 
@@ -62,6 +65,7 @@ class Hero extends Component {
           <h5 className='hero-subtitle'>
             Saturday, June 30th, 2018
           </h5>
+          <DonationProgressBar />
           <div className='hero-button-container'>
             <Link to='/rsvp'>
             <button type='button' className='hero-btn mr-4 btn'>RSVP</button>

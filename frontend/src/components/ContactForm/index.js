@@ -32,7 +32,7 @@ class ContactForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault()
-    console.log('AYYYOOO');
+
     const {
       firstName,
       lastName,
@@ -66,7 +66,7 @@ class ContactForm extends Component {
           error: false,
           errorMessage: undefined
         })
-        console.log('Successfully sent a message: ', res)
+      process.env.DEBUG && console.log('Successfully sent a message: ', res)
       })
       .catch(err => {
         this.setState({
@@ -76,7 +76,7 @@ class ContactForm extends Component {
           errorMessage: undefined,
           showText: true
         })
-        console.error('Failed to send a message: ', err)
+      process.env.DEBUG && console.error('Failed to send a message: ', err)
       })
     }
   }

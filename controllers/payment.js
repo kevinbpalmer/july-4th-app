@@ -7,19 +7,33 @@ const stripe = require('stripe')(process.env.NODE_ENV === 'production' ? process
 // import data create method from the model
 const payment = require('../models/payment')
 
+router.get('/', function(req, res, next) {
+  payment.getAmount()
+  .then(result => {
+    return res.status(200).json(result)
+  })
+  .catch(error => {
+    return res.status(400).json(error)
+  })
+})
+
 router.post('/', function(req, res, next) {
   // Token is created using Checkout or Elements!
-  // Get the payment token ID submitted by the form:
   if (!req.body || Object.keys(req.body).length === 0) {
     res.status(400).json('No data sent')
   }
 
+  // Get the payment token ID from stripe that is submitted through the form
   if (!req.body.stripeToken) {
     res.status(400).json('No token')
   }
 
   if (!req.body.amount) {
     return res.status(400).json('No amount')
+  }
+
+  if (req.body.amount.length > 4) {
+    return res.status(400).json('Amount must be 4 characters')
   }
 
   const token = req.body.stripeToken
@@ -33,12 +47,13 @@ router.post('/', function(req, res, next) {
     source: token.id,
   }, function(err, charge) {
     if (err) {
-      process.env.DEBUG && console.log(err.message)
-
+      process.env.DEBUG && console.log('ERR: ', err.message)
+      payment.create(amount, Date.now(), null, token.card.name, true)
       return res.status(400).json({message: err.message})
     }
-    console.log('Made a charge to stripe: ', charge)
-    payment.create(charge.amount, charge.created, charge.id, charge.source.name)
+    process.env.DEBUG && console.log('Made a charge to stripe: ', charge)
+
+    payment.create(charge.amount, charge.created, charge.id, charge.source.name, false)
     return res.status(200).json('Success')
   })
 

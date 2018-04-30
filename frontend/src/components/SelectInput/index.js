@@ -20,10 +20,7 @@ class SelectInput extends Component {
 
   renderOptions = () => {
     const {options, optionCounts} = this.props
-    if (optionCounts) {
-      console.log('AYOOO: ', this.props)
-    }
-
+    
     const listItems = options.map((item) => {
       return item
     })

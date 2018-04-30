@@ -78,7 +78,7 @@ class Volunteers extends Component {
           error: false,
           errorMessage: undefined
         })
-        console.log('Volunteer signup success: ', res)
+        process.env.DEBUG && console.log('Volunteer signup success: ', res)
       })
       .catch(err => {
         this.setState({
@@ -87,7 +87,7 @@ class Volunteers extends Component {
           error: true,
           errorMessage: err
         })
-        console.error('Volunteer signup failed: ', err)
+        process.env.DEBUG && console.error('Volunteer signup failed: ', err)
       })
     }
   }

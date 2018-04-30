@@ -49,7 +49,7 @@ class SingleDish extends Component {
       fingerSandwiches: 5,
       meat: 5
     }
-    console.log('NAME: ', name, dishCounts)
+    process.env.DEBUG && console.log('NAME: ', name, dishCounts)
 
     const returnCountText = num => {
       return `- ${num}`
@@ -61,7 +61,7 @@ class SingleDish extends Component {
 
     if (dishCounts.hasOwnProperty(name)) {
       let count = dishCounts[name]
-      console.log('YESSSSS: ', count);
+      process.env.DEBUG && console.log('YESSSSS: ', count);
       return returnCountText(count)
     }
 
