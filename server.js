@@ -1,4 +1,6 @@
 require('dotenv').load()
+const https = require('https')
+const fs = require('fs')
 const path = require('path')
 const compression = require('compression')
 const express = require('express')
@@ -6,6 +8,8 @@ const bodyParser = require('body-parser')
 const PORT = process.env.PORT || 8000
 const expressSanitized = require('express-sanitize-escape')
 const db = require('./db.js')
+const http = require('http')
+// const helmet = require('helmet')
 
 // logging
 const morgan = require('morgan')
@@ -13,6 +17,7 @@ const winston = require('./winston')
 
 const app = express()
 
+// app.use(helmet())
 app.use(compression())
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
@@ -27,7 +32,7 @@ db.query('SELECT 1 + 1 AS solution', function (err, rows, fields) {
     throw err
   }
   else {
-    process.env.DEBUG && console.log('DB connected')
+    console.log('DB connected')
   }
 })
 
@@ -62,10 +67,14 @@ app.use(function(err, req, res, next) {
   return res.json({ message: error.message || 'Something went wrong'})
 })
 
-app.listen(PORT, function(error) {
-  return (
-    error
-      ? console.error(error)
-      : console.info(`Listening on port ${PORT}. Visit http://localhost:${PORT}/ in your browser.`)
-  )
-})
+const options = {
+	cert: fs.readFileSync('./sslcert/fullchain.pem'),
+	key: fs.readFileSync('./sslcert/privkey.pem')
+}
+
+//app.listen(PORT)
+http.createServer(function (req, res) {
+    res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url })
+    res.end()
+}).listen(80)
+https.createServer(options, app).listen(443)
