@@ -43,6 +43,10 @@ class DonationProgressBar extends Component {
   render() {
     const {amount, percentage} = this.state
 
+    if (!amount) {
+      return null
+    }
+
     return (
       <div  className='progressbar-container'>
         <div style={{ color: this.props.textColor ? this.props.textColor : '#fff' }} className='amount-wrapper'>
