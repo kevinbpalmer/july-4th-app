@@ -6,7 +6,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: rgba(255, 255, 255, 0.8); }
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center; }
+  #details .link-bottom-margin {
+    margin-bottom: 2rem;
+    color: #fff;
+    text-decoration: underline; }
   #details .timeline-container {
     display: flex;
     flex-direction: column;
@@ -19,24 +24,28 @@
       #details .timeline-container {
         padding: 0 1rem; } }
     #details .timeline-container p {
-      margin: 0;
-      margin-bottom: 1rem; }
+      margin: 0; }
       #details .timeline-container p a {
-        color: rgba(255, 255, 255, 0.8); }
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: underline; }
     #details .timeline-container .clock-icon {
       font-size: 1rem; }
     #details .timeline-container .single-item {
       display: flex;
-      width: 100%; }
+      width: 100%;
+      margin-bottom: .65rem;
+      align-items: center; }
       #details .timeline-container .single-item .time {
-        margin-right: auto; }
-      #details .timeline-container .single-item .event-name {
         margin-left: auto;
+        font-size: 1em; }
+      #details .timeline-container .single-item .event-name {
+        margin-right: auto;
         max-width: 120px;
-        text-align: right; }
+        text-align: left;
+        font-size: 1em; }
         #details .timeline-container .single-item .event-name span {
-          margin-bottom: 1rem;
-          display: block; }
+          display: block;
+          line-height: 1.1; }
     #details .timeline-container .separator {
       position: absolute;
       top: -1rem;
@@ -56,7 +65,8 @@
   .home_page_container .contact-wrapper {
     margin: 2rem auto; }
     .home_page_container .contact-wrapper h2 {
-      padding: 0 1rem; }
+      padding: 0 1rem;
+      text-align: center; }
 .attending-container {
   display: flex;
   flex-direction: column;
@@ -162,15 +172,26 @@
     text-align: center; }
   .volunteers-form-container .volunteer-text {
     text-align: center; }
-  .volunteers-form-container .btn-row {
-    display: flex;
-    justify-content: flex-end; }
-    .volunteers-form-container .btn-row .btn-form {
+
+.form-group.btn-group {
+  width: 100%; }
+  .form-group.btn-group .btn-row {
+    width: 100%; }
+    .form-group.btn-group .btn-row .btn-form {
       margin-top: 1rem;
       margin-left: auto;
+      margin-right: auto;
       border: 2px solid #00203B;
       background: transparent;
-      color: #00203B; }
+      color: #00203B;
+      display: block; }
+
+.volunteers-committee-description {
+  text-align: center; }
+  .volunteers-committee-description .description-item {
+    margin-bottom: 2rem; }
+    .volunteers-committee-description .description-item p {
+      margin: 0; }
 .nav-main.navbar-light {
   position: fixed;
   top: 0;
@@ -216,7 +237,7 @@
     .nav-main.navbar-light ul.navbar-nav .dropdown.nav-item .dropdown-menu.show {
       background: rgba(0, 0, 0, 0.5);
       border: none;
-      text-align: left;
+      text-align: center;
       margin: 0;
       padding: 0; }
       @media (max-width: 48rem) {
@@ -245,7 +266,8 @@
       padding: 1rem; } }
   .footer-main ul {
     text-align: center;
-    margin: 0; }
+    margin: 0;
+    padding: 0; }
     .footer-main ul li {
       display: inline-block;
       margin: 0;
@@ -253,7 +275,8 @@
       @media (max-width: 48rem) {
         .footer-main ul li {
           display: block;
-          margin-bottom: 1rem; } }
+          margin-bottom: 1rem;
+          margin-right: 0; } }
       .footer-main ul li a {
         margin: 0;
         color: #CDD9D6;
@@ -285,9 +308,6 @@
       letter-spacing: .01em;
       margin: 0;
       font-size: 3.5em; }
-      @media (max-width: 48rem) {
-        .hero-content-wrapper .hero-content-container .hero-title {
-          padding-bottom: 1.5rem; } }
     .hero-content-wrapper .hero-content-container .hero-subtitle {
       font-family: 'Coming Soon', cursive;
       font-size: 1.5em;
@@ -325,8 +345,17 @@
   background-attachment: fixed;
   max-height: 400px; }
   .childpage-hero .hero-content-container .hero-title {
-    font-family: 'Coming Soon', cursive;
-    color: #9E150F; }
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-family: 'Clicker Script', cursive;
+    text-transform: inherit;
+    letter-spacing: .01em;
+    margin: 0;
+    font-size: 4.5em; }
+    @media (max-width: 48rem) {
+      .childpage-hero .hero-content-container .hero-title {
+        padding-bottom: 0; } }
 html {
   font-family: "Coming Soon", cursive, sans-serif;
   font-size: 16px;
@@ -335,6 +364,11 @@ html {
   html body {
     font-family: "Coming Soon", cursive, sans-serif;
     margin: 0; }
+    html body .hide-tablet {
+      display: none; }
+      @media (max-width: 48rem) {
+        html body .hide-tablet {
+          display: block; } }
     html body .form-container {
       padding-top: 2rem;
       padding-bottom: 2rem;
@@ -410,19 +444,20 @@ html {
       html body .hero-subtitle:before {
         content: "";
         position: absolute;
-        width: 70%;
+        width: 100%;
         height: 1px;
         bottom: 0;
-        left: 15%;
+        left: 0;
         border-bottom: 1px solid rgba(255, 255, 255, 0.75); }
     html body .hero-btn {
       background: transparent;
       color: #fff;
       border: 2px solid rgba(255, 255, 255, 0.9);
       padding: .75rem 2rem;
-      transition: .75s; }
+      transition: .75s;
+      font-size: 1.25em; }
       html body .hero-btn:hover {
         background: rgba(255, 255, 255, 0.75);
         color: rgba(0, 0, 0, 0.75); }
 
-/*# sourceMappingURL=main.83e201b0.css.map*/
+/*# sourceMappingURL=main.a6be2a33.css.map*/
