@@ -48,7 +48,7 @@ class StripeForm extends Component {
             amount: strippedAmount
           })
           .then(res => {
-            console.log('SUCCESS: ', res.data)
+            process.env.DEBUG && console.log('SUCCESS: ', res.data)
 
             this.setState({
               loading: false,
@@ -58,7 +58,7 @@ class StripeForm extends Component {
             })
           })
           .catch(err => {
-            console.error('ERROR: ', err.message)
+            process.env.DEBUG && console.error('ERROR: ', err.message)
 
             this.setState({
               loading: false,
