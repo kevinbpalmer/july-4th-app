@@ -44,8 +44,6 @@ class Hero extends Component {
       )
     }
 
-
-
     return (
       <div
         className='hero-content-wrapper'

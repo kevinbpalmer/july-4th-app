@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {Elements} from 'react-stripe-elements'
+import ReactGA from 'react-ga'
 
 // form component
 import StripeForm from './StripeForm'
@@ -9,6 +10,10 @@ import ContactBlurb from 'components/ContactBlurb'
 import './styles.sass'
 
 class Donate extends Component {
+  componentDidMount() {
+   ReactGA.pageview(window.location.pathname + window.location.search) 
+  }
+
   render() {
     return (
       <div className='form-container container'>

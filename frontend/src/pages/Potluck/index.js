@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import Validator from 'validatorjs'
 import axios from 'axios'
+import ReactGA from 'react-ga'
 
 // components
 import TextInput from 'components/TextInput'
@@ -31,6 +32,7 @@ class Potluck extends Component {
 
   componentDidMount() {
     this.fetchDishes()
+    ReactGA.pageview(window.location.pathname + window.location.search)
   }
 
   fetchDishes = () => {

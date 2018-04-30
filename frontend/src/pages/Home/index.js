@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import smoothScroll from 'smoothscroll'
+import ReactGA from 'react-ga'
 
 // components
 import EventDetails from 'components/EventDetails'
@@ -15,6 +16,7 @@ class Home extends Component {
     if (hash === '#details') {
       smoothScroll(document.querySelector('#details'))
     }
+    ReactGA.pageview(window.location.pathname + window.location.search)
   }
 
   componentDidUpdate(prevProps) {

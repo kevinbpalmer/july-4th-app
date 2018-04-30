@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import Validator from 'validatorjs'
 import axios from 'axios'
+import ReactGA from 'react-ga'
 
 // components
 import TextInput from 'components/TextInput'
@@ -30,6 +31,10 @@ class Rsvp extends Component {
     success: false,
     error: false,
     errorMessage: undefined
+  }
+
+  componentDidMount() {
+    ReactGA.pageview(window.location.pathname + window.location.search)
   }
 
   handleSubmit = e => {

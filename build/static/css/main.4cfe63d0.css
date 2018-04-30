@@ -298,10 +298,8 @@
   position: relative; }
   .hero-content-wrapper .hero-content-container {
     text-align: center;
-    line-height: 0; }
-    @media (max-width: 48rem) {
-      .hero-content-wrapper .hero-content-container {
-        padding: 3.75rem .5rem 0; } }
+    line-height: 0;
+    padding: 3.75rem .5rem 0; }
     .hero-content-wrapper .hero-content-container .hero-title {
       font-family: 'Clicker Script', cursive;
       text-transform: inherit;
@@ -460,4 +458,4 @@ html {
         background: rgba(255, 255, 255, 0.75);
         color: rgba(0, 0, 0, 0.75); }
 
-/*# sourceMappingURL=main.a6be2a33.css.map*/
+/*# sourceMappingURL=main.4cfe63d0.css.map*/
