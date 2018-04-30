@@ -36,7 +36,7 @@
     #details .timeline-container .single-item {
       display: flex;
       width: 100%;
-      margin-bottom: .65rem;
+      margin: .55rem 0;
       align-items: center; }
       #details .timeline-container .single-item .time {
         margin-left: auto;
@@ -204,7 +204,10 @@
       background: transparent;
       color: #00203B; }
 .volunteers-form-container {
-  padding: 2rem 0; }
+  padding-top: 2rem;
+  padding-bottom: 2rem; }
+  .volunteers-form-container .time {
+    font-size: 1.2em; }
   .volunteers-form-container .volunteers-info {
     text-align: center; }
   .volunteers-form-container .form-group {
@@ -322,7 +325,7 @@
           margin-right: 0; } }
       .footer-main ul li a {
         margin: 0;
-        color: #CDD9D6;
+        color: #fff;
         font-size: 1.15em; }
   .footer-main p {
     margin: 0;
@@ -348,10 +351,14 @@
       text-transform: inherit;
       letter-spacing: .01em;
       margin: 0;
-      font-size: 3.5em; }
+      font-size: 3.5em;
+      line-height: 1; }
+      @media (max-width: 48rem) {
+        .hero-content-wrapper .hero-content-container .hero-title {
+          margin-bottom: .75rem; } }
     .hero-content-wrapper .hero-content-container .hero-subtitle {
       font-family: 'Coming Soon', cursive;
-      font-size: 1.5em;
+      font-size: 1.65em;
       letter-spacing: .1em; }
     .hero-content-wrapper .hero-content-container .extravaganza {
       font-size: 1.5em;
@@ -485,14 +492,6 @@ html {
       display: inline-block;
       position: relative;
       margin-bottom: 2rem; }
-      html body .hero-subtitle:before {
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 1px;
-        bottom: 0;
-        left: 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.75); }
     html body .hero-btn {
       background: transparent;
       color: #fff;
@@ -504,4 +503,4 @@ html {
         background: rgba(255, 255, 255, 0.75);
         color: rgba(0, 0, 0, 0.75); }
 
-/*# sourceMappingURL=main.52a73bd5.css.map*/
+/*# sourceMappingURL=main.c9265cf9.css.map*/

@@ -11,11 +11,11 @@ const SingleDescription = ({title, text, text2, time, time2}) => {
       <p>
         {text2}
       </p>}
-      <p>
+      <p className='time'>
         <b>{time}</b>
       </p>
       {time2 &&
-      <p>
+      <p className='time'>
         <b>{time2}</b>
       </p>}
     </div>
