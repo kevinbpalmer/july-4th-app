@@ -11,8 +11,8 @@ class EventDetails extends Component {
     return (
       <section id='details'>
         <h2>Event Details</h2>
-        <h4>Saturday, June 30th, 2018</h4>
-        <h4>1306 Harvest Grove Blvd</h4>
+        <h5 style={{ marginBottom: 0 }}>Saturday, June 30th, 2018</h5>
+        <h5>1306 Harvest Grove Blvd</h5>
         <h5>Festivities begin at 11:00 am</h5>
         <p>Times subject to change leading up to event day. <br /> All activities are dependant on the amount of donations received.</p>
         <Timeline />

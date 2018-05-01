@@ -11,7 +11,7 @@ const Contact = () => {
 
   return (
     <div className='container form-container'>
-      <p> Interested in becoming a sponsor or donating a gift for our giveaway? Contact us here! </p>
+      <p>We are looking for additional support through sponsors (donations of $150 or more) and gifts that will be utilized at our giveaway. This year has a tier reward system for sponsors with many great incentives! Contact us here!</p>
       <ContactForm showText={true} />
     </div>
   )

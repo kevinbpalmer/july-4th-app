@@ -24,7 +24,6 @@ class StripeForm extends Component {
     errorMessage: undefined
   }
 
-
   handleSubmit = e => {
     const {firstName, lastName, updateErrors, amount, stripe} = this.props
     e.preventDefault()
@@ -120,7 +119,7 @@ class StripeForm extends Component {
   }
 
   resetForm = () => {
-    const {resetForm} = this.props
+    const {resetForm, history} = this.props
 
     this.setState({
       loading: false,

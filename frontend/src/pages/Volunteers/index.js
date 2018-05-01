@@ -25,6 +25,7 @@ import './styles.sass'
 //SelectInput options array
 const volunteerOptions = [
   <option key={0} value=''>Select A Committee</option>,
+  <option key={7} value='Parade'>Parade Committee</option>,
   <option key={1} value='Name Tag'>Name Tag Committee</option>,
   <option key={2} value='Cornhole'>Cornhole Coordinator</option>,
   <option key={3} value='Potluck'>Potluck Committee</option>,

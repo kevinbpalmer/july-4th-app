@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import Validator from 'validatorjs'
 import axios from 'axios'
 import ReactGA from 'react-ga'
+import {withRouter} from 'react-router-dom'
 
 // components
 import TextInput from 'components/TextInput'
@@ -119,7 +120,7 @@ class Rsvp extends Component {
   }
 
   resetForm = () => {
-    const {resetForm} = this.props
+    const {resetForm, history} = this.props
 
     this.setState({
       loading: false,
@@ -128,6 +129,7 @@ class Rsvp extends Component {
       errorMessage: undefined
     })
     resetForm()
+    history.push('/donate')
   }
 
   render() {
@@ -162,7 +164,7 @@ class Rsvp extends Component {
       return (
         <SuccessBlock
           resetForm={this.resetForm}
-          btnText='RSVP Again?'
+          btnText='Donate to the Event'
         />
       )
     }
@@ -330,4 +332,4 @@ const mapDispatchToProps = {
   resetForm
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Rsvp)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Rsvp))

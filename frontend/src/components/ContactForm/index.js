@@ -145,7 +145,9 @@ class ContactForm extends Component {
       {showText &&
         <div className="sub-header-container">
           <p>
-            If you need to modify any of your responses or have any questions, please send us a message!
+            <b>
+              If you need to modify any of your responses or have any questions, please send us a message!
+            </b>
           </p>
         </div>
       }

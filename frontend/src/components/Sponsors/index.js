@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import {NavLink} from 'react-router-dom'
 
 // components
 import SingleSponsor from './SingleSponsor'
@@ -49,6 +50,9 @@ const Sponsors = () => {
           url='Murfreesborohomesonline.com'
         />
       </div>
+      <NavLink className='btn btn-default btn-form' to='/contact'>
+        Interested in sponsoring?
+      </NavLink>
     </div>
   )
 }
