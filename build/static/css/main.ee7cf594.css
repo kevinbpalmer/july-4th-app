@@ -167,6 +167,10 @@
   border-bottom: 1px solid rgba(88, 88, 88, 0.2);
   padding: 1rem .5rem;
   width: 100%; }
+
+.donate-form-container p {
+  max-width: 90%;
+  margin: 0 auto; }
 .dish-wrapper {
   width: 100%;
   margin: 1rem 0; }
@@ -503,4 +507,4 @@ html {
         background: rgba(255, 255, 255, 0.75);
         color: rgba(0, 0, 0, 0.75); }
 
-/*# sourceMappingURL=main.c9265cf9.css.map*/
+/*# sourceMappingURL=main.ee7cf594.css.map*/
