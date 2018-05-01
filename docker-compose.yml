@@ -10,10 +10,10 @@ services:
       ports:
         - 3306:3306
       environment:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: harvest_db
-          MYSQL_USER: harvest_db
-          MYSQL_PASSWORD: root
+        MYSQL_DATABASE: harvest_db
+        MYSQL_USER: harvest_db
+        MYSQL_PASSWORD: dev
+        MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
 
     phpmyadmin:
       container_name: phpmyadmin
@@ -25,7 +25,6 @@ services:
         - mysql
       environment:
         PMA_HOST: mysql
-        MYSQL_ROOT_PASSWORD: root
 
     backup_db:
       container_name: backup_db
@@ -40,7 +39,7 @@ services:
         MYSQL_PORT: 3306
         MYSQL_DB:   harvest_db
         MYSQL_USER: harvest_db
-        MYSQL_PASS: root
+        MYSQL_PASS: dev
         CRON_TIME: '*/10 * * * *'
         MAX_BACKUPS: 10
         INIT_BACKUP: 'true'
