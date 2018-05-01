@@ -1,4 +1,4 @@
-version: '3.1'
+version: '3'
 
 services:
     mysql:
@@ -17,12 +17,12 @@ services:
 
     phpmyadmin:
       container_name: phpmyadmin
-      links:
-        - mysql
       image: phpmyadmin/phpmyadmin
       restart: always
       ports:
         - 8080:80
+      depends_on:
+        - mysql
       environment:
         PMA_HOST: mysql
         MYSQL_ROOT_PASSWORD: root
@@ -33,7 +33,7 @@ services:
       restart: always
       volumes:
         - ./db_backups:/backup
-      links:
+      depends_on:
         - mysql
       environment:
         MYSQL_HOST: mysql
