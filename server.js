@@ -67,14 +67,10 @@ app.use(function(err, req, res, next) {
   return res.json({ message: error.message || 'Something went wrong'})
 })
 
-const options = {
-	cert: fs.readFileSync('./sslcert/fullchain.pem'),
-	key: fs.readFileSync('./sslcert/privkey.pem')
-}
-
-//app.listen(PORT)
-http.createServer(function (req, res) {
-    res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url })
-    res.end()
-}).listen(80)
-https.createServer(options, app).listen(443)
+app.listen(PORT, function(error) {
+  return (
+    error
+      ? console.error(error)
+      : console.info(`Listening on port ${PORT}. Visit http://localhost:${PORT}/ in your browser.`)
+  )
+})
