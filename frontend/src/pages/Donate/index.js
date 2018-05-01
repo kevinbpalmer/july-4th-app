@@ -17,7 +17,7 @@ class Donate extends Component {
 
   render() {
     return (
-      <div className='form-container container'>
+      <div className='form-container container donate-form-container'>
         <h5>Hi Neighbor!</h5>
 
         <p>
@@ -27,7 +27,7 @@ class Donate extends Component {
         </p>
 
         <p>
-          We are looking for additional support through sponsors (donations of $150 or more) and gifts that will be utilized at our giveaway. <br />Contact us on the contact page for more details. This year has a tier reward system for sponsors with many great incentives!
+          We are looking for additional support through sponsors (donations of $150 or more) and gifts that will be utilized at our giveaway. Contact us on the contact page for more details. This year has a tier reward system for sponsors with many great incentives!
         </p>
 
         <p>

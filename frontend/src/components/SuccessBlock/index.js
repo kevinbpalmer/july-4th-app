@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const SuccessBlock = ({btnText, successMessage, resetForm}) => {
   return (
@@ -14,4 +14,4 @@ const SuccessBlock = ({btnText, successMessage, resetForm}) => {
   )
 }
 
-export default SuccessBlock;
+export default SuccessBlock
