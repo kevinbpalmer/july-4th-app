@@ -20,12 +20,28 @@ class SelectInput extends Component {
 
   renderOptions = () => {
     const {options, optionCounts} = this.props
-    
+
     const listItems = options.map((item) => {
       return item
     })
 
     return listItems
+  }
+
+  renderCountOptions = () => {
+    const {countOptions} = this.props
+    console.log('countOptions: ', countOptions)
+
+    const options = countOptions.map((item, index) => {
+      if (item.placeholder === true) {
+        return <option key={index} value={item.value}>{item.label}</option>
+      }
+      else if (item.count > 0) {
+        return <option key={index} value={item.value}>{item.label} {item.count && `- ${item.count} ${item.count === 1 ? 'Slot' : 'Slots'} Left`}</option>
+      }
+    })
+
+    return options
   }
 
   handleChange = (value, inputName) => {
@@ -53,7 +69,7 @@ class SelectInput extends Component {
   }
 
   render() {
-    const {inputName, errors} = this.props
+    const {inputName, errors, countOptions} = this.props
     const {touched} = this.state
 
     return (
@@ -62,7 +78,8 @@ class SelectInput extends Component {
           className={`form-control custom-select-input ${!touched ? 'greyed-out' : ''}`}
           name='text'
           onChange={e => this.handleChange(e.target.value, inputName)}>
-          {this.renderOptions()}
+          {!countOptions && this.renderOptions()}
+          {countOptions && this.renderCountOptions()}
         </select>
         <span>
           {typeof errors === 'object' &&

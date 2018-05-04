@@ -39,11 +39,72 @@ class Volunteers extends Component {
     loading: false,
     success: false,
     error: false,
-    errorMessage: undefined
+    errorMessage: undefined,
+    volunteerCounts: undefined
   }
 
   componentDidMount() {
     ReactGA.pageview(window.location.pathname + window.location.search)
+    this.fetchCountsOfSlots()
+  }
+
+  fetchCountsOfSlots = () => {
+    axios.get('/api/v1/volunteer')
+    .then(res => {
+      const counts = res.data.length && res.data[0]
+      const volunteerOptions2 = [
+        {
+          label: 'Select A Committee',
+          value: '',
+          count: undefined,
+          placeholder: true
+        },
+        {
+          label: 'Parade Committee',
+          value: 'Parade',
+          count: (2 - counts['parade'])
+        },
+        {
+          label: 'Name Tag Committee',
+          value: 'Name Tag',
+          count: (3 - counts['name_tag'])
+        },
+        {
+          label: 'Cornhole Coordinator',
+          value: 'Cornhole',
+          count: (2 - counts['cornhole'])
+        },
+        {
+          label: 'Potluck Committee',
+          value: 'Potluck',
+          count: (4 - counts['potluck'])
+        },
+        {
+          label: 'Firework Committee - Friday',
+          value: 'Fireworks-Friday',
+          count: (8 - counts['fireworks_friday'])
+        },
+        {
+          label: 'Firework Committee - Saturday',
+          value: 'Fireworks-Saturday',
+          count: (8 - counts['fireworks_saturday'])
+        },
+        {
+          label: 'Clean Up Committee',
+          value: 'Clean Up',
+          count: (8 - counts['cleanup'])
+        }
+      ]
+
+      process.env.REACT_APP_DEBUG && console.log('Volunteer count: ', counts)
+      this.setState({
+        volunteerCounts: counts,
+        countOptions: volunteerOptions2
+      })
+    })
+    .catch(err => {
+      process.env.REACT_APP_DEBUG && console.log('Failed to fetch volunteer count: ', err)
+    })
   }
 
   handleSubmit = e => {
@@ -79,7 +140,7 @@ class Volunteers extends Component {
           error: false,
           errorMessage: undefined
         })
-        process.env.DEBUG && console.log('Volunteer signup success: ', res)
+        process.env.REACT_APP_DEBUG && console.log('Volunteer signup success: ', res)
       })
       .catch(err => {
         this.setState({
@@ -88,7 +149,7 @@ class Volunteers extends Component {
           error: true,
           errorMessage: err
         })
-        process.env.DEBUG && console.error('Volunteer signup failed: ', err)
+        process.env.REACT_APP_DEBUG && console.error('Volunteer signup failed: ', err)
       })
     }
   }
@@ -117,6 +178,7 @@ class Volunteers extends Component {
       errorMessage: undefined
     })
     resetForm()
+    this.fetchCountsOfSlots()
   }
 
   renderCommitteeDescription = () => {
@@ -189,7 +251,8 @@ class Volunteers extends Component {
     const {
       loading,
       success,
-      error
+      error,
+      countOptions
     } = this.state
 
     if (loading) {
@@ -280,6 +343,7 @@ class Volunteers extends Component {
             <div className='col-12 form-row'>
               <SelectInput
                 inputName='volunteerType'
+                countOptions={countOptions}
                 value={volunteerType}
                 options={volunteerOptions}
                 updateForm={this.onChange}
