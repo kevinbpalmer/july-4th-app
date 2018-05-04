@@ -7,6 +7,17 @@ const mailgun = require('mailgun-js')({apiKey, domain})
 
 const volunteerModel = require('../models/volunteer')
 
+router.get('/', function (req, res, next) {
+  volunteerModel.getCountOfVolunteerTypes()
+  .then(result => {
+    process.env.DEBUG && console.log(result)
+    res.status(200).json(result)
+  })
+  .catch(err => {
+    process.env.DEBUG && console.log(err)
+  })
+})
+
 router.post('/', function (req, res, next) {
   // Token is created using Checkout or Elements! Get the payment token ID submitted by the form:
   if (!req.body || Object.keys(req.body).length === 0) {
@@ -49,14 +60,16 @@ router.post('/', function (req, res, next) {
         Committee: ${volunteerType}`
     }
 
-    mailgun.messages().send(data, function (error, body) {
-      if (error) {
-        process.env.DEBUG && console.error('ERROR SENDING MESSAGE: ', error)
-        return res.status(400).json(error)
-      }
-      process.env.DEBUG && console.log('Message sent: ', body)
-      res.status(200).json('Sent the email!')
-    })
+    if (process.env.NODE_ENV === 'production') {
+      mailgun.messages().send(data, function (error, body) {
+        if (error) {
+          process.env.DEBUG && console.error('ERROR SENDING MESSAGE: ', error)
+          return res.status(400).json(error)
+        }
+        process.env.DEBUG && console.log('Message sent: ', body)
+        res.status(200).json('Sent the email!')
+      })
+    }
 
     res.status(200).json('Successfully signed up to volunteer')
   })

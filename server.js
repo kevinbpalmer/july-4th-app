@@ -55,6 +55,7 @@ app.use(apiPrefix + '/contact', contact)
 
 app.use('/', express.static('build'))
 app.get('/*', function(req, res){
+
   res.sendFile(__dirname + '/build/index.html')
 })
 
@@ -67,10 +68,24 @@ app.use(function(err, req, res, next) {
   return res.json({ message: error.message || 'Something went wrong'})
 })
 
-app.listen(PORT, function(error) {
-  return (
-    error
-      ? console.error(error)
-      : console.info(`Listening on port ${PORT}. Visit http://localhost:${PORT}/ in your browser.`)
-  )
-})
+const env = process.env.NODE_ENV
+if (env === 'production') {
+  const options = {
+          cert: fs.readFileSync('./sslcert/fullchain.pem'),
+          key: fs.readFileSync('./sslcert/privkey.pem')
+  }
+  http.createServer(function (req, res) {
+      res.writeHead(301, { "Location": "https://" + req.headers['host'].replace(/^www\./, '') + req.url.replace(/^www\./, '') })
+      res.end()
+  }).listen(80)
+  https.createServer(options, app).listen(443)
+}
+else {
+  app.listen(PORT, function(error) {
+    return (
+      error
+        ? console.error(error)
+        : console.info(`Listening on port ${PORT}. Visit http://localhost:${PORT}/ in your browser.`)
+    )
+  })
+}
