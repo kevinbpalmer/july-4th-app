@@ -222,7 +222,7 @@ class SingleDish extends Component {
         <TextInput
           inputName='other'
           value={subDish.otherVal}
-          placeholder='Other Dish'
+          placeholder='Write details here...'
           updateForm={this.handleOtherVal}
         />
       )

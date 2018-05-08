@@ -32,7 +32,7 @@ db.query('SELECT 1 + 1 AS solution', function (err, rows, fields) {
     throw err
   }
   else {
-    console.log('DB connected')
+    process.env.DEBUG && console.log('DB connected')
   }
 })
 
