@@ -35,37 +35,7 @@ class SingleDish extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const {value, subDish} = this.state
-
     this.setValue()
-  }
-
-  getCount = name => {
-    const {dishCounts} = this.props
-    const maxCounts = {
-      veggieTray: 6,
-      fruitTray: 6,
-      chipsAndDip: 6,
-      fingerSandwiches: 5,
-      meat: 5
-    }
-    process.env.DEBUG && console.log('NAME: ', name, dishCounts)
-
-    const returnCountText = num => {
-      return `- ${num}`
-    }
-
-    if (!dishCounts || dishCounts.length < 1) {
-      return
-    }
-
-    if (dishCounts.hasOwnProperty(name)) {
-      let count = dishCounts[name]
-      process.env.DEBUG && console.log('YESSSSS: ', count);
-      return returnCountText(count)
-    }
-
-    return null
   }
 
   getArray = (categoryName) => {
