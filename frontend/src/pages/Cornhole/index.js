@@ -222,10 +222,10 @@ class Cornhole extends Component {
                   errors={errors}
                   />
                 </div>}
-                {partner === 'no' &&
-                <div className='col-12 form-row'>
-                  <h4 className='partner-text'> You will be paired up with a partner at the event!</h4>
-                </div>}
+              {partner === 'false' &&
+              <div className='col-12 form-row'>
+                <p style={{ paddingLeft: '.75rem' }} className='partner-text'>You will be paired up with a partner at the event!</p>
+              </div>}
             <div className='col-12 form-row'>
               <TextInput
                 inputName='boards'

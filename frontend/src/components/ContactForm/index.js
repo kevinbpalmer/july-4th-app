@@ -135,7 +135,7 @@ class ContactForm extends Component {
         <SuccessBlock
           resetForm={this.resetForm}
           btnText='Send another message?'
-          successMessage='We got your message! We will get in contact with (if necessary) as soon as possible. Thank you!'
+          successMessage='We got your message! We contact you as soon as possible. Thank you!'
         />
       )
     }

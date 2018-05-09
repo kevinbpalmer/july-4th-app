@@ -8,7 +8,6 @@ import {withRouter} from 'react-router-dom'
 
 // components
 import TextInput from 'components/TextInput'
-import SelectInput from 'components/SelectInput'
 import Attending from 'components/Attending'
 import SuccessBlock from 'components/SuccessBlock'
 import ErrorBlock from 'components/ErrorBlock'

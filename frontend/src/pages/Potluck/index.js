@@ -26,8 +26,7 @@ class Potluck extends Component {
     success: false,
     error: false,
     errorMessage: undefined,
-    dbDishes: undefined,
-    dishCounts: undefined
+    dbDishes: undefined
   }
 
   componentDidMount() {
@@ -39,40 +38,14 @@ class Potluck extends Component {
     axios
     .get('/api/v1/potluck')
     .then(res => {
+      console.log('RES: ', res.data[0])
       this.setState({
-        dbDishes: res.data
+        dbDishes: res.data[0]
       })
       this.getCurrentCategoryCount(res.data)
     })
     .catch(err => {
       process.env.DEBUG && console.error('Error fetching dishes from DB: ', err)
-    })
-  }
-
-  getCurrentCategoryCount = (dbDishes) => {
-    const {dishCounts} = this.state
-
-    if (!dbDishes || dbDishes.length < 1) {
-      process.env.DEBUG && console.log('No dishes in database!')
-      return
-    }
-
-    let counts = {}
-    dbDishes.map((item, index) => {
-      let category = item.category.replace(/\s+/g, '')
-      let type = item.type.replace(/\s+/g, '')
-
-      if (counts.hasOwnProperty(type)) {
-        counts[type] = counts[type] + 1
-      }
-      else {
-        Object.assign(counts, {
-          [type]: 1
-        })
-      }
-    })
-    this.setState({
-      dishCounts: counts
     })
   }
 

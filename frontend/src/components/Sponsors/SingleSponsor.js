@@ -8,6 +8,7 @@ const SingleSponsor = ({logo, name, company, url}) => {
           <img
             className='img-fluid single-sponsor-logo'
             src={logo}
+            alt={`${company} - sponsor logo`}
           />
         </a>}
       {name && <p>{name}</p>}

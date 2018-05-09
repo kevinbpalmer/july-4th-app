@@ -9,6 +9,8 @@ import tomSmith from './logos/tom-smith.jpg'
 import allStar from './logos/allstar.jpg'
 import propertySolutions from './logos/property-solutions.png'
 import johnJones from './logos/john-jones.jpg'
+import vannGo from './logos/vanngo_logo.jpg'
+import jcMechanical from './logos/jc_mechanical_logo.jpg'
 
 // stylesheet
 import './styles.sass'
@@ -48,6 +50,18 @@ const Sponsors = () => {
           name='John Jones, Owner'
           company='John Jones Real Estate, LLC'
           url='Murfreesborohomesonline.com'
+        />
+        <SingleSponsor
+          logo={jcMechanical}
+          name='Jeremy and Amanda Lipetri'
+          company='JC Mechanical'
+          url='murfreesborotnheatingandair.com'
+        />
+        <SingleSponsor
+          logo={vannGo}
+          name='Damian and Lisa Baker'
+          company='VannGo'
+          url='GoVannGo.com'
         />
       </div>
       <NavLink className='btn btn-default btn-form' to='/contact'>

@@ -29,7 +29,7 @@ const Timeline = () => {
       />
       <SingleTimelineItem
         time='TBA'
-        name={['Magician']}
+        name={['Magician - Magic of Matt']}
       />
       <SingleTimelineItem
         time='TBA'
@@ -56,7 +56,7 @@ const Timeline = () => {
         link='/potluck'
       />
       <SingleTimelineItem
-        time='6:00PM - 11:30PM'
+        time='6:00PM - 11:15PM'
         name={['Live Band']}
       />
       <SingleTimelineItem

@@ -59,9 +59,9 @@ class EventDetails extends Component {
             </p>
           </div>
           <div className='single-event'>
-            <h4>Live Band - Janine LeClair Entertainment</h4>
+            <h4>Live Band - Janine Le Clair and Band</h4>
             <p className='time'>
-              6:00 pm - 11:30 pm
+              6:00 pm - 11:15 pm
             </p>
 
             <p>

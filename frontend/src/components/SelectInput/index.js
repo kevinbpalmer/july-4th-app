@@ -19,7 +19,7 @@ class SelectInput extends Component {
   }
 
   renderOptions = () => {
-    const {options, optionCounts} = this.props
+    const {options} = this.props
 
     const listItems = options.map((item) => {
       return item
@@ -38,6 +38,9 @@ class SelectInput extends Component {
       }
       else if (item.count > 0) {
         return <option key={index} value={item.value}>{item.label} {item.count && `- ${item.count} ${item.count === 1 ? 'Slot' : 'Slots'} Left`}</option>
+      }
+      else {
+        return null
       }
     })
 

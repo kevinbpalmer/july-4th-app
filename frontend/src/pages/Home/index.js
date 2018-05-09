@@ -4,7 +4,6 @@ import ReactGA from 'react-ga'
 
 // components
 import EventDetails from 'components/EventDetails'
-import ContactForm from 'components/ContactForm'
 import Sponsors from 'components/Sponsors'
 
 // style(s)

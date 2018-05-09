@@ -119,7 +119,7 @@ class StripeForm extends Component {
   }
 
   resetForm = () => {
-    const {resetForm, history} = this.props
+    const {resetForm} = this.props
 
     this.setState({
       loading: false,

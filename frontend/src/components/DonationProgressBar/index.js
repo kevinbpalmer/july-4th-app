@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import axios from 'axios'
 
 // styles
@@ -53,8 +52,12 @@ class DonationProgressBar extends Component {
           <h4>${amount}</h4> <span>/</span> <h4>$8500</h4> <span>Raised</span>
         </div>
         <div className='progress'>
-          <div className='progress-bar' role='progressbar' aria-valuenow={`${percentage}`}
-            aria-valuemin='0' aria-valuemax='100' style={{
+          <div
+            className='progress-bar'
+            role='progressbar'
+            aria-valuenow={`${percentage}`}
+            aria-valuemin='0' aria-valuemax='100'
+            style={{
               width: `${percentage}%`,
               backgroundColor: '#00203B'
             }}>
@@ -63,10 +66,6 @@ class DonationProgressBar extends Component {
       </div>
     )
   }
-}
-
-DonationProgressBar.propTypes = {
-  // proptypes go here
 }
 
 export default DonationProgressBar
