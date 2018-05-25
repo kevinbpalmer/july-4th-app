@@ -409,12 +409,12 @@
       .childpage-hero .hero-content-container .hero-title {
         padding-bottom: 0; } }
 html {
-  font-family: "Coming Soon", cursive, sans-serif;
+  font-family: "Coming Soon", "Open Sans", sans-serif;
   font-size: 16px;
   line-height: 18px;
   background: #f2f2f2; }
   html body {
-    font-family: "Coming Soon", cursive, sans-serif;
+    font-family: "Coming Soon", "Open Sans", sans-serif;
     margin: 0; }
     html body .hide-tablet {
       display: none; }
@@ -507,4 +507,4 @@ html {
         background: rgba(255, 255, 255, 0.75);
         color: rgba(0, 0, 0, 0.75); }
 
-/*# sourceMappingURL=main.ee7cf594.css.map*/
+/*# sourceMappingURL=main.b2283733.css.map*/

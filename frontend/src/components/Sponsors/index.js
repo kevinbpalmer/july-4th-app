@@ -11,6 +11,7 @@ import propertySolutions from './logos/property-solutions.png'
 import johnJones from './logos/john-jones.jpg'
 import vannGo from './logos/vanngo_logo.jpg'
 import jcMechanical from './logos/jc_mechanical_logo.jpg'
+import topOfTheLine from './logos/topofthelinelandscape_logo.jpg'
 
 // stylesheet
 import './styles.sass'
@@ -62,6 +63,12 @@ const Sponsors = () => {
           name='Damian and Lisa Baker'
           company='VannGo'
           url='GoVannGo.com'
+        />
+        <SingleSponsor
+          logo={topOfTheLine}
+          name='Chris Brown'
+          company='Top of the Line Landscape'
+          url='topofthelinelandscape.com'
         />
       </div>
       <NavLink className='btn btn-default btn-form' to='/contact'>
