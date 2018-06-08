@@ -30,7 +30,7 @@ class SelectInput extends Component {
 
   renderCountOptions = () => {
     const {countOptions} = this.props
-    console.log('countOptions: ', countOptions)
+    process.env.DEBUG && console.log('countOptions: ', countOptions)
 
     const options = countOptions.map((item, index) => {
       if (item.placeholder === true) {

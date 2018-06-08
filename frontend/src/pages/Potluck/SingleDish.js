@@ -224,7 +224,6 @@ class SingleDish extends Component {
   }
 
   renderInfo = value => {
-    console.log('RENDERINFO', value);
     switch (value) {
       case 'appetizer':
         return <label>1 appetizer = 20-30 small servings, 1 tray, etc.</label>

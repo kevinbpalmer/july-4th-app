@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import {connect} from 'react-redux'
+
+// actions
+import {updateProgressBar} from 'actions/donate'
 
 // styles
 import './styles.sass'
@@ -16,23 +20,32 @@ class DonationProgressBar extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const {amount} = this.state
+    const {shouldUpdateProgressBar} = this.props
 
     if (prevState.amount !== amount) {
       this.setState({
         percentage: ((amount/8000)*100).toFixed(2)
       })
     }
+
+    if (shouldUpdateProgressBar === true) {
+      this.fetchAmount()
+    }
   }
 
   fetchAmount = () => {
+    const {updateProgressBar} = this.props;
+
     axios.get('/api/v1/payment')
     .then(res => {
       process.env.DEBUG && console.log('Got amounts back: ', res)
       this.setState({
         amount: res.data.dollar_amount
       })
+      updateProgressBar(false)
     })
     .catch(err => {
+      updateProgressBar(false)
       process.env.DEBUG && console.error('Failed to fetch amount', err)
     })
   }
@@ -66,4 +79,12 @@ class DonationProgressBar extends Component {
   }
 }
 
-export default DonationProgressBar
+const mapStateToProps = store => ({
+  shouldUpdateProgressBar: store.donate.shouldUpdateProgressBar
+})
+
+const mapDispatchToProps = {
+  updateProgressBar
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DonationProgressBar)

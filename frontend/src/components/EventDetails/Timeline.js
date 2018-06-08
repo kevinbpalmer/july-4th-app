@@ -30,6 +30,9 @@ const Timeline = () => {
       <SingleTimelineItem
         time='TBA'
         name={['Magician - Magic of Matt']}
+        clickable={true}
+        external={true}
+        link='//facebook.com/Magic-of-Matt-1547442255569881/'
       />
       <SingleTimelineItem
         time='TBA'

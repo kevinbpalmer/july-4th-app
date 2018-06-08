@@ -15,10 +15,15 @@ const renderEvents = arrayOfEvents => {
 }
 
 
-const SingleTimelineItem = ({time, name, clickable, link, id}) => {
+const SingleTimelineItem = ({time, name, clickable, link, id, external}) => {
   return (
     <div className='single-item'>
-      {clickable === true &&
+      {clickable === true && external === true &&
+        <p className='event-name'>
+          <a href={link} target="_blank">{renderEvents(name)}</a>
+        </p>
+      }
+      {clickable === true && !external &&
         <p className='event-name'>
           <Link to={link}>{renderEvents(name)}</Link>
         </p>
@@ -30,7 +35,7 @@ const SingleTimelineItem = ({time, name, clickable, link, id}) => {
       }
 
       <p className='time'>{time}</p>
-      
+
     </div>
   )
 }

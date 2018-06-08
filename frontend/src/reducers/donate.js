@@ -4,6 +4,7 @@ const initialState = {
   firstName: '',
   lastName: '',
   amount: '',
+  shouldUpdateProgressBar: false,
   errors: {}
 }
 
@@ -22,6 +23,14 @@ const donate = (state = initialState, action) => {
       return {
         ...state,
         errors: action.payload
+      }
+    }
+
+    case constants.UPDATE_PROGRESS_BAR: {
+
+      return {
+        ...state,
+        shouldUpdateProgressBar: action.payload
       }
     }
     default:

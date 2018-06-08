@@ -11,7 +11,7 @@ import LoadingSpinner from 'components/LoadingSpinner'
 import SuccessBlock from 'components/SuccessBlock'
 
 // actions
-import {updateForm, updateErrors, resetForm} from 'actions/donate'
+import {updateForm, updateErrors, resetForm, updateProgressBar} from 'actions/donate'
 
 // validation rules
 import {rules, customMessages} from './rules'
@@ -25,7 +25,7 @@ class StripeForm extends Component {
   }
 
   handleSubmit = e => {
-    const {firstName, lastName, updateErrors, amount, stripe} = this.props
+    const {firstName, lastName, updateErrors, amount, stripe, updateProgressBar} = this.props
     e.preventDefault()
 
     let validation = new Validator({firstName, lastName, amount}, rules, customMessages)
@@ -55,6 +55,7 @@ class StripeForm extends Component {
               error: false,
               errorMessage: undefined
             })
+            updateProgressBar(true)
           })
           .catch(err => {
             process.env.DEBUG && console.error('ERROR: ', err.message)
@@ -230,7 +231,8 @@ class StripeForm extends Component {
     const mapDispatchToProps = {
       updateForm,
       updateErrors,
-      resetForm
+      resetForm,
+      updateProgressBar
     }
 
     export default injectStripe(connect(mapStateToProps, mapDispatchToProps)(StripeForm))

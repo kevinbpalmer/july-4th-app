@@ -38,7 +38,7 @@ class Potluck extends Component {
     axios
     .get('/api/v1/potluck')
     .then(res => {
-      console.log('RES: ', res.data[0])
+      process.env.DEBUG && console.log('RES: ', res.data[0])
       this.setState({
         dbDishes: res.data[0]
       })

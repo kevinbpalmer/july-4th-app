@@ -17,3 +17,8 @@ export const updateErrors = errors => ({
 export const resetForm = () => ({
   type: RESET_FORM
 })
+
+export const updateProgressBar = bool => ({
+    type: constants.UPDATE_PROGRESS_BAR,
+    payload: bool
+})
