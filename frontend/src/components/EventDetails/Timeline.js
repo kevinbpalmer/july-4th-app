@@ -29,13 +29,6 @@ const Timeline = () => {
       />
       <SingleTimelineItem
         time='TBA'
-        name={['Magician - Magic of Matt']}
-        clickable={true}
-        external={true}
-        link='//facebook.com/Magic-of-Matt-1547442255569881/'
-      />
-      <SingleTimelineItem
-        time='TBA'
         name={['Kid Activity']}
       />
       <SingleTimelineItem
@@ -47,6 +40,13 @@ const Timeline = () => {
         name={['Cornhole Tournament']}
         clickable={true}
         link='/cornhole'
+      />
+      <SingleTimelineItem
+        time='2:00PM'
+        name={['Magician - Magic of Matt']}
+        clickable={true}
+        external={true}
+        link='//facebook.com/Magic-of-Matt-1547442255569881/'
       />
       <SingleTimelineItem
         time='3:30PM'

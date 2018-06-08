@@ -12,6 +12,8 @@ import johnJones from './logos/john-jones.jpg'
 import vannGo from './logos/vanngo_logo.jpg'
 import jcMechanical from './logos/jc_mechanical_logo.jpg'
 import topOfTheLine from './logos/topofthelinelandscape_logo.jpg'
+import cbiz from './logos/cbiz_logo.png'
+import golfCart from './logos/golfcarts_logo.jpg'
 
 // stylesheet
 import './styles.sass'
@@ -69,6 +71,18 @@ const Sponsors = () => {
           name='Chris Brown'
           company='Top of the Line Landscape'
           url='topofthelinelandscape.com'
+        />
+        <SingleSponsor
+          logo={cbiz}
+          name='Jon Chaney'
+          company='CBIZ Employee Services Organization'
+          url='cbiz.com/about-us/employees/employee/eid/2015/name/jon_chaney'
+        />
+        <SingleSponsor
+          logo={golfCart}
+          name='John Phillips'
+          company='Golf Carts Fore Less'
+          url='golfcartsforeless.com/'
         />
       </div>
       <NavLink className='btn btn-default btn-form' to='/contact'>
