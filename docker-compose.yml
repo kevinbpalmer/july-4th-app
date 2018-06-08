@@ -1,0 +1,28 @@
+version: '3.1'
+
+services:
+    mysql:
+      container_name: mysql
+      image: mysql:5.7
+      restart: always
+      volumes:
+        - /var/lib/mysql
+      ports:
+        - 3306:3306
+      environment:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: harvest_db
+          MYSQL_USER: harvest_db
+          MYSQL_PASSWORD: dev
+
+    phpmyadmin:
+      container_name: phpmyadmin
+      links:
+        - mysql
+      image: phpmyadmin/phpmyadmin
+      restart: always
+      ports:
+        - 8080:80
+      environment:
+        PMA_HOST: mysql
+        MYSQL_ROOT_PASSWORD: dev

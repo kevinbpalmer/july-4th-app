@@ -223,6 +223,29 @@ class SingleDish extends Component {
     updatePotluckDishes(potluckDishes)
   }
 
+  renderInfo = value => {
+    console.log('RENDERINFO', value);
+    switch (value) {
+      case 'appetizer':
+        return <label>1 appetizer = 20-30 small servings, 1 tray, etc.</label>
+        break;
+      case 'sideDish':
+        return <label>1 side dish = 15 - 20 cups, 9” x 13” pan, 5-quart crock-pot, etc.</label>
+        break;
+      case 'dessert':
+        return <label>1 dessert = 1 cake/pie, 2-dozen cookies, 9” x 13” pan, etc.</label>
+        break;
+      case 'drinks':
+        return <label>1 drink = 12-pack CANS or 1-gallon <br /> PLEASE DROP BEVERAGES OFF PRIOR TO EVENT DAY (A reminder will be sent out)</label>
+        break;
+      case 'other':
+        return <label>PLEASE DROP OFF PRIOR TO EVENT DAY (A reminder will be sent out)</label>
+        break;
+      default:
+        return null
+    }
+  }
+
   render() {
     const {value} = this.state
     const {errors, index} = this.props
@@ -230,6 +253,7 @@ class SingleDish extends Component {
     return (
       <div className='dish-wrapper'>
         <div className='dish-container form-row'>
+          {value && this.renderInfo(value)}
           <SelectInput
             inputName={`dish-${index}`}
             updateForm={this.updateDish}

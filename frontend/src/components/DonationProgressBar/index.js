@@ -19,23 +19,21 @@ class DonationProgressBar extends Component {
 
     if (prevState.amount !== amount) {
       this.setState({
-        percentage: ((amount/8500)*100).toFixed(2)
+        percentage: ((amount/8000)*100).toFixed(2)
       })
     }
   }
 
   fetchAmount = () => {
-    return new Promise((resolve, reject) => {
-      axios.get('/api/v1/payment')
-      .then(res => {
-        process.env.DEBUG && console.log('Got amounts back: ', res)
-        this.setState({
-          amount: res.data.dollar_amount
-        })
+    axios.get('/api/v1/payment')
+    .then(res => {
+      process.env.DEBUG && console.log('Got amounts back: ', res)
+      this.setState({
+        amount: res.data.dollar_amount
       })
-      .catch(err => {
-        process.env.DEBUG && console.error('Failed to fetch amount', err)
-      })
+    })
+    .catch(err => {
+      process.env.DEBUG && console.error('Failed to fetch amount', err)
     })
   }
 
@@ -49,7 +47,7 @@ class DonationProgressBar extends Component {
     return (
       <div  className='progressbar-container'>
         <div style={{ color: this.props.textColor ? this.props.textColor : '#fff' }} className='amount-wrapper'>
-          <h4>${amount}</h4> <span>/</span> <h4>$8500</h4> <span>Raised</span>
+          <h4>${amount}</h4> <span>/</span> <h4>$8000</h4> <span>Raised</span>
         </div>
         <div className='progress'>
           <div

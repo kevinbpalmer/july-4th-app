@@ -60,6 +60,10 @@ const Timeline = () => {
         name={['Live Band']}
       />
       <SingleTimelineItem
+        time='7:00PM - 9:00PM'
+        name={['Photo Booth']}
+      />
+      <SingleTimelineItem
         time='7:45PM'
         name={['Giveaway']}
       />

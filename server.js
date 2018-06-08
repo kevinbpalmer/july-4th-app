@@ -9,12 +9,19 @@ const PORT = process.env.PORT || 8000
 const expressSanitized = require('express-sanitize-escape')
 const db = require('./db.js')
 const http = require('http')
-// const helmet = require('helmet')
+
+const apiPrefix = '/api/v1'
+// controllers
+const rsvp = require('./controllers/rsvp')
+const payment = require('./controllers/payment')
+const potluck = require('./controllers/potluck')
+const cornhole = require('./controllers/cornhole')
+const volunteer = require('./controllers/volunteer')
+const contact = require('./controllers/contact')
 
 // logging
 const morgan = require('morgan')
 const winston = require('./winston')
-
 const app = express()
 
 // app.use(helmet())
@@ -36,16 +43,7 @@ db.query('SELECT 1 + 1 AS solution', function (err, rows, fields) {
   }
 })
 
-const apiPrefix = '/api/v1'
-
-// controllers
-const rsvp = require('./controllers/rsvp')
-const payment = require('./controllers/payment')
-const potluck = require('./controllers/potluck')
-const cornhole = require('./controllers/cornhole')
-const volunteer = require('./controllers/volunteer')
-const contact = require('./controllers/contact')
-
+// routes
 app.use(apiPrefix + '/rsvp', rsvp)
 app.use(apiPrefix + '/payment', payment)
 app.use(apiPrefix + '/potluck', potluck)
