@@ -22,18 +22,6 @@ import {rules, customMessages} from './rules'
 //stylesheet (s)
 import './styles.sass'
 
-//SelectInput options array
-const volunteerOptions = [
-  <option key={0} value=''>Select A Committee</option>,
-  <option key={7} value='Parade'>Parade Committee</option>,
-  <option key={1} value='Name Tag'>Name Tag Committee</option>,
-  <option key={2} value='Cornhole'>Cornhole Coordinator</option>,
-  <option key={3} value='Potluck'>Potluck Committee</option>,
-  <option key={4} value='Fireworks-Friday'>Firework Committee - Friday</option>,
-  <option key={5} value='Fireworks-Saturday'>Firework Committee - Saturday</option>,
-  <option key={6} value='Clean Up'>Clean Up Committee</option>
-]
-
 class Volunteers extends Component {
   state = {
     loading: false,
@@ -51,7 +39,9 @@ class Volunteers extends Component {
   fetchCountsOfSlots = () => {
     axios.get('/api/v1/volunteer')
     .then(res => {
+      console.log(res);
       const counts = res.data.length && res.data[0]
+
       const volunteerOptions2 = [
         {
           label: 'Select A Committee',
@@ -181,65 +171,6 @@ class Volunteers extends Component {
     this.fetchCountsOfSlots()
   }
 
-  renderCommitteeDescription = () => {
-    const {volunteerType} = this.props
-
-    if (volunteerType === 'Name Tag') {
-      return (
-        <div
-          style={{
-            paddingTop: '.5rem'
-          }}>
-          <p>Pass out name tags to each guest at event.</p>
-        </div>
-      )
-    }
-    if (volunteerType === 'Cornhole') {
-      return (
-        <div
-          style={{
-            paddingTop: '.5rem'
-          }}>
-          <p>Ensure cornole boards are regulation and spaced at regulation, collect prize money from each team/team member, organize and track winner & loser bracket, match up players without a teammate, award prize to 1st & 2nd place.</p>
-        </div>
-      )
-    }
-    if (volunteerType === 'Potluck') {
-      return (
-        <div
-          style={{
-            paddingTop: '.5rem'
-          }}>
-          <p>Serve guests cafeteria style to control portions (mainly protein) and for sanitary purposes, organize dishes by course, label food dishes if needed, ensure owner’s name is on dish.</p>
-          <p>(Committee members will set aside a plate of food prior to serving guests to eat after serving food)</p>
-        </div>
-      )
-    }
-    if (volunteerType === 'Fireworks') {
-      return (
-        <div
-          style={{
-            paddingTop: '.5rem'
-          }}>
-          <p>Friday - prep, fuse, and organize fireworks to prepare for the show the following day. Dinner will be provided.</p>
-          <p>Saturday - organize fireworks prior to show, follow instructions from lead person, light fireworks during show, etc.</p>
-
-          <p>Must be 12 years and older to assist and able to follow strict safety instructions.</p>
-        </div>
-      )
-    }
-    if (volunteerType === 'Clean Up') {
-      return (
-        <div
-          style={{
-            paddingTop: '.5rem'
-          }}>
-          <p>Clean up morning after event - collect firework debri and event trash, load/haul off trash, stack chairs & tables, etc.</p>
-        </div>
-      )
-    }
-  }
-
   render() {
     const {
       firstName,
@@ -345,7 +276,7 @@ class Volunteers extends Component {
                 inputName='volunteerType'
                 countOptions={countOptions}
                 value={volunteerType}
-                options={volunteerOptions}
+                options={[]}
                 updateForm={this.onChange}
                 errors={errors}
                 onChange={this.onInputChange}

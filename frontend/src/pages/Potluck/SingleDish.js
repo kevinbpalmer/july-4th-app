@@ -32,50 +32,204 @@ class SingleDish extends Component {
 
   componentDidMount() {
     this.setValue()
+    console.log(this.props);
   }
 
   componentDidUpdate(prevProps, prevState) {
     this.setValue()
   }
 
-  getArray = (categoryName) => {
+  getArray = categoryName => {
+    const {dbDishes} = this.props
+
     const appetizerOptions = [
-      <option key={0} value=''>Select Appetizer</option>,
-      <option key={1} value='veggieTray'>Veggie tray</option>,
-      <option key={2} value='fruitTray'>Fruit Tray</option>,
-      <option key={3} value='chipsAndDip'>Chips/Crackers &amp; Dip</option>,
-      <option key={4} value='fingerSandwiches'>Finger Sandwiches</option>,
-      <option key={5} value='meat'>Meat (Bite-sized sausage, bacon wrapped meat, etc.)</option>,
-      <option key={6} value='other'>Other</option>
+      {
+        label: 'Select Appetizer',
+        value: '',
+        count: undefined,
+        placeholder: true
+      },
+      {
+        label: 'Veggie Tray',
+        value: 'veggieTray',
+        count: (7 - dbDishes['veggieTray'])
+      },
+      {
+        label: 'Fruit Tray',
+        value: 'fruitTray',
+        count: (7 - dbDishes['fruitTray'])
+      },
+      {
+        label: 'Chips/Crackers & Dip',
+        value: 'chipsAndDip',
+        count: (7 - dbDishes['chipsAndDip'])
+      },
+      {
+        label: 'Finger Sandwiches',
+        value: 'fingerSandwiches',
+        count: (7 - dbDishes['fingerSandwiches'])
+      },
+      {
+        label: 'Meat (Bite-sized sausage, bacon wrapped meat, etc.)',
+        value: 'meat',
+        count: (6 - dbDishes['meat'])
+      },
+      {
+        label: 'Other',
+        value: 'other',
+        count: (5 - dbDishes['other_appetizer'])
+      }
     ]
 
     const sideDishOptions = [
-      <option key={0} value=''>Select sideDish</option>,
-      <option key={1} value='macaroniAndCheese'>Macaroni &amp; Cheese</option>,
-      <option key={2} value='bakedBeans'>Baked Beans</option>,
-      <option key={3} value='potatoDish'>Potato Dish (Cheesy potatoes, hash brown casserole, potato salad, etc.) </option>,
-      <option key={4} value='salad'>Salad (Fruit, pasta, macaroni, etc.)</option>,
-      <option key={5} value='coleslaw'>Coleslaw</option>,
-      <option key={6} value='other'>Other</option>
+      {
+        label: 'Select Side-Dish',
+        value: '',
+        count: undefined,
+        placeholder: true
+      },
+      {
+        label: 'Macaroni And Cheese',
+        value: 'macaroniAndCheese',
+        count: (14 - dbDishes['macaroniAndCheese'])
+      },
+      {
+        label: 'Baked Beans',
+        value: 'bakedBeans',
+        count: (14 - dbDishes['bakedBeans'])
+      },
+      {
+        label: 'Potato Dish (Cheesy potatoes, hash brown casserole, potato salad, etc.)',
+        value: 'potatoDish',
+        count: (14 - dbDishes['potatoDish'])
+      },
+      {
+        label: 'Salad (Fruit, pasta, macaroni, etc.)',
+        value: 'salad',
+        count: (14 - dbDishes['salad'])
+      },
+      {
+        label: 'Coleslaw',
+        value: 'coleslaw',
+        count: (8 - dbDishes['coleslaw'])
+      },
+      {
+        label: 'Other',
+        value: 'other',
+        count: (5 - dbDishes['other_side_dish'])
+      }
     ]
 
     const dessertOptions = [
-      <option key={0} value=''>Select Dessert</option>,
-      <option key={1} value='cake'>Cake</option>,
-      <option key={2} value='brownies'>Brownies</option>,
-      <option key={3} value='cookies'>Cookies</option>,
-      <option key={4} value='salad'>Pie</option>,
-      <option key={5} value='other'>Other</option>
+      {
+        label: 'Select Dessert',
+        value: '',
+        count: undefined,
+        placeholder: true
+      },
+      {
+        label: 'Cake',
+        value: 'cake',
+        count: (6 - dbDishes['cake'])
+      },
+      {
+        label: 'Brownies',
+        value: 'brownies',
+        count: (8 - dbDishes['brownies'])
+      },
+      {
+        label: 'Cookies',
+        value: 'cookies',
+        count: (8 - dbDishes['cookies'])
+      },
+      {
+        label: 'Pie',
+        value: 'pie',
+        count: (6 - dbDishes['pie'])
+      },
+      {
+        label: 'Other',
+        value: 'other',
+        count: (8 - dbDishes['other_dessert'])
+      }
     ]
 
     const drinkOptions = [
-      <option key={0} value=''>Select Drink</option>,
-      <option key={1} value='coke/Pepsi'>Coke/Pepsi</option>,
-      <option key={2} value='dietCoke'>Diet Coke</option>,
-      <option key={3} value='drPepper'>Dr. Pepper</option>,
-      <option key={4} value='juice'>Juice</option>,
-      <option key={5} value='tea'>Tea</option>,
-      <option key={6} value='other'>Other</option>
+      {
+        label: 'Select Drink',
+        value: '',
+        count: undefined,
+        placeholder: true
+      },
+      {
+        label: 'Coke/Pepsi',
+        value: 'coke/Pepsi',
+        count: (9 - dbDishes['coke_pepsi'])
+      },
+      {
+        label: 'Sprite',
+        value: 'sprite',
+        count: (9 - dbDishes['sprite'])
+      },
+      {
+        label: 'Diet Coke',
+        value: 'dietCoke',
+        count: (8 - dbDishes['dietCoke'])
+      },
+      {
+        label: 'Dr. Pepper',
+        value: 'drPepper',
+        count: (9 - dbDishes['drPepper'])
+      },
+      {
+        label: 'Juice',
+        value: 'juice',
+        count: (5 - dbDishes['juice'])
+      },
+      {
+        label: 'Tea',
+        value: 'tea',
+        count: (6 - dbDishes['tea'])
+      },
+      {
+        label: 'Other',
+        value: 'other',
+        count: (4 - dbDishes['other_drinks'])
+      }
+    ]
+
+    const otherOptions = [
+      {
+        label: 'Select Option',
+        value: '',
+        count: undefined,
+        placeholder: true
+      },
+      {
+        label: 'Patriotic Napkins',
+        value: 'napkins',
+        count: (9 - dbDishes['napkins'])
+      },
+      {
+        label: 'Solo Cups (Member’s Mark Red Cups 18 oz - 252 count from Sam’s Club)',
+        value: 'soloCups',
+        count: (3 - dbDishes['soloCups'])
+      },
+      {
+        label: 'Plastic Forks (Member’s Mark White Forks from Sam’s Club - 600 count)',
+        value: 'plasticForks',
+        count: (2 - dbDishes['plasticForks'])
+      },
+      {
+        label: 'Plastic Spoons (Member’s Mark White Spoons from Sam’s Club - 600 count)',
+        value: 'plasticSpoons',
+        count: (1 - dbDishes['plasticSpoons'])
+      },
+      {
+        label: '3-Section Foam Plates (Hefty Supreme from Sam’s Club - 200 count)',
+        value: 'threeSectionPlates',
+        count: (6 - dbDishes['threeSectionPlates'])
+      }
     ]
 
     switch (categoryName) {
@@ -93,6 +247,9 @@ class SingleDish extends Component {
         break;
       case 'drinks':
         return drinkOptions
+        break;
+      case 'other':
+        return otherOptions
         break;
       default:
         return []
@@ -169,13 +326,14 @@ class SingleDish extends Component {
     const {value} = this.state
     const {errors, dishCounts} = this.props
 
-    if (value && value !== 'other') {
+    if (value) {
       return (
         <div className='form-row'>
           <SelectInput
             inputName={value}
             updateForm={this.handleSubDish}
-            options={this.getArray(value)}
+            countOptions={this.getArray(value)}
+            options={[]}
             errors={errors}
             optionCounts={dishCounts}
           />
@@ -187,7 +345,7 @@ class SingleDish extends Component {
   renderOtherField = () => {
     const {value, subDish} = this.state
 
-    if (value === 'other' || (subDish && subDish.value === 'other')) {
+    if (subDish && subDish.value === 'other') {
       return (
         <TextInput
           inputName='other'

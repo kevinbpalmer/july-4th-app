@@ -81,7 +81,7 @@ class Rsvp extends Component {
 
       axios.post('/api/v1/rsvp', data)
       .then(res => {
-        process.env.DEBUG && console.log('RSVPD SUCCESSFULLY! ', res)
+        process.env.REACT_APP_DEBUG && console.log('RSVPD SUCCESSFULLY! ', res)
         this.setState({
           loading: false,
           success: true,
@@ -90,7 +90,7 @@ class Rsvp extends Component {
         })
       })
       .catch(err => {
-        process.env.DEBUG && console.error('RSVP FAIL! ', err)
+        process.env.REACT_APP_DEBUG && console.error('RSVP FAIL! ', err)
         this.setState({
           loading: false,
           success: false,

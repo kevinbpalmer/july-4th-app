@@ -30,7 +30,7 @@ class SelectInput extends Component {
 
   renderCountOptions = () => {
     const {countOptions} = this.props
-    process.env.DEBUG && console.log('countOptions: ', countOptions)
+    process.env.REACT_APP_DEBUG && console.log('countOptions: ', countOptions)
 
     const options = countOptions.map((item, index) => {
       if (item.placeholder === true) {
@@ -39,8 +39,11 @@ class SelectInput extends Component {
       else if (item.count > 0) {
         return <option key={index} value={item.value}>{item.label} {item.count && `- ${item.count} ${item.count === 1 ? 'Slot' : 'Slots'} Left`}</option>
       }
-      else {
+      else if (item.count < 1) {
         return null
+      }
+      else {
+        return <option key={index} value={item.value}>{item.label}</option>
       }
     })
 

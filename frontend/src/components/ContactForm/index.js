@@ -66,7 +66,7 @@ class ContactForm extends Component {
           error: false,
           errorMessage: undefined
         })
-      process.env.DEBUG && console.log('Successfully sent a message: ', res)
+      process.env.REACT_APP_DEBUG && console.log('Successfully sent a message: ', res)
       })
       .catch(err => {
         this.setState({
@@ -76,7 +76,7 @@ class ContactForm extends Component {
           errorMessage: undefined,
           showText: true
         })
-      process.env.DEBUG && console.error('Failed to send a message: ', err)
+      process.env.REACT_APP_DEBUG && console.error('Failed to send a message: ', err)
       })
     }
   }

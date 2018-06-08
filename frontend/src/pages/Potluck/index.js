@@ -38,14 +38,13 @@ class Potluck extends Component {
     axios
     .get('/api/v1/potluck')
     .then(res => {
-      process.env.DEBUG && console.log('RES: ', res.data[0])
+      const counts = res.data.length && res.data[0]
       this.setState({
-        dbDishes: res.data[0]
+        dbDishes: counts
       })
-      this.getCurrentCategoryCount(res.data)
     })
     .catch(err => {
-      process.env.DEBUG && console.error('Error fetching dishes from DB: ', err)
+      process.env.REACT_APP_DEBUG && console.error('Error fetching dishes from DB: ', err)
     })
   }
 
@@ -58,12 +57,13 @@ class Potluck extends Component {
 
   renderDishes = () => {
     const {updatePotluckDishes, errors, potluckDishes} = this.props
-    const {dishesNum, dishCounts} = this.state
+    const {dishesNum, dishCounts, dbDishes} = this.state
 
     const renderedDishes = dishesNum.map((item, index) => {
       return (
         <div key={index} className='col-12 form-row'>
           <SingleDish
+            dbDishes={dbDishes}
             index={index}
             updatePotluckDishes={updatePotluckDishes}
             removeDish={this.removeDish}
@@ -122,7 +122,7 @@ class Potluck extends Component {
           error: false,
           errorMessage: undefined
         })
-        process.env.DEBUG && console.log('Potluck success! ', res)
+        process.env.REACT_APP_DEBUG && console.log('Potluck success! ', res)
       })
       .catch(err => {
         this.setState({
@@ -131,7 +131,7 @@ class Potluck extends Component {
           error: true,
           errorMessage: undefined
         })
-        process.env.DEBUG && console.error('Potluck fail! ', err)
+        process.env.REACT_APP_DEBUG && console.error('Potluck fail! ', err)
       })
     }
   }
@@ -256,7 +256,7 @@ class Potluck extends Component {
   }
 }
 
-const mapStateToProps = (store) => ({
+const mapStateToProps = store => ({
   firstName: store.potluck.firstName,
   lastName: store.potluck.lastName,
   phone: store.potluck.phone,

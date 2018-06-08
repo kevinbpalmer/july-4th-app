@@ -38,7 +38,7 @@ class DonationProgressBar extends Component {
 
     axios.get('/api/v1/payment')
     .then(res => {
-      process.env.DEBUG && console.log('Got amounts back: ', res)
+      process.env.REACT_APP_DEBUG && console.log('Got amounts back: ', res)
       this.setState({
         amount: res.data.dollar_amount
       })
@@ -46,7 +46,7 @@ class DonationProgressBar extends Component {
     })
     .catch(err => {
       updateProgressBar(false)
-      process.env.DEBUG && console.error('Failed to fetch amount', err)
+      process.env.REACT_APP_DEBUG && console.error('Failed to fetch amount', err)
     })
   }
 

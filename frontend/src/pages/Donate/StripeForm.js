@@ -47,7 +47,7 @@ class StripeForm extends Component {
             amount: strippedAmount
           })
           .then(res => {
-            process.env.DEBUG && console.log('SUCCESS: ', res.data)
+            process.env.REACT_APP_DEBUG && console.log('SUCCESS: ', res.data)
 
             this.setState({
               loading: false,
@@ -58,7 +58,7 @@ class StripeForm extends Component {
             updateProgressBar(true)
           })
           .catch(err => {
-            process.env.DEBUG && console.error('ERROR: ', err.message)
+            process.env.REACT_APP_DEBUG && console.error('ERROR: ', err.message)
 
             this.setState({
               loading: false,

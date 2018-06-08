@@ -87,7 +87,7 @@ function saveDish(dishes, id) {
       const type = dishes[i].subDish.value
 
       if (isOther === 'other') {
-        resolve(potluckDishes.create(id, 'other', 'other', otherVal))
+        resolve(potluckDishes.create(id, 'other', type, otherVal))
       }
       else if (type === 'other') {
         resolve(potluckDishes.create(id, category, type, otherVal))
