@@ -95,7 +95,6 @@ class Potluck extends Component {
       email,
       potluckDishes
     }
-
     e.preventDefault()
 
     let validation = new Validator(data, rules, customMessages)
@@ -172,7 +171,7 @@ class Potluck extends Component {
         <p>Time: 6:00 pm - Rain or Shine!</p>
         <p>Location: 1306 Harvest Grove Blvd.</p>
 
-        <p>Main course will be - pulled pork & chicken thighs</p>
+        <p>Main course will be - pulled pork & chicken thighs - meat 'n' three style.</p>
 
         <p>
           Serving spoons and tongs will be provided. Please label all dishes with your name.

@@ -10,11 +10,10 @@ import './styles.sass'
 
 const categoryOptions = [
   <option key={0} value=''>Select Dish</option>,
-  <option key={1} value='appetizer'>Appetizer</option>,
   <option key={2} value='sideDish'>Side Dish</option>,
   <option key={3} value='dessert'>Dessert</option>,
   <option key={4} value='drinks'>Drinks</option>,
-  <option key={5} value='other'>Other</option>
+  <option key={5} value='other'>Dinner Supplies</option>
 ]
 
 class SingleDish extends Component {
@@ -89,34 +88,29 @@ class SingleDish extends Component {
         placeholder: true
       },
       {
+        label: 'Chips and Dip',
+        value: 'chipsAndDip',
+        count: (9 - dbDishes['chipsAndDip'])
+      },
+      {
         label: 'Macaroni And Cheese',
         value: 'macaroniAndCheese',
-        count: (14 - dbDishes['macaroniAndCheese'])
+        count: (16 - dbDishes['macaroniAndCheese'])
       },
       {
         label: 'Baked Beans',
         value: 'bakedBeans',
-        count: (14 - dbDishes['bakedBeans'])
+        count: (16 - dbDishes['bakedBeans'])
       },
       {
         label: 'Potato Dish (Cheesy potatoes, hash brown casserole, potato salad, etc.)',
         value: 'potatoDish',
-        count: (14 - dbDishes['potatoDish'])
+        count: (16 - dbDishes['potatoDish'])
       },
       {
         label: 'Salad (Fruit, pasta, macaroni, etc.)',
         value: 'salad',
-        count: (14 - dbDishes['salad'])
-      },
-      {
-        label: 'Coleslaw',
-        value: 'coleslaw',
-        count: (8 - dbDishes['coleslaw'])
-      },
-      {
-        label: 'Other',
-        value: 'other',
-        count: (5 - dbDishes['other_side_dish'])
+        count: (16 - dbDishes['salad'])
       }
     ]
 
@@ -130,17 +124,17 @@ class SingleDish extends Component {
       {
         label: 'Cake',
         value: 'cake',
-        count: (6 - dbDishes['cake'])
+        count: (8 - dbDishes['cake'])
       },
       {
         label: 'Brownies',
         value: 'brownies',
-        count: (8 - dbDishes['brownies'])
+        count: (10 - dbDishes['brownies'])
       },
       {
         label: 'Cookies',
         value: 'cookies',
-        count: (8 - dbDishes['cookies'])
+        count: (10 - dbDishes['cookies'])
       },
       {
         label: 'Pie',
@@ -182,19 +176,9 @@ class SingleDish extends Component {
         count: (9 - dbDishes['drPepper'])
       },
       {
-        label: 'Juice',
-        value: 'juice',
-        count: (5 - dbDishes['juice'])
-      },
-      {
-        label: 'Tea',
+        label: 'Sweet Tea',
         value: 'tea',
         count: (6 - dbDishes['tea'])
-      },
-      {
-        label: 'Other',
-        value: 'other',
-        count: (4 - dbDishes['other_drinks'])
       }
     ]
 
@@ -206,7 +190,7 @@ class SingleDish extends Component {
         placeholder: true
       },
       {
-        label: 'Patriotic Napkins',
+        label: 'Patriotic Napkins (Large Pack)',
         value: 'napkins',
         count: (9 - dbDishes['napkins'])
       },
