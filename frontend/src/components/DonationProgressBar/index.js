@@ -11,7 +11,8 @@ import './styles.sass'
 class DonationProgressBar extends Component {
   state = {
     amount: undefined,
-    percentage: 0
+    percentage: 0,
+    amountToRaise: 8000
   }
 
   componentDidMount() {
@@ -19,12 +20,12 @@ class DonationProgressBar extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const {amount} = this.state
+    const {amount, amountToRaise} = this.state
     const {shouldUpdateProgressBar} = this.props
 
     if (prevState.amount !== amount) {
       this.setState({
-        percentage: ((amount/8000)*100).toFixed(2)
+        percentage: ((amount/amountToRaise)*100).toFixed(2)
       })
     }
 
@@ -51,7 +52,7 @@ class DonationProgressBar extends Component {
   }
 
   render() {
-    const {amount, percentage} = this.state
+    const {amount, percentage, amountToRaise} = this.state
 
     if (!amount) {
       return null
@@ -60,7 +61,7 @@ class DonationProgressBar extends Component {
     return (
       <div  className='progressbar-container'>
         <div style={{ color: this.props.textColor ? this.props.textColor : '#fff' }} className='amount-wrapper'>
-          <h4>${amount}</h4> <span>/</span> <h4>$8000</h4> <span>Raised</span>
+          <h4>${amount}</h4> <span>/</span> <h4>${amountToRaise}</h4> <span>Raised</span>
         </div>
         <div className='progress'>
           <div

@@ -46,11 +46,7 @@ const Timeline = () => {
         name={['Magician - Magic of Matt']}
         clickable={true}
         external={true}
-        link='//facebook.com/Magic-of-Matt-1547442255569881/'
-      />
-      <SingleTimelineItem
-        time='3:30PM'
-        name={['Kickball/Sloshball Tournament']}
+        link='//www.youtube.com/channel/UCcFsr3-KmyRmzlYZUdBm8EQ'
       />
       <SingleTimelineItem
         time='6:00PM'

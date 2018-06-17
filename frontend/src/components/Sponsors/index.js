@@ -14,6 +14,7 @@ import jcMechanical from './logos/jc_mechanical_logo.jpg'
 import topOfTheLine from './logos/topofthelinelandscape_logo.jpg'
 import cbiz from './logos/cbiz_logo.png'
 import golfCart from './logos/golfcarts_logo.jpg'
+import audioVideoElements from './logos/audio_video_elements.png'
 
 // stylesheet
 import './styles.sass'
@@ -76,13 +77,19 @@ const Sponsors = () => {
           logo={cbiz}
           name='Jon Chaney'
           company='CBIZ Employee Services Organization'
-          url='cbiz.com/about-us/employees/employee/eid/2015/name/jon_chaney'
+          url='linkedin.com/in/jon-chaney-a5ba935'
         />
         <SingleSponsor
           logo={golfCart}
           name='John Phillips'
           company='Golf Carts Fore Less'
           url='golfcartsforeless.com/'
+        />
+        <SingleSponsor
+          logo={audioVideoElements}
+          name='Aaron and Stephanie Lawrence'
+          company='Audio Video Elements'
+          url='audiovideoelements.com'
         />
       </div>
       <NavLink className='btn btn-default btn-form' to='/contact'>

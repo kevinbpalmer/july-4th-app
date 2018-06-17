@@ -49,16 +49,6 @@ class EventDetails extends Component {
             </p>
           </div>
           <div className='single-event'>
-            <h4>Kickball/Sloshball Tournament</h4>
-            <p className='time'>
-              3:30 pm
-            </p>
-
-            <p>
-              This kids versus adults kickball tournament will take place between 1215 & 1301 Harvest Grove Blvd. It’s your classic game of kickball with a twist - adults must hold a beverage at ALL times!
-            </p>
-          </div>
-          <div className='single-event'>
             <h4>Live Band - Janine Le Clair and Band</h4>
             <p className='time'>
               6:00 pm - 11:15 pm

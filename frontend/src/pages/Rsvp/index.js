@@ -255,7 +255,7 @@ class Rsvp extends Component {
               inputName='attendingPotluck'
               value={attendingPotluck}
               updateForm={this.handleInputChange}
-              label='Attending Potluck?'
+              label='Attending Potluck Dinner?'
             />
           </div>
           {attendingPotluck === true &&
