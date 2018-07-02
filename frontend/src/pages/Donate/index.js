@@ -16,6 +16,31 @@ class Donate extends Component {
   }
 
   render() {
+
+	return (
+		    <div className='form-container container donate-form-container'>
+        <h5>Hi Neighbor!</h5>
+
+	<h3>
+		<b>Online donations are closed. If you would like to attend and donate, please send us a message on the <a href="/contact">contact page</a></b>.
+	</h3>
+
+        <p>
+          <b>
+            Because this is such a grand event, we are asking for donations from each household to fund this action-packed day. <br/> We are requesting a minimum donation of $25 for a group of 2, $50 for a group of 4, $75 for a group of 6, and $100 for a group of 8. <br />Every donation is appreciated!
+          </b>
+        </p>
+
+        <p>
+          We look forward to seeing everyone at the annual Harvest 4th of July Extravaganza!
+          Thank you in advance for all the support.
+        </p>
+
+        <ContactBlurb />
+      </div>
+	) 
+	
+
     return (
       <div className='form-container container donate-form-container'>
         <h5>Hi Neighbor!</h5>

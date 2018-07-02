@@ -176,7 +176,7 @@ class SingleDish extends Component {
         count: (9 - dbDishes['drPepper'])
       },
       {
-        label: 'Sweet Tea',
+        label: 'Sweet Tea - 2 gallons',
         value: 'tea',
         count: (6 - dbDishes['tea'])
       }
@@ -202,7 +202,7 @@ class SingleDish extends Component {
       {
         label: 'Plastic Forks (Member’s Mark White Forks from Sam’s Club - 600 count)',
         value: 'plasticForks',
-        count: (2 - dbDishes['plasticForks'])
+        count: (1 - dbDishes['plasticForks'])
       },
       {
         label: 'Plastic Spoons (Member’s Mark White Spoons from Sam’s Club - 600 count)',
@@ -212,7 +212,7 @@ class SingleDish extends Component {
       {
         label: '3-Section Foam Plates (Hefty Supreme from Sam’s Club - 200 count)',
         value: 'threeSectionPlates',
-        count: (6 - dbDishes['threeSectionPlates'])
+        count: (4 - dbDishes['threeSectionPlates'])
       }
     ]
 
@@ -377,7 +377,7 @@ class SingleDish extends Component {
         return <label>1 dessert = 1 cake/pie, 2-dozen cookies, 9” x 13” pan, etc.</label>
         break;
       case 'drinks':
-        return <label>1 drink = 12-pack CANS or 1-gallon <br /> PLEASE DROP BEVERAGES OFF PRIOR TO EVENT DAY (A reminder will be sent out)</label>
+        return <label>1 drink = 24-pack CANS <br /> PLEASE DROP BEVERAGES OFF PRIOR TO EVENT DAY (A reminder will be sent out)</label>
         break;
       case 'other':
         return <label>PLEASE DROP OFF PRIOR TO EVENT DAY (A reminder will be sent out)</label>

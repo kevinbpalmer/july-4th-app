@@ -189,6 +189,7 @@ class Potluck extends Component {
         <p>BYOB  - Keg beer available all day.</p>
         <p>Potluck will take place at 6:00 pm - rain or shine!</p>
         <p>Thank you so much for your participation!</p>
+	<p><b>* Dish options disappear below when quantity is met.</b></p>
         <ContactBlurb />
         {error && <ErrorBlock />}
         <form onSubmit={this.handleSubmit}>

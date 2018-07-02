@@ -168,6 +168,14 @@ class Rsvp extends Component {
       )
     }
 
+	return (
+		<div className='form-container container'>
+			<ContactBlurb />
+			<h3><b>Online RSVPs are closed. If you would like to attend and donate, please send us a message on the <a href="/contact">contact page</a></b>.</h3>
+		</div>	
+)
+
+
     return (
       <div className='form-container container'>
         <h5>Let us know you're ready to party!</h5>

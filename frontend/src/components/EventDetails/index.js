@@ -31,7 +31,7 @@ class EventDetails extends Component {
           <div className='single-event'>
             <h4>Shaved Ice Truck</h4>
             <p className='time'>
-              11:30 pm - 1:30 pm
+              1:30 pm - 3:00 pm
             </p>
 
             <p>

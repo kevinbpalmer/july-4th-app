@@ -67,7 +67,7 @@ class Volunteers extends Component {
         {
           label: 'Potluck Committee',
           value: 'Potluck',
-          count: (4 - counts['potluck'])
+          count: (3 - counts['potluck'])
         },
         {
           label: 'Firework Committee - Friday',
@@ -236,11 +236,16 @@ class Volunteers extends Component {
           />
           <SingleDescription
             title='Firework Committee'
-            text='Friday - prep, fuse, and organize fireworks to prepare for the show the following day. Dinner will be provided.'
+            text='Friday - prep, fuse, and organize fireworks to prepare for the show the following day.'
             text2={'Saturday - organize fireworks prior to show, follow instructions from lead person, light fireworks during show, etc. Must be 12 years and older to assist and able to follow strict safety instructions.'}
             time='Friday - 4:00 pm - 7:00 pm'
             time2='Saturday - 8:45 pm - 10:00 pm'
           />
+	<SingleDescription 
+		title='Clean Up Committee'
+		text='Clean up morning after event - collect firework debri and event trash, load/haul off trash, stack chairs & tables, etc.'
+		time='Sunday - 10:00 am - 12:00 pm'
+	/>
         </div>
         <form onSubmit={this.handleSubmit}>
           <div className='form-group row'>

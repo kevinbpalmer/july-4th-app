@@ -16,20 +16,12 @@ const Timeline = () => {
         name={['Parade Begins']}
       />
       <SingleTimelineItem
-        time='11:30AM - 1:30PM'
-        name={['Shaved Ice Truck']}
-      />
-      <SingleTimelineItem
         time='11:30AM - 2:30PM'
         name={['Face Painting']}
       />
       <SingleTimelineItem
         time='ALL DAY'
         name={['Inflatable Obstacle Course']}
-      />
-      <SingleTimelineItem
-        time='TBA'
-        name={['Kid Activity']}
       />
       <SingleTimelineItem
         time='12:00PM'
@@ -40,6 +32,10 @@ const Timeline = () => {
         name={['Cornhole Tournament']}
         clickable={true}
         link='/cornhole'
+      />
+      <SingleTimelineItem
+        time='1:30PM - 3:00PM'
+        name={['Shaved Ice Truck']}
       />
       <SingleTimelineItem
         time='2:00PM'
